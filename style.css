@@ -1,6 +1,19 @@
-.class-container div{
+.flex-box{
     display: flex;
     align-items: center;
-    border: 2px solid #0000
+    border: 2em solid #0000;
+    background-color: grey;
+    padding:2rem;
+    margin-bottom:2rem;
+    border-radius: 8em;
+    margin: 2rem auto;
+    max-width: 600px;
+    width: 70%;
+    justify-content: center;
+    flex-direction: center;
+}
+
+#firsttitle{
+    text-align: center;
 }
 
