@@ -13,6 +13,10 @@
     flex-direction: center;
 }
 
+p {
+    text-align: center;
+}
+
 #firsttitle{
     text-align: center;
 }

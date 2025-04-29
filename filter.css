@@ -1,0 +1,15 @@
+#firsttitle{
+    text-align: center;
+}
+
+.filter-container{
+    display:flex;
+    gap:1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filter-container label{
+    display:flex;
+    flex-direction: column;
+}
