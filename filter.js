@@ -31,21 +31,20 @@ campingDiv.innerHTML = "";
 
     const name = camping.name;
     const city = camping.city;
-    const price = camping.price + "<p>kr/natt</p>";
-    const description = camping.description || "Ingen beskrivning tillgänglig";
-    const website = camping.website ? `<a href="${camping.website}" target="_blank">Besök webbplats</a>` : "Ingen webbplats";
+    const price = camping.price_range;
+    const description = camping.abstract;
+    const website = camping.website;
 
     // Skapa HTML för varje camping
-    campingDiv.innerHTML += `
-      <div class="camping-card">
-        <h3>${name}</h3>
-        <p><strong>Stad:</strong> ${city}</p>
-        <p><strong>Pris:</strong> ${price}</p>
-        <p><strong>Beskrivning:</strong> ${description}</p>
-        <p><strong>Webbplats:</strong> ${website}</p>
-      </div>
-      <hr>
-    `;
+    campingDiv.innerHTML += 
+    "<div>"+
+        "<h3>" + name + "</h3>" +
+        "<p>" + city + "</p>" +
+        "<p>" + price + "</p>" +
+        "<p>" + description + "</p>" + 
+        "<p><a href='" + website + "' target='_blank'>" + website + "</a></p>"+
+        "<button>Läs mer</button>"+
+      "</div>";
   }
 
 
