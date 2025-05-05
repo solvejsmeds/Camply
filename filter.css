@@ -1,3 +1,9 @@
+body {
+    width: 480px;
+    background-color: #CFBB99
+
+}
+
 #firsttitle{
     text-align: center;
 }
@@ -15,17 +21,7 @@
 }
 
 .campcontainer {
-    border: 1em solid black;
-    padding: 10em;
-    display:inline-block;
-    margin: 10em;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-    text-align: right;
-    width: 10em;
-    height:5em;
-    background-color: pink;
+    background-color: #E5D7C4;
 }
 
 .campingtext {
