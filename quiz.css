@@ -1,0 +1,22 @@
+body {
+    width: 480px;
+    background-color: #CFBB99
+}
+
+.quizstad {
+    background-color: #E5D7C4;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    padding: 7px;
+    margin-bottom: 20px;
+}
+
+.storlekstad{
+    background-color: #E5D7C4;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    padding: 7px;
+    margin-bottom: 20px;
+}
+
+#firsttitle{
+    text-align: center;
+}
