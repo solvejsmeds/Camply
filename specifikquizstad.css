@@ -1,0 +1,15 @@
+body {
+    width: 480px;
+    background-color: #CFBB99
+}
+
+#firsttitle{
+    text-align: center;
+}
+
+.vilkenstad{
+    background-color: #E5D7C4;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 1em;
+}
