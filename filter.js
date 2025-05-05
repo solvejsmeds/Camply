@@ -11,7 +11,8 @@ fetchSmapiCities() //anropar fetchSmapiCities
 
 showCampings(); //anropar fuunktion som visar alla campingar
 
-document.querySelector("#selectedCity").addEventListener("change", filterCampingsByCity); //change lyssnare på stad filtrering
+document.querySelector("#selectedCity").addEventListener("change", filterCampings); //change lyssnare på stad filtrering
+document.querySelector("#")
 
 }
 window.addEventListener("load", init)
@@ -39,10 +40,10 @@ displayCampings(allCampings); //antopar funktion som visar cmapingarna
 
 function displayCampings(campings) {
 
-  const campingDiv = document.querySelector("#campingsContainer");
-  campingDiv.innerHTML = "";
+  const campingDiv = document.querySelector("#campingsContainer"); //hämtar elementet där cmapingarna ligger
+  campingDiv.innerHTML = ""; //rensar html
 
- for (let i = 0; i < campings.length; i++) {
+ for (let i = 0; i < campings.length; i++) { 
     const camping = campings[i];
 
     const name = camping.name; //namn
@@ -54,12 +55,12 @@ function displayCampings(campings) {
     // Skapa HTML för varje camping
     campingDiv.innerHTML += 
     "<div class='campcontainer'>"+
-        "<h3>" + name + "</h3>" +
-        "<p>" + city + "</p>" +
-        "<p>" + price + "</p>" +
-        "<p>" + description + "</p>" + 
-        "<p><a href='" + website + "' target='_blank'>" + website + "</a></p>"+
-        "<button>Läs mer</button>"+
+        "<h3 class='campingtext'>" + name + "</h3>" +
+        "<p class='campingtext'>" + city + "</p>" +
+        "<p class='campingtext'>" + price + "</p>" +
+        "<p class='campingtext'>" + description + "</p>" + 
+        "<p class='campingtext'><a href='" + website + "' target='_blank'>" + website + "</a></p>"+
+        "<button class='campingtext'>Läs mer</button>"+
       "</div>";
   }
 
@@ -68,7 +69,7 @@ function displayCampings(campings) {
 //Slut showCampings
 //-----------------------------------------------------------------------------------
 
-function filterCampingsByCity() {
+function filterCampings() {
   const selectedCity = document.querySelector("#selectedCity").value;
 
   const filtered = allCampings.filter(camping => camping.city === selectedCity);
@@ -101,7 +102,7 @@ for (let i = 0; i < data.payload.length; i++) {
     }
   } //går igenom alla cmappngar och hämtar staden
 
-citySelect.innerHTML = ""; //rensar html koden
+
 
 
 for (let city of uniqueCities) {
