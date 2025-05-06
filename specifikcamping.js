@@ -21,12 +21,15 @@ async function showSpecificCamping() {
     
 
     // Anropa API för att hämta camping med ID
-    let response = await fetch("https://smapi.lnu.se/api/?debug=true&api_key=" + APIkey + "&controller=establishment&method=getall&descriptions=camping&id=" + campingId);
+    let response = await fetch("https://smapi.lnu.se/api/?debug=true&api_key=" + APIkey + "&controller=establishment&method=getall&descriptions=camping&ids=" + campingId);
 
+    
+
+    
   
     const data = await response.json(); // Omvandla svaret till JSON
 
-    
+    console.log(data.payload)
     
     if (data.payload.length > 0) {
         const camping = data.payload[0]; // Hämta första (och enda) campingdata från svaret

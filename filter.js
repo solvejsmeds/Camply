@@ -60,8 +60,7 @@ function displayCampings(campings) {
         "<p class='campingtext'>" + camping.price_range + "</p>" +
         "<p class='campingtext'>" + camping.abstract + "</p>" + 
         "<p class='campingtext'><a href='" + camping.website + "' target='_blank'>" + camping.website + "</a></p>"+
-        "<button class='campingtext'>Läs mer</button>"+
-      "</div>";
+        "<button class='campingtext'>Läs mer</button>";
 
       container.addEventListener("click", function() {
         window.location.href = "specifikcamping.html?id=" + camping.id;
@@ -69,6 +68,8 @@ function displayCampings(campings) {
 
       campingDiv.appendChild(container);
   }
+
+  
 
 
 }
