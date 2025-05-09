@@ -25,3 +25,45 @@ body {
     padding: 7px;
     margin-bottom: 20px;
 }
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 10px 20px;
+  }
+  
+  .logo {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0 auto;
+  }
+  
+  .hamburger {
+    font-size: 1.8em;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+  }
+
+  .nav-links {
+    display: none; 
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-direction: column;
+    text-align: center;
+    background-color: #d2b48c;
+  }
+  
+  .nav-links a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+  }
+  
+  .nav-links.show {
+    display: flex; 
+  }
