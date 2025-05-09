@@ -26,19 +26,44 @@ body {
     margin-bottom: 20px;
 }
 
-.dropdown-content {
-    display: none;
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 10px 20px;
+  }
+  
+  .logo {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0 auto;
+  }
+  
+  .hamburger {
+    font-size: 1.8em;
+    cursor: pointer;
     position: absolute;
-    background-color: #f9f9f9;
-    min-width: 200px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 10px;
-    z-index: 100;
+    right: 20px;
+  }
+
+  .nav-links {
+    display: none; 
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-direction: column;
+    text-align: center;
+    background-color: #d2b48c;
   }
   
-  .dropdown-content.show {
+  .nav-links a {
     display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
   }
   
-  
+  .nav-links.show {
+    display: flex; 
+  }
