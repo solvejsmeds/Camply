@@ -3,6 +3,8 @@ const APIkey = "R7PGDNjZ" //api nyckel till SMAPI
 
 let allCampings = []; //sparar alla cmapingar globalt
 
+//let locationMapping = {}; //lagrar json innehållet
+
 function init() {
 
 
@@ -14,9 +16,30 @@ showCampings(); //anropar fuunktion som visar alla campingar
 document.querySelector("#selectedCity").addEventListener("change", filterCampings); //change lyssnare på stad filtrering
 document.querySelector("#selectedPrice").addEventListener("change", filterCampings); //change lyssnare på pris filtrering
 
+dropdown();
+
+//requestData("position.json")
+
+
+
 }
 window.addEventListener("load", init)
 //Slut init
+//-----------------------------------------------------------------------------------
+
+
+function dropdown() {//funktion för att hantera dropdown menyn med kryssruto för läge
+  let dropdownBtn = document.getElementById("dropdownBtn");
+  let dropdownContent = document.getElementById("dropdownContent");
+
+  dropdownBtn.addEventListener("click", function(event) {
+    event.stopPropagation();
+    dropdownContent.classList.toggle("show");
+  });
+
+  
+}
+//Slut dropodown
 //-----------------------------------------------------------------------------------
 
 //funktion för att visa alla campingar, hämtar alla cmapingar fårn smapi och sparar dem i "allCampings"

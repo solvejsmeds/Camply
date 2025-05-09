@@ -42,16 +42,18 @@
 
         </select>
 
-        <label for="placement">Läge</label>
-        <select id="selectedPlacement">
-            
-            <option>Spelar ingen roll</option>
-            <option>Närhet till skog</option>
-            <option>Närhet till sjö</option>
-            <option>Närhet till hav</option>
-            <option>Närhet till stad</option>
+        <div class="dropdown">
+            <button id="dropdownBtn">Läge</button>
+            <div id="dropdownContent" class="dropdown-content">
+              <label><input type="checkbox" value="forest"> Skog</label><br>
+              <label><input type="checkbox" value="lake"> Sjö</label><br>
+              <label><input type="checkbox" value="sea"> Hav</label><br>
+              <label><input type="checkbox" value="city"> Stad</label>
+            </div>
+          </div>
 
-        </select>
+        
+
     </div>
     <br>
     <br>
