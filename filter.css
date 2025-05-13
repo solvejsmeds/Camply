@@ -107,9 +107,7 @@ body {
   }
 
 
-  .circle-img {
-    width: 20px;
-  }
+  
 
   .switch {
     position: relative;
@@ -136,8 +134,7 @@ body {
     position: absolute;
     top: 4px;
     left: 4px;
-    width: 26px;
-    height: 26px;
+  
     border-radius: 50%;
     transition: 0.4s;
     background-color: #ffffff;
