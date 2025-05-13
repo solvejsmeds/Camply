@@ -2,3 +2,8 @@ body {
     width: 480px;
     background-color: #CFBB99
 }
+
+#map {
+    height: 300px;
+    width: 100%;
+}
