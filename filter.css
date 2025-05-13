@@ -106,11 +106,6 @@ body {
     display: block;
   }
 
-
-  .circle-img {
-    width: 20px;
-  }
-
   .switch {
     position: relative;
     display: inline-block;
