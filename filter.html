@@ -2,76 +2,116 @@
 <html lang="sv">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camply</title>
-    <link rel="stylesheet" href="filter.css">
-    <script src="filter.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Camply</title>
+  <link rel="stylesheet" href="filter.css">
+  <script src="filter.js"></script>
 </head>
 
 <body>
-    <header class="header">
-        <div class="header-content">
-          <h1 class="logo">Camply</h1>
-          <div class="hamburger" id="hamburger">☰</div>
-        </div>
+  <header class="header">
+    <div class="camplylogo">
+      <a href="index.html">
+        <img src="img/camply.svg" class="mainlogo" alt="logga för camply, gran och eld">
+      </a>
+    </div>
+    <div class="header-content">
+      <h1 class="logo">Camply</h1>
+      <div class="hamburger" id="hamburger">☰</div>
+    </div>
+
+    <hr>
+
     <div>
-        <p>
-            Filtrera utifrån dina behov för att hitta campingar som passar dig!
-        </p>
+      <p>
+        Filtrera utifrån dina behov för att hitta campingar som passar dig!
+      </p>
     </div>
     <nav class="navbar">
-        <ul class="nav-links" id="nav-links">
-          <li><a href="#">Hem</a></li>
-          <li><a href="#">Om oss</a></li>
-          <li><a href="#">Tjänster</a></li>
-          <li><a href="#">Kontakt</a></li>
-        </ul>
-      </nav>
-    </header>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#">Hem</a></li>
+        <li><a href="#">Om oss</a></li>
+        <li><a href="#">Tjänster</a></li>
+        <li><a href="#">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
 
-        <label for="price">Prisklass</label>
-        <select id="selectedPrice">
+  <label for="price"></label>
+  <select id="selectedPrice">
 
-            <option value=""> Alla prisklasser </option>
+    <option value=""> Alla prisklasser </option>
 
-            <option value="0-25"> 0-25 kr/natt </option>
+    <option value="0-25"> 0-25 kr/natt </option>
 
-            <option value="100-250"> 100-250 kr/natt </option>
+    <option value="100-250"> 100-250 kr/natt </option>
 
-            <option value="250-500"> 250-500 kr/natt </option>
+    <option value="250-500"> 250-500 kr/natt </option>
 
-            <option value="500-1250"> 500-1250kr/natt </option>
+    <option value="500-1250"> 500-1250kr/natt </option>
 
-        </select>
+  </select>
 
-        <label for="city">Stad</label>
-        <select id="selectedCity">
 
-            <option value="">Alla städer</option>
-            <!-- Här kommer städer som hämtas med smapi ligga-->
 
-        </select>
+  <div class="selectedCity">
+    <button id="dropdownBtnCity">Alla städer</button>
+    <div id="dropdownContentCity" class="dropdown-content-city">
 
-        <div class="dropdown">
-            <button id="dropdownBtn">Läge</button>
-            <div id="dropdownContent" class="dropdown-content">
-              <label><input type="checkbox" value="forest"> Skog</label><br>
-              <label><input type="checkbox" value="lake"> Sjö</label><br>
-              <label><input type="checkbox" value="sea"> Hav</label><br>
-              <label><input type="checkbox" value="city"> Stad</label>
-            </div>
-          </div>
-
-        
-
+      <!-- här läggs checkboxar + städer in-->
+     
     </div>
-    <br>
-    <br>
+  </div>
 
-    <!--Campignarna här under-->
+  <div class="dropdown">
+    <button id="dropdownBtn">Alla lägen</button>
+    <div id="dropdownContent" class="dropdown-content">
+      <label><input type="checkbox" value="forest"> Skog</label><br>
+      <label><input type="checkbox" value="lake"> Sjö</label><br>
+      <label><input type="checkbox" value="sea"> Hav</label><br>
+      <label><input type="checkbox" value="city"> Stad</label>
+    </div>
+  </div>
 
-    <div id="campingsContainer"></div>
+
+  <!-- slide knappar-->
+  <div class="switchDiv">
+  <label class="switch">
+    <input type="checkbox" id="wifiSlider">
+    <span class="slider">
+      <img src="img/camply.svg" alt="ikon" class="circle-img" />
+    </span>
+  </label>
+  
+  <label class="switch">
+    <input type="checkbox" id="fishingSlider">
+    <span class="slider">
+      <img src="img/camply.svg" alt="ikon" class="circle-img" />
+    </span>
+  </label>
+
+  <label class="switch">
+    <input type="checkbox" id="cafeSlider">
+    <span class="slider">
+      <img src="img/camply.svg" alt="ikon" class="circle-img" />
+    </span>
+  </label>
+
+  <label class="switch">
+    <input type="checkbox" id="laundrySlider">
+    <span class="slider">
+      <img src="img/camply.svg" alt="ikon" class="circle-img" />
+    </span>
+  </label>
+</div>
+  
+  <br>
+  <br>
+
+  <!--Campignarna här under-->
+
+  <div id="campingsContainer"></div>
 
 
 </body>
