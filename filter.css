@@ -27,24 +27,33 @@ body {
 }
 
 .header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     position: relative;
     padding: 10px 20px;
+    height: 80px;
   }
   
   .logo {
+    position: absolute;
+    left:50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     font-size: 2em;
     font-weight: bold;
     margin: 0 auto;
   }
   
   .hamburger {
+    position: absolute;
+    right:20px;
+    top:50%;
+    transform: translateY(-50%);
     font-size: 1.8em;
     cursor: pointer;
-    position: absolute;
-    right: 20px;
+  }
+
+  .mainlogo{
+    width:100%;
+    height:auto;
   }
 
   .nav-links {
@@ -85,10 +94,12 @@ body {
   }
 
   .camplylogo {
+    position: absolute;
+    left: 20px;
+    top:52% ;
     width: 100px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    width:40px;
+    transform:translateY(-50%);
   }
 
   .dropdown-content-city {
@@ -106,14 +117,12 @@ body {
     display: block;
   }
 
-
-  
-
   .switch {
     position: relative;
     display: inline-block;
-    width: 60px;
-    height: 34px;
+    width: 75px;
+    height: 37px;
+
   }
   
   .switch input {
@@ -134,7 +143,9 @@ body {
     position: absolute;
     top: 4px;
     left: 4px;
-  
+    width: 26px;
+    height: 16px;
+    padding: 6px;
     border-radius: 50%;
     transition: 0.4s;
     background-color: #ffffff;
