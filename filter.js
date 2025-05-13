@@ -39,6 +39,11 @@ function init() {
     checkbox.addEventListener("change", filterCampings);
   } //loopar igenom checkboxarna och lägger till change eventlyssnare, anropar filter campings
 
+  document.querySelector("#wifiSlider").addEventListener("change", filterCampings);
+  document.querySelector("#fishingSlider").addEventListener("change", filterCampings);
+  document.querySelector("#cafeSlider").addEventListener("change", filterCampings);
+  document.querySelector("#laundrySlider").addEventListener("change", filterCampings);
+
 }
 window.addEventListener("load", init)
 //Slut init
@@ -199,6 +204,54 @@ function filterCampings() {
       });
     });
   }
+
+  // Filtrering: endast campingar med WiFi om slidern är aktiverad
+  const wifiChecked = document.querySelector("#wifiSlider").checked;
+
+  if (wifiChecked) {
+    filtered = filtered.filter(function (camping) {
+      const text = camping.text ? camping.text.toLowerCase() : "";
+      return text.includes("wifi") || text.includes("internet") || text.includes("surfzon");
+    });
+  }
+
+  // Filtrering: endast campingar med fiske om slidern är aktiverad
+  const fishingChecked = document.querySelector("#fishingSlider").checked;
+
+  if (fishingChecked) {
+    filtered = filtered.filter(function (camping) {
+      const text = camping.text ? camping.text.toLowerCase() : "";
+      return text.includes("fisk");
+    });
+  }
+
+
+
+    // Filtrering: endast campingar med cafe om slidern är aktiverad
+    const cafeChecked = document.querySelector("#cafeSlider").checked;
+
+    if (cafeChecked) {
+      filtered = filtered.filter(function (camping) {
+        const text = camping.text ? camping.text.toLowerCase() : "";
+        return text.includes("café") || text.includes("kiosk");
+      });
+    }
+
+   
+
+     // Filtrering: endast campingar med tävttmaskin eller tvättstuga om slidern är aktiverad
+     const laundryChecked = document.querySelector("#laundrySlider").checked;
+
+     if (laundryChecked) {
+      console.log("tvättmaskin valt")
+      filtered = filtered.filter(function (camping) {
+        const text = camping.text ? camping.text.toLowerCase() : "";
+        return text.includes("tvätt");
+      });
+    }
+
+  
+
 
   displayCampings(filtered);// Visa de campingar som matchar filtren
 

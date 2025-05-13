@@ -94,7 +94,10 @@ async function fetchRestaurants(lat, lng) {
 
   console.log("resturang funktion")
 
-  const url = "https://smapi.lnu.se/api/?debug=true&api_key=" + APIkey + "&controller=food&method=getfromlatlng&lat=" + lat + "&lng=" + lng + "&sort_by=asc&order_by=distance_in_km"; //länken till smapi, hämtar näsmaste resturanger utifrån lat och lang
+ const url = "https://smapi.lnu.se/api/?debug=true&api_key=" + APIkey + "&controller=food&method=getfromlatlng&lat=" + lat + "&lng=" + lng
+ //"&sort_by=asc&order_by=distance_in_km";
+
+ //länken till smapi, hämtar näsmaste resturanger utifrån lat och lang
 
   try {
     const response = await fetch(url); //anropar apiet och väntar på svar
@@ -147,7 +150,7 @@ async function fetchWeather(lat, lng) {
     const tempsMax = data.daily.temperature_2m_max; //maxtemperatur
     const tempsMin = data.daily.temperature_2m_min; //min temperatur
 
-    let html = "<h4>Veckans väder prognos:</h4><div>";
+    let html = "<h4>Veckans väder prognos:</h4><div class='weatherDiv>";
 
     //loopar igenom vare dag i prognosen
     for (let i = 0; i < dates.length; i++) {
@@ -156,7 +159,7 @@ async function fetchWeather(lat, lng) {
       const weekday = date.toLocaleDateString("sv-SE", { weekday: "long" });              // veckdag
       const capitalizedWeekday = weekday.charAt(0).toUpperCase() + weekday.slice(1);      // Gör om till stor bokstav
 
-      html += "<p>" + day + " " + capitalizedWeekday + ": " + tempsMin[i] + "°C – " + tempsMax[i] + "°C</p>";
+      html += "<p class='weatherbox'>" + day + " " + capitalizedWeekday + ": " + tempsMin[i] + "°C – " + tempsMax[i] + "°C</p>";
     }
     html += "</div>";
     document.querySelector(".weatherDiv").innerHTML = html; //visar vädret i rätt element
