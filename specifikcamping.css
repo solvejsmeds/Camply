@@ -1,5 +1,5 @@
 body {
-    /*width: 480px;*/
+   /* width: 480px; */
     background-color: #CFBB99
 }
 
@@ -9,9 +9,19 @@ body {
 }
 
 .weatherDiv {
+    display: flex;
+   
+    
+    gap: 10px;
 
+    overflow-x: auto;
 }
 
 .weatherbox {
+    
     background-color: #e5d7c4;
+    width: 90px;
+  
+    
+    text-align: center;
 }
