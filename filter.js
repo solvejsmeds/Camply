@@ -27,7 +27,10 @@ function init() {
   showCampings(); //anropar fuunktion som visar alla campingar
 
   //document.querySelector("#selectedCity").addEventListener("change", filterCampings); //change lyssnare på stad filtrering
-  document.querySelector("#selectedPrice").addEventListener("change", filterCampings); //change lyssnare på pris filtrering
+  /*document.querySelector("#selectedPrice").addEventListener("change", filterCampings); //change lyssnare på pris filtrering*/
+
+  document.querySelector("#minPrice").addEventListener("change", filterCampings);
+document.querySelector("#maxPrice").addEventListener("change", filterCampings);
 
   dropdown(); //dropdown för läge filtrering
   dropdownCity(); //dropdown för stad filtrering
@@ -43,6 +46,11 @@ function init() {
   document.querySelector("#fishingSlider").addEventListener("change", filterCampings);
   document.querySelector("#cafeSlider").addEventListener("change", filterCampings);
   document.querySelector("#laundrySlider").addEventListener("change", filterCampings);
+
+
+  document.querySelector("#hamburger").addEventListener("click", function () {
+    document.querySelector("#nav-links").classList.toggle("show");
+  });
 
 }
 window.addEventListener("load", init)
@@ -135,7 +143,7 @@ function displayCampings(campings) {
     container.innerHTML +=
       "<h3 class='campingtext'>" + camping.name + "</h3>" +
       "<p class='campingtext'>" + camping.city + "</p>" +
-      "<p class='campingtext'>" + camping.price_range + "</p>" +
+      "<p class='campingtext'>" + camping.price_range + " kr</p>" +
       "<p class='campingtext'>" + camping.abstract + "</p>" +
       "<p class='campingtext'><a href='" + camping.website + "' target='_blank'>" + camping.website + "</a></p>"
     //skriver ut namn, stad, pris, beskrivning och länk till webbplatsen
@@ -166,15 +174,38 @@ function displayCampings(campings) {
 //filtrerar cmapingarn utifrån pris, stad och läge
 function filterCampings() {
 
-  const selectedPrice = document.querySelector("#selectedPrice").value; //hämtar värdet från pris filter
-
   let filtered = allCampings; // Startar med alla campingar – filtreras stegvis utan att påverka originaldatan
+
+  const minPrice = parseInt(document.querySelector("#minPrice").value) || 0; //hämtar valt min pris och gör om det till siffra (eller 0 om inget är valt) 
+  const maxPrice = parseInt(document.querySelector("#maxPrice").value) || 1250; //hämtas valt max pris och gör om till siffra (eller 1250 om inget är valt)
+  
+  filtered = filtered.filter(function (camping) { //filtrera bort campingar osm inte matchar valt pris
+   // if (!camping.price_range) return false; 
+  
+   
+    const priceParts = camping.price_range.split("-").map(function (p) { 
+      return parseInt(p.trim());
+    }); // delar upp priseintervallet från smapi till två siffor men trim och parseint för att få tal
+  
+    if (priceParts.length !== 2 || isNaN(priceParts[0]) || isNaN(priceParts[1])) return false; //säkerhetskontroll
+  
+    const campingMin = priceParts[0]; 
+    const campingMax = priceParts[1];
+    //sparar min och max från intervallet
+  
+    //jämför användarens valda pris med campingens pris. vi
+    return campingMax >= minPrice && campingMin <= maxPrice;
+  });
+  
+  /*const selectedPrice = document.querySelector("#selectedPrice").value; //hämtar värdet från pris filter
+
+ 
 
   if (selectedPrice !== "") { // Filtrera på prisklass om något valts
     filtered = filtered.filter(function (camping) {
       return camping.price_range === selectedPrice; // Behåll campingar med matchande pris
     });
-  }
+  }*/
 
   // Hämtar alla stad-checkboxar som är ibockade
   const selectedCheckboxesCity = document.querySelectorAll("#dropdownContentCity input[type='checkbox']:checked");

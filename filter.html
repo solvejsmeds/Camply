@@ -12,11 +12,11 @@
 <body>
   <header class="header">
     <div class="header-content">
-      <div class = "camplylogo">
-      <a href="index.html">
-        <img src="img/camply.svg" class="mainlogo" alt="logga för camply, gran och eld">
-      </a>
-    </div>
+      <div class="camplylogo">
+        <a href="index.html">
+          <img src="img/camply.svg" class="mainlogo" alt="logga för camply, gran och eld">
+        </a>
+      </div>
 
       <h1 class="logo">Camply</h1>
 
@@ -32,42 +32,44 @@
     </div>
     <nav class="navbar">
       <ul class="nav-links" id="nav-links">
-        <li><a href="#">Hem</a></li>
-        <li><a href="#">Om oss</a></li>
-        <li><a href="#">Tjänster</a></li>
-        <li><a href="#">Kontakt</a></li>
+        <li><a href="index.html">Hem</a></li>
+        <li><a href="filter.hmtl">Filtrering</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
       </ul>
     </nav>
   </header>
 
-  <label for="price"></label>
-  <select id="selectedPrice">
 
-    <option value=""> Alla prisklasser </option>
+  <div class="filter-container">
+    <div class="price-field">
+      <label for="minPrice">Min</label>
+      <input type="number" id="minPrice" name="minPrice" placeholder="0" min="0">
+    </div>
 
-    <option value="0-25"> 0-25 kr/natt </option>
+    <div class="separator">–</div>
 
-    <option value="100-250"> 100-250 kr/natt </option>
-
-    <option value="250-500"> 250-500 kr/natt </option>
-
-    <option value="500-1250"> 500-1250kr/natt </option>
-
-  </select>
+    <div class="price-field">
+      <label for="maxPrice">Max</label>
+      <input type="number" id="maxPrice" name="maxPrice" placeholder="1250" min="0">
+    </div>
+  </div>
 
 
-
+  <div class="filterbuttons">
   <div class="selectedCity">
-    <button id="dropdownBtnCity">Alla städer</button>
+    <button id="dropdownBtnCity">Alla städer &#9660;
+
+
+    </button>
     <div id="dropdownContentCity" class="dropdown-content-city">
 
       <!-- här läggs checkboxar + städer in-->
-     
+
     </div>
   </div>
 
   <div class="dropdown">
-    <button id="dropdownBtn">Alla lägen</button>
+    <button id="dropdownBtn">Alla lägen &#9660; </button>
     <div id="dropdownContent" class="dropdown-content">
       <label><input type="checkbox" value="forest"> Skog</label><br>
       <label><input type="checkbox" value="lake"> Sjö</label><br>
@@ -75,39 +77,51 @@
       <label><input type="checkbox" value="city"> Stad</label>
     </div>
   </div>
-<br>
+
+</div>
+
+  <br>
 
   <!-- slide knappar-->
   <div class="switchDiv">
-  <label class="switch">
-    <input type="checkbox" id="wifiSlider">
-    <span class="slider">
-      <img src="img/Untitled-3 [Recovered].svg" alt="ikon" class="circle-img" />
-    </span>
-  </label>
-  
-  <label class="switch">
-    <input type="checkbox" id="fishingSlider">
-    <span class="slider">
-      <img src="img/Untitled-2 [Recovered].svg" alt="ikon" class="circle-img" />
-    </span>
-  </label>
+    <label class="switch">
+      
+      <input type="checkbox" id="wifiSlider">
+      <span class="slider">
+        <img src="img/Untitled-3 [Recovered].svg" alt="ikon" class="circle-img" />
+      </span>
 
-  <label class="switch">
-    <input type="checkbox" id="cafeSlider">
-    <span class="slider">
-      <img src="img/Untitled-4 [Recovered]1.svg" alt="ikon" class="circle-img" />
-    </span>
-  </label>
+    
+    </label>
 
-  <label class="switch">
-    <input type="checkbox" id="laundrySlider">
-    <span class="slider">
-      <img src="img/Untitled-5 [Recovered]3.svg" alt="ikon" class="circle-img"/>
-    </span>
-  </label>
-</div>
-  
+    <label class="switch">
+      <input type="checkbox" id="fishingSlider">
+      <span class="slider">
+        <img src="img/Untitled-2 [Recovered].svg" alt="ikon" class="circle-img" />
+      </span>
+
+     
+    </label>
+
+    <label class="switch">
+      <input type="checkbox" id="cafeSlider">
+      <span class="slider">
+        <img src="img/Untitled-4 [Recovered]1.svg" alt="ikon" class="circle-img" />
+      </span>
+
+    
+    </label>
+
+    <label class="switch">
+      <input type="checkbox" id="laundrySlider">
+      <span class="slider">
+        <img src="img/Untitled-5 [Recovered]3.svg" alt="ikon" class="circle-img" />
+      </span>
+
+    
+    </label>
+  </div>
+
   <br>
   <br>
 

@@ -57,13 +57,19 @@ body {
   }
 
   .nav-links {
-    display: none; 
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    display: none; /* gömd från början */
     flex-direction: column;
-    text-align: center;
-    background-color: #d2b48c;
+    background-color: #e5d7c4;
+    position: absolute;
+    top: 60px; /* under headern – justera vid behov */
+    right: 20px; /* högra hörnet */
+    padding: 1rem;
+   
+    border-radius: 6px;
+    z-index: 999; /* säkerställer att den ligger över annat */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: max-content;
+    list-style: none;
   }
   
   .nav-links a {
@@ -117,6 +123,14 @@ body {
     display: block;
   }
 
+  .filterbuttons {
+    display:flex;
+    gap:1rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+  
+
   .switch {
     position: relative;
     display: inline-block;
@@ -128,9 +142,17 @@ body {
   .switch input {
     display: none;
   }
+  .switch input:checked + .slider .circle-img {
+    transform: translateX(29px); 
+  }
+
+  .switch input:checked + .slider {
+    
+    background-color: #889063; 
+  }
   
   .slider {
-    background-color: #889063;
+    background-color: #354024;
     border-radius: 34px;
     position: relative;
     display: block;
@@ -151,15 +173,21 @@ body {
     background-color: #ffffff;
   }
   
-  /* När knappen är aktiv */
-  input:checked + .slider {
-    background-color: #354024;
-  }
-  
-  input:checked + .slider .circle-img {
-    transform: translateX(26px);
+  .price-field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
   }
 
+  .price-field input {
+    width: 8em; 
+  }
+  
+  .separator {
+    margin-top: 26px;
+    font-size: 1.2rem;
+  }
 
 
   
