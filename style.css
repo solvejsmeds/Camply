@@ -1,7 +1,11 @@
-
+.wrapbild{
+    width:400px;
+    margin: 0 auto;
+    height: 700px;
     background-color: #CFBB99;
    background-image: url("img/bildstarysida6.jpg");
 }
+
 
 #fj{
     background-color: #c9c8c7;
