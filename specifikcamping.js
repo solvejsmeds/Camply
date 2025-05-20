@@ -7,7 +7,8 @@ let myMarkers = []; //markör för cmapingen
 let restaurantMarkers = []; //sparar markörer för resturanger i närheter
 let lat; //sparar lat
 let lng; //sparar lng
-
+let natureMarkers = []; //spara markörer för naturreservat
+let golfMarkers = []; //sparaar markörer för golbanor
 
 
 function init() {
@@ -25,6 +26,8 @@ async function showSpecificCamping() {
 
   const specificCampingDiv = document.querySelector(".specificCampingDiv"); // Elementet där campinginformationen ska visas
 
+  const reviewsDiv = document.querySelector(".reviewsDiv"); //element för recensioner och betyg
+
   const urlParams = new URLSearchParams(window.location.search); // Hämtar query params från URL:en
 
   campingId = urlParams.get('id'); // Hämta id från URL
@@ -40,12 +43,16 @@ async function showSpecificCamping() {
     // Skapa och visa campinginformation på sidan
     specificCampingDiv.innerHTML =
       "<h3 class='campingtext'>" + camping.name + "</h3>" +
-      "<p class='campingtext'>" + camping.city + "</p>" +
-      "<p class='campingtext'>" + camping.price_range + "</p>" +
+      "<p class='campingtext'> Campingen ligger i " + camping.city + ".</p>" +
+      "<p class='campingtext'> Priset ligger runt " + camping.price_range + " kr.</p>" +
       "<p class='campingtext'>" + camping.text + "</p>" +
       "<p class='campingtext'><a href='" + camping.website + "' target='_blank'>" + camping.website + "</a></p>";
 
     //fetchReviews(campingId) // anrop av funktion för att hämta campingens recensioner
+
+    reviewsDiv.innerHTML = "<p> Betyget för " + camping.name + " är " + parseFloat(camping.rating).toFixed(1) + " av 5</p>";
+    
+
 
     console.log("campinglat: ", camping.lat, ", cmapinglng: ", camping.lng);
 
@@ -58,18 +65,32 @@ async function showSpecificCamping() {
       fetchRestaurants(camping.lat, camping.lng);
     }); //anropar funktion för att hämta resturanger när resturang knappen klickas på
 
-    fetchWeather(camping.lat, camping.lng); //anropar funktion för att visa väderprognosen, skickar med lat och lng
+    document.querySelector("#natureReserveBtn").addEventListener("click", function () {
+      fetchNatureReserve(camping.county);
+    }); //anropar funktion för att hämta resturanger när resturang knappen klickas på
+
+    document.querySelector("#golfBtn").addEventListener("click", function () {
+      fetchGolf(camping.city);
+    }); //anropar funktion för att hämta resturanger när resturang knappen klickas på
+
+    console.log(camping.county)
+
+
+
+    fetchWeather(camping.lat, camping.lng, camping.city); //anropar funktion för att visa väderprognosen, skickar med lat och lng
+
+    fetchReviews(camping.id, camping.name); // Anropa funktionen och skicka in campingens id
   }
 
 }
 //slut showSpecificCamping
-//_______________________________________________________________________________________________
+// _______________________________________________________________________________________________
 
 
 //kart funktion
 function initMap(lat, lng, name) {
 
-  const zoom = 12 //zoom för kartan
+  const zoom = 7 //zoom för kartan
 
   myMap = L.map("map").setView([lat, lng], zoom); //skapar kartan i "map" elementet
 
@@ -82,6 +103,30 @@ function initMap(lat, lng, name) {
 
   myMarkers.push(marker);//sparar markören i en array
   marker.addTo(myMap); //lägger in markören på kartan
+
+
+
+
+// Efter att kartan för campingen skapats
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(showUserPosition, showError);
+}
+
+// Funktion som visar användarens position
+function showUserPosition(pos) {
+  const userLat = pos.coords.latitude;
+  const userLng = pos.coords.longitude;
+
+  L.marker([userLat, userLng])
+    .addTo(myMap)
+    .bindPopup("Du är här")
+    .openPopup();
+}
+
+// Felhantering (valfritt men rekommenderas)
+function showError(error) {
+  console.warn("Fel vid hämtning av plats:", error);
+}
 
 }
 //Slut initMap
@@ -137,9 +182,9 @@ async function fetchRestaurants(lat, lng) {
 //_______________________________________________________________________________________________
 
 
-
+/*
 //funktion för att hämta väder
-async function fetchWeather(lat, lng) {
+async function fetchWeather(lat, lng, city) {
   const url = "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lng + "&daily=temperature_2m_max,temperature_2m_min&timezone=auto"; //api url för att hämta väder (Open-metero)
 
   try {
@@ -161,6 +206,8 @@ async function fetchWeather(lat, lng) {
       const capitalizedWeekday = weekday.charAt(0).toUpperCase() + weekday.slice(1);      // Gör om till stor bokstav
 
       html += "<p class='weatherbox'>" + day + " " + capitalizedWeekday + "<br>"  + tempsMin[i] + "°C – " + tempsMax[i] + "°C</p>";
+
+ 
     }
     html += "</div>";
     document.querySelector(".weatherDiv").innerHTML = html; //visar vädret i rätt element
@@ -172,11 +219,155 @@ async function fetchWeather(lat, lng) {
 }
 //Slut fetchWeatcher
 //_______________________________________________________________________________________________
+*/
 
+async function fetchWeather(lat, lng, city) {
+  const url = "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lng + "&daily=temperature_2m_max,temperature_2m_min&timezone=auto";
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    const dates = data.daily.time;
+    const tempsMax = data.daily.temperature_2m_max;
+    const tempsMin = data.daily.temperature_2m_min;
+
+    let html = "<div class='weatherDiv'>";
+
+    for (let i = 0; i < dates.length; i++) {
+      const date = new Date(dates[i]);
+      const day = date.toLocaleDateString("sv-SE", { day: 'numeric', month: 'numeric' });
+      const weekday = date.toLocaleDateString("sv-SE", { weekday: "long" });
+      const capitalizedWeekday = weekday.charAt(0).toUpperCase() + weekday.slice(1);
+
+      // Skapa URL till SMHI
+      const smhiURL = "https://www.smhi.se/vader/prognoser-och-varningar/vaderprognos/q/" + encodeURIComponent(city);
+
+      html += "<a href='"+smhiURL+"' target='_blank' class='weatherbox'>"+
+          day + "<br>" + capitalizedWeekday + "<br>" + tempsMin[i] + "°C – " + tempsMax[i] + "°C</a>";
+    }
+
+    html += "</div>";
+    document.querySelector(".weatherDiv").innerHTML = html;
+
+  } catch (error) {
+    console.error("Kunde inte hämta väderdata:", error);
+    document.querySelector(".weatherDiv").innerHTML = "Kunde inte hämta väderdata.";
+  }
+}
+//Slut fetchWeather
+//---------------------------------------------------
+
+
+
+async function fetchNatureReserve(county) {
+
+  
+  console.log("natureReservefunction");
+
+  const url = "https://smapi.lnu.se/api/?debug=true&api_key=" + APIkey + "&controller=establishment&method=getall&descriptions=naturreservat&counties="+ county;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    for (let marker of natureMarkers) {
+      myMap.removeLayer(marker); // Rensa ev. gamla markörer
+    }
+
+    for (let marker of natureMarkers) {
+      myMap.removeLayer(marker); // Rensa gamla naturreservat
+    }
+
+    natureMarkers = [];
+
+    console.log("naturreservat:", data);
+
+    if (data.payload.length === 0) {
+      alert("Inga naturreservat hittades.");
+      return;
+    }
+
+    for (let i = 0; i < data.payload.length; i++) {
+      const nature = data.payload[i];
+
+      const name = nature.name
+      const website = nature.website
+
+      let popupContent = "<p>" + name + "</p>";
+
+        // Om länk finns, lägg till klickbar länk
+  if (website) {
+    popupContent += "<a href='" + website + "' target='_blank'>Läs mer</a>";
+  }
+
+      const marker = L.marker([parseFloat(nature.lat), parseFloat(nature.lng)], {
+        title: nature.name
+
+      }).bindPopup(popupContent);
+
+      marker.addTo(myMap);
+      natureMarkers.push(marker);
+    }
+
+  } catch (error) {
+    console.error("Kunde inte hämta naturreservat:", error);
+  }
+}
+//Slut fetchNatureReserve
+//------------------------------------------
+
+
+//funktion för att hämta golfbanor i staden som campingen ligger i 
+async function fetchGolf(city) {
+
+  
+  console.log("Golf!! :)");
+
+  console.log("stad: ", city)
+
+  const url = "https://smapi.lnu.se/api/?debug=true&api_key=" + APIkey + "&controller=establishment&method=getall&descriptions=golfbana&cities="+city;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    for (let marker of golfMarkers) {
+      myMap.removeLayer(marker); // Rensa ev. gamla markörer
+    }
+
+    for (let marker of golfMarkers) {
+      myMap.removeLayer(marker); // Rensa gamla naturreservat
+    }
+
+    golfMarkers = [];
+
+    console.log("golf", data);
+
+    if (data.payload.length === 0) {
+      alert("Inga golfbanor hittades.");
+      return;
+    }
+
+    for (let i = 0; i < data.payload.length; i++) {
+      const golf = data.payload[i];
+
+      const marker = L.marker([parseFloat(golf.lat), parseFloat(golf.lng)], {
+        title: golf.name
+      }).bindPopup(golf.name);
+
+      marker.addTo(myMap);
+      golfMarkers.push(marker);
+    }
+
+  } catch (error) {
+    console.error("Kunde inte hämta golfbanor:", error);
+  }
+}
 
 
 //funktion för att visa cmapingens recensioner
-/*async function fetchReviews(campingId) {
+async function fetchReviews(campingId, name) {
     console.log("Hämtar recensioner för campingId:", campingId);
   
     let reviewsDiv = document.querySelector(".reviewsDiv"); //hämtar elemenet där recensionerna ska visas
@@ -193,7 +384,7 @@ async function fetchWeather(lat, lng) {
   
     if (reviewsData.payload.length > 0) { //kollar om det finns recensioner
       // Visa alla recensioner
-    reviewsDiv.innerHTML = "<h3>Recensioner:</h3>";
+    reviewsDiv.innerHTML += "<h3>Recensioner:</h3>";
   
       for (let i = 0; i < reviewsData.payload.length; i++) {
         const review = reviewsData.payload[i];
@@ -202,14 +393,13 @@ async function fetchWeather(lat, lng) {
         console.log("recension", reviewsData.payload[i])
 
         reviewsDiv.innerHTML += "<div class='review'>" +
-          "<p>" + review.name + "</p>" +
-          "<p>" + review.rating + "</p>" +
-          "<p>" + review.comment + "</p>" +
+        
+          "<p> - " + review.comment + "</p>" +
           "</div><hr>";
       }
   
       
     } else {
-      reviewsDiv.innerHTML = "<p>Inga recensioner hittades.</p>";
+      reviewsDiv.innerHTML += "<p>Det finns inga recensioner för " + name + " </p>";
     }
-  } */
+  } 

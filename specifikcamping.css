@@ -1,5 +1,5 @@
 body {
-   /* width: 480px; */
+  width: 380px;
     background-color: #CFBB99
 }
 
@@ -17,11 +17,32 @@ body {
     overflow-x: auto;
 }
 
+
+
 .weatherbox {
+    display: inline-block;
+    padding: 10px;
+    margin: 2px;
+    
+    margin-bottom: 1em;
     
     background-color: #e5d7c4;
-    width: 90px;
-  
     
+    color: black;
     text-align: center;
-}
+    text-decoration: none; /* ingen underline på länken */
+   
+    width: fit-content;
+    transition: background-color 0.2s;
+    font-size: smaller;
+  }
+  
+  .weatherbox:hover {
+    background-color: #ebe1d3;
+    cursor: pointer;
+  }
+
+  .btn {
+    margin-top: 1em;
+    cursor: pointer;
+  }

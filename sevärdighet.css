@@ -1,5 +1,5 @@
 body {
-    width: 480px;
+    width: 380px;
     background-color: #CFBB99
 }
 
@@ -13,3 +13,36 @@ body {
     margin-bottom: 20px;
     border-radius: 1em;
 }
+
+
+
+.choice-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* mellanrum mellan rutor */
+    
+  }
+  
+  .elemchoice {
+    flex: 1 1 calc(50% - 10px); /* två per rad, minus gap */
+   background-color: #f0eae1;
+    padding: 1.5em;
+    box-sizing: border-box;
+    
+    text-align: center;
+    border-radius: 0.5em;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    
+  }
+  .elemchoice:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .elemchoice.selected {
+    border: 2px solid #5c835d;
+    background-color: #e5efe5;
+  }
+
+  

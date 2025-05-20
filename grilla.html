@@ -1,63 +1,80 @@
 <!DOCTYPE html>
 <html lang="sv">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="sevärdighet.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="sevärdighet.css">
+  <script src="grilla.js"></script>
 </head>
+
 <body>
-    <h1 id = "firsttitle">Camply</h1>
-    <h2>Quiz - Vad ska du grilla?</h2>
+  <h1 id="firsttitle">Camply</h1>
+  <h2>Quiz - Vad ska du grilla?</h2>
 
-    <div class = "vilkenstad">
-        <p>Vad föredrar du?</p>
-        <form>
-            <label>
-              <input type="radio" name="föredrar" value="vegetariskt">
-              Vegetariskt
-            </label><br>
-          
-            <label>
-              <input type="radio" name="föredrar" value="Kött">
-              Kött
-            </label><br>
-
-            <label>
-                <input type="radio" name="föredrar" value="Fisk">
-                Fisk
-              </label><br>
-
-              <label>
-                <input type="radio" name="föredrar" value="Kyckling">
-                Kyckling
-              </label><br>
-          </form>
+  <div class="vilkenstad">
+    <p>Vad föredrar du?</p>
+    <div class="choice-container">
+      <div class="elemchoice" id="vegetarian">
+        <p>Vegetariskt</p>
+      </div>
+      <div class="elemchoice" id="meat">
+        <p>Kött</p>
+      </div>
+      <div class="elemchoice" id="fish">
+        <p>Fisk</p>
+      </div>
+      <div class="elemchoice" id="chicken">
+        <p>Kyckling</p>
+      </div>
     </div>
-    <div class = "vilkenstad">
-        <p>Vill du grilla något klassiskt eller testa något nytt?</p>
-        <form>
-            <label>
-              <input type="radio" name="grilla" value="klassiskt"> Klassiskt
-            </label><br>
-          
-            <label>
-              <input type="radio" name="grilla" value="nytt">
-              Nytt
-            </label><br>
-          </form>
+  </div>
+
+
+  <div class="vilkenstad">
+    <p>Vill du grilla något klassiskt eller testa något nytt?</p>
+
+    <div class="choice-container">
+      <div class="elemchoice" id="new">
+        <p>Nytt</p>
+      </div>
+      <div class="elemchoice" id="classic">
+        <p>Klassiskt</p>
+      </div>
+
+
     </div>
-    <div class = "vilkenstad">
-        <p>Ska det vara "finger food" eller riktig middag?</p>
-        <form>
-            <label>
-              <input type="radio" name="vilkentyp" value="fingerfood"> Finger food
-            </label><br>
-          
-            <label>
-              <input type="radio" name="vilkentyp" value="middag"> Riktig middag
-            </label><br>
-          </form>
+  </div>
+
+    <div class="vilkenstad">
+      <p>Hur mycket tid vill du lägga matlagningen?</p>
+      <div class="choice-container">
+        <div class="elemchoice" id="short">
+          <p>Lite tid, snabbt och enkelt är smidigast!
+          </p>
+        </div>
+        <div class="elemchoice" id="long">
+          <p>Mycket, det ska vara avancerat, grillning är en ritual!</p>
+        </div>
+        <div class="elemchoice" id="middle">
+          <p>Medel, det får ta lite tid och ska vara lagom avancerat </p>
+        </div>
+       
+      </div>
+
+    </div>
+
+    <button id="submitBtn">Visa vad jag ska grilla!</button>
+    <button id="redoBtn">Gör testet igen</button>
+
+    <div class="result">
+      <!-- Här ska resultatet från testet visas.-->
+    </div>
+
+    <div>
+      <!-- Här ska receptet för rätten visas-->
     </div>
 </body>
+
 </html>

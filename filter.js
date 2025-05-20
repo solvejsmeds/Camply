@@ -163,6 +163,8 @@ function displayCampings(campings) {
     }); //visar sidan för den camping som cklickats (knappen)
 
     campingDiv.appendChild(container); //lägger till container i campingDiv
+
+    console.log("counties: ", camping.county)
   }
 
 }
