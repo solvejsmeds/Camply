@@ -1,12 +1,21 @@
-body{
-    width:480px;
+.wrapbild{
+    width:400px;
+    margin: 0 auto;
+    height: 700px;
     background-color: #CFBB99;
+   background-image: url("img/bildstarysida6.jpg");
+}
+
+#fj{
+    background-color: #c9c8c7;
+    opacity: 70%;
+    Padding: 10px;
 }
 
 .flex-box{
+    opacity:90%;
     display: flex;
     align-items: center;
-    border: 0.2em solid #333;
     background-color: #E5D7C4;
     padding:2rem;
     margin-bottom:2rem;
@@ -14,18 +23,22 @@ body{
     margin: 2rem auto;
     max-width: 600px;
     width: 70%;
+    box-shadow: 0 5px 50px rgba(0, 0, 0.3);
     justify-content: center;
     flex-direction: center;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 
 p {
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 
 #firsttitle{
     text-align: center;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
+
+
+
 
