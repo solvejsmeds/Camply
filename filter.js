@@ -145,7 +145,9 @@ function displayCampings(campings) {
       "<p class='campingtext'>" + camping.city + "</p>" +
       "<p class='campingtext'>" + camping.price_range + " kr</p>" +
       "<p class='campingtext'>" + camping.abstract + "</p>" +
-      "<p class='campingtext'><a href='" + camping.website + "' target='_blank'>" + camping.website + "</a></p>"
+      "<p class='campingtext'><a href='" + camping.website + "' target='_blank'>" + camping.website + "</a></p>" +
+      "<img src='img/användennafältcamping.jpg' class='campingpic' alt='bild på cmapingplatsen'>"
+     
     //skriver ut namn, stad, pris, beskrivning och länk till webbplatsen
 
     let button = document.createElement("button");
