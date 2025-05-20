@@ -3,7 +3,7 @@ let submitBtn //knapp för att visa resulatt
 
 
 
-function init () {
+function init () { //init
   submitBtn = document.querySelector("#submitBtn");
   submitBtn.disabled = true;
 
