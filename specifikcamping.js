@@ -254,7 +254,7 @@ async function fetchWeather(lat, lng, city) {
 */
 
 async function fetchWeather(lat, lng, city) {
-  const url = "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lng + "&daily=temperature_2m_max,temperature_2m_min&timezone=auto";
+  const url = "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lng + "&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto";
 
   try {
     const response = await fetch(url);
@@ -266,17 +266,22 @@ async function fetchWeather(lat, lng, city) {
 
     let html = "<div class='weatherDiv'>";
 
+    const weatherCodes = data.daily.weathercode;
+
     for (let i = 0; i < dates.length; i++) {
       const date = new Date(dates[i]);
       const day = date.toLocaleDateString("sv-SE", { day: 'numeric', month: 'numeric' });
       const weekday = date.toLocaleDateString("sv-SE", { weekday: "long" });
       const capitalizedWeekday = weekday.charAt(0).toUpperCase() + weekday.slice(1);
 
+      const iconPath = getWeatherIcon(weatherCodes[i]);
+
       // Skapa URL till SMHI
       const smhiURL = "https://www.smhi.se/vader/prognoser-och-varningar/vaderprognos/q/" + encodeURIComponent(city);
 
       html += "<a href='"+smhiURL+"' target='_blank' class='weatherbox'>"+
-          day + "<br>" + capitalizedWeekday + "<br>" + tempsMin[i] + "°C – " + tempsMax[i] + "°C</a>";
+          day + "<br>" + capitalizedWeekday + "<br>" + 
+          "<img src='" + iconPath + "' alt='Väderikon' class='weathericon'><br>" + tempsMin[i] + "°C – " + tempsMax[i] + "°C</a>";
     }
 
     html += "</div>";
@@ -289,6 +294,19 @@ async function fetchWeather(lat, lng, city) {
 }
 //Slut fetchWeather
 //---------------------------------------------------
+
+
+function getWeatherIcon(code) {
+  if (code === 0) return "img/solvej.svg"; //soligt
+  else if (code >= 1 && code <= 3) return "img/Solmolnanvända.svg"; //delvis molnigt
+  else if (code === 45 || code === 48) return "img/camply.svg"; //dimma
+  else if (code >= 51 && code <= 67) return "img/rengmolnigtanvändenna.svg"; //regnit
+  
+  else if (code >= 71 && code <= 77) return "img/camply.svg"; //snö
+  else if (code >= 80 && code <= 82) return "img/camply.svg"; //regnskur
+  else if (code >= 95 && code <= 99) return "img/camply.svg"; //åska
+  else return "img/camply.svg"; // fallback
+}
 
 
 
@@ -353,6 +371,9 @@ async function fetchNatureReserve(county) {
 }
 //Slut fetchNatureReserve
 //------------------------------------------
+
+
+
 
 
 //funktion för att hämta golfbanor i staden som campingen ligger i 
