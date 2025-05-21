@@ -25,6 +25,10 @@ function init () { //init
       checkIfAllAnswered();
     });
   }
+  
+  document.querySelector("#hamburger").addEventListener("click", function () {
+    document.querySelector("#nav-links").classList.toggle("show");
+  });
 
   submitBtn.addEventListener("click", findResult);
   document.querySelector("#redoBtn").addEventListener("click", resetTest);
