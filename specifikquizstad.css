@@ -73,8 +73,8 @@ body {
     flex-direction: column;
     background-color: #e5d7c4;
     position: absolute;
-    top: 60px; /* under headern – justera vid behov */
-    right: 20px; /* högra hörnet */
+    top: 50%; /* under headern – justera vid behov */
+    right: 1em; /* högra hörnet */
     padding: 1rem;
    
     border-radius: 6px;
@@ -199,4 +199,60 @@ body {
   .separator {
     margin-top: 26px;
     font-size: 1.2rem;
+  }
+
+  @media screen and (min-width: 768px) {
+    body {
+      width: auto;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .choice-container{
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 10px 20px;
+    }
+
+    .elemchoice {
+      flex: 1;
+      min-width: 150px;
+      padding: 15px;
+      background-color: #f5f0e6;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0,0.1);
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: flex !important;
+      position:static;
+      flex-direction: row;
+      background-color: transparent;
+      box-shadow: none;
+      padding: 0;
+    }
+
+    .nav-links a{
+      padding: 0.5rem 1rem;
+      font-weight: bold;
+    }
+
+    .hamburger{
+      display: none;
+    }
+
+    .camplylogo{
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .logo{
+      left: 100px;
+      transform: translateY(-50%);
+    }
   }
