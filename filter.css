@@ -30,6 +30,9 @@ body {
   flex-wrap: wrap;
   gap: 10px;
   width: 90%;
+  height: 245px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 .campingtitle {
@@ -55,6 +58,17 @@ body {
 .campingtext {
   margin: 0;
   line-height: 1.3;
+  cursor: pointer;
+}
+
+button.campingtext {
+  background-color: #b9bea4;
+  border-radius: 20px;
+  width: 8em;
+  height: 3em;
+  font-weight: 600;
+  margin-top: 0.1em;
+  border-color: #889063;
 }
 
 .campingpic {
@@ -198,6 +212,7 @@ body {
     width: 100%;
     height: 100%;
     transition: 0.4s;
+    cursor: pointer;
   }
   
   .circle-img {
@@ -228,6 +243,15 @@ body {
     font-size: 1.2rem;
   }
 
+  button {
+    cursor: pointer;
+    background-color: #b9bea4;
+    border-color: #889063;
+    width: 9em;
+    margin-right: 1em;
+    height: 2em;
+    font-size: 0.9rem;
+  }
  
 
 
