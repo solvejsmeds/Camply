@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="sevärdighet.css">
+    <script src="specifikquizstad.js"></script>
 </head>
 <body>
     <h1 id = "firsttitle">Camply</h1>
@@ -13,10 +14,10 @@
     <div class="vilkenstad">
       <p>Öland eller Småland?</p>
       <div class="choice-container">
-        <div class="elemchoice" id="oland">
+        <div class="elemchoice" data-question="province" data-value="oland">
           <p>Öland</p>
         </div>
-        <div class="elemchoice" id="smaland">
+        <div class="elemchoice" data-question="province" data-value="smaland">
           <p>Småland</p>
         </div>
       </div>
@@ -25,10 +26,10 @@
     <div class="vilkenstad">
       <p>Stadspuls eller naturens lugn?</p>
       <div class="choice-container">
-        <div class="elemchoice" id="city">
+        <div class="elemchoice" data-question="type" data-value="city">
           <p>Stad</p>
         </div>
-        <div class="elemchoice" id="nature">
+        <div class="elemchoice" data-question="type" data-value="nature">
           <p>Naturnära</p>
         </div>
       </div>
@@ -37,16 +38,16 @@
     <div class="vilkenstad">
       <p>Vilket ord beskriver din drömsemester bäst?</p>
       <div class="choice-container">
-        <div class="elemchoice" id="relaxing">
+        <div class="elemchoice" data-question="mood" data-value="relaxing">
           <p>Avkoppling</p>
         </div>
-        <div class="elemchoice" id="cultural">
+        <div class="elemchoice" data-question="mood" data-value="cultural">
           <p>Kultur</p>
         </div>
-        <div class="elemchoice" id="adventurous">
+        <div class="elemchoice" data-question="mood" data-value="adventurous">
           <p>Äventyr</p>
         </div>
-        <div class="elemchoice" id="luxury">
+        <div class="elemchoice" data-question="mood" data-value="luxury">
           <p>Lyx</p>
         </div>
       </div>
@@ -59,6 +60,6 @@
       <!-- Här ska resultatet från testet visas.-->
     </div>
 
-    <button>Visa cmapingar i ... stad</button> <!--kommer läggas in med javaskript istället tror ja-->
+    <button id="showcampingsforcity">Visa cmapingar i ... stad</button> <!--kommer läggas in med javaskript istället tror ja-->
 </body>
 </html>

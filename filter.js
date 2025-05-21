@@ -26,9 +26,6 @@ function init() {
 
   showCampings(); //anropar fuunktion som visar alla campingar
 
-  //document.querySelector("#selectedCity").addEventListener("change", filterCampings); //change lyssnare på stad filtrering
-  /*document.querySelector("#selectedPrice").addEventListener("change", filterCampings); //change lyssnare på pris filtrering*/
-
   document.querySelector("#minPrice").addEventListener("change", filterCampings);
 document.querySelector("#maxPrice").addEventListener("change", filterCampings);
 
@@ -51,6 +48,8 @@ document.querySelector("#maxPrice").addEventListener("change", filterCampings);
   document.querySelector("#hamburger").addEventListener("click", function () {
     document.querySelector("#nav-links").classList.toggle("show");
   });
+
+
 
 }
 window.addEventListener("load", init)
@@ -123,52 +122,74 @@ async function showCampings() {
 
 //visar cmapingarna på sidan. 
 function displayCampings(campings) {
+  const campingDiv = document.querySelector("#campingsContainer");
+  campingDiv.innerHTML = "";
 
-  const campingDiv = document.querySelector("#campingsContainer"); //hämtar elementet där cmapingarna ligger
-
-  campingDiv.innerHTML = ""; //rensar html
-
-  if (campings.length === 0) { //om inga campingar med valda filter finns..
-    campingDiv.innerHTML = "<p>Inga campingar med dina valda filter finns. Justera dina filter för att hitta campingar som passar dig. </p>";
-    return; // Avbryt funktionen så att inga campingar visas
+  if (campings.length === 0) {
+    campingDiv.innerHTML = "<p>Inga campingar med dina valda filter finns. Justera dina filter för att hitta campingar som passar dig.</p>";
+    return;
   }
 
-  for (let i = 0; i < campings.length; i++) { //går igenom alla campingar :)
-    const camping = campings[i]; //hämtad camping objekt
+  for (let i = 0; i < campings.length; i++) {
+    const camping = campings[i];
 
+    // SKAPA CONTAINER
     let container = document.createElement("div");
-    container.classList.add("campcontainer"); //skapar element för de olika cmapingarna
+    container.classList.add("campcontainer");
 
-    // Skapa HTML för varje camping
-    container.innerHTML +=
-      "<h3 class='campingtext'>" + camping.name + "</h3>" +
+    //rubrik
+    let title = document.createElement("h3");
+title.classList.add("campingtitle");
+title.textContent = camping.name;
+container.appendChild(title);
+
+// UNDRE RAD: text + bild i två kolumner
+let contentRow = document.createElement("div");
+contentRow.classList.add("campingrow");
+
+    // SKAPA TEXTDEL
+    let textDiv = document.createElement("div");
+    textDiv.classList.add("campingtext-container");
+
+    textDiv.innerHTML +=
+     
       "<p class='campingtext'>" + camping.city + "</p>" +
       "<p class='campingtext'>" + camping.price_range + " kr</p>" +
       "<p class='campingtext'>" + camping.abstract + "</p>" +
-      "<p class='campingtext'><a href='" + camping.website + "' target='_blank'>" + camping.website + "</a></p>" +
-      "<img src='img/användennafältcamping.jpg' class='campingpic' alt='bild på cmapingplatsen'>"
-     
-    //skriver ut namn, stad, pris, beskrivning och länk till webbplatsen
+      "<p class='campingtext'><a href='" + camping.website + "' target='_blank'>" + camping.website + "</a></p>";
 
+    // SKAPA KNAPP
     let button = document.createElement("button");
     button.classList.add("campingtext");
-    button.textContent = "Läs mer"; //lägger till en "läs mer" knapp för de användare som inte fattar att man kan klicka på elementet...
+    button.textContent = "Läs mer";
+    textDiv.appendChild(button);
 
-    container.appendChild(button) //lägger till button elementet i containern
+    // SKAPA BILD
+    let img = document.createElement("img");
+    img.src = "img/användennafältcamping.jpg";
+    img.alt = "bild på campingplatsen";
+    img.classList.add("campingpic");
 
+    // LÄGG TILL I CONTAINER
+    contentRow.appendChild(textDiv);
+    contentRow.appendChild(img);
+
+    // Lägg till rad i containern
+container.appendChild(contentRow);
+
+    // LÄGG TILL EVENTLYSSNARE
     container.addEventListener("click", function () {
       window.location.href = "specifikcamping.html?id=" + camping.id;
-    }); //visar sidan för den camping som cklickats 
+    });
 
-    button.addEventListener("click", function () {
+    button.addEventListener("click", function (e) {
+      e.stopPropagation(); // så inte hela kortet triggas
       window.location.href = "specifikcamping.html?id=" + camping.id;
-    }); //visar sidan för den camping som cklickats (knappen)
+    });
 
-    campingDiv.appendChild(container); //lägger till container i campingDiv
-
-    console.log("counties: ", camping.county)
+    // LÄGG IN I SIDAN
+    campingDiv.appendChild(container);
   }
-
 }
 //Slut displayCampings
 //-----------------------------------------------------------------------------------
@@ -326,6 +347,18 @@ async function fetchSmapiCities() {
     let checkboxCity = cityCheckboxes[i];
     checkboxCity.addEventListener("change", filterCampings);
   } //loopar igenom checkboxarna och lägger till change eventlyssnare, anropar filter campings
+
+  var urlParams = new URLSearchParams(window.location.search);
+  var cityFromQuiz = urlParams.get("city");
+
+  if (cityFromQuiz) {
+    for (let i = 0; i < cityCheckboxes.length; i++) {
+      if (cityCheckboxes[i].value.toLowerCase() === cityFromQuiz.toLowerCase()) {
+        cityCheckboxes[i].checked = true;
+      }
+    }
+    filterCampings();
+  }
 
 } //Slut smapiCities
 //---------------------------------------------

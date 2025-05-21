@@ -11,8 +11,14 @@ let natureMarkers = []; //spara markörer för naturreservat
 let golfMarkers = []; //sparaar markörer för golbanor
 
 
+
 function init() {
+
+
+
   showSpecificCamping();  // Anropa funktionen för att visa specifik camping
+
+
 
 }
 window.addEventListener("load", init);
@@ -61,6 +67,8 @@ async function showSpecificCamping() {
 
     initMap(camping.lat, camping.lng, camping.name); //anropar kartan och skickar med lat, lng och namn
 
+    displayLoader()
+
     document.querySelector("#showRestaurantsBtn").addEventListener("click", function () {
       fetchRestaurants(camping.lat, camping.lng);
     }); //anropar funktion för att hämta resturanger när resturang knappen klickas på
@@ -73,6 +81,9 @@ async function showSpecificCamping() {
       fetchGolf(camping.city);
     }); //anropar funktion för att hämta resturanger när resturang knappen klickas på
 
+
+    hideLoader();
+
     console.log(camping.county)
 
 
@@ -80,7 +91,12 @@ async function showSpecificCamping() {
     fetchWeather(camping.lat, camping.lng, camping.city); //anropar funktion för att visa väderprognosen, skickar med lat och lng
 
     fetchReviews(camping.id, camping.name); // Anropa funktionen och skicka in campingens id
+
+
+   
   }
+
+ 
 
 }
 //slut showSpecificCamping
@@ -137,6 +153,8 @@ function showError(error) {
 //funktion för att hämta resturanger i närheter
 async function fetchRestaurants(lat, lng) {
 
+  displayLoader()
+
   console.log("resturang funktion")
 
  const url = "https://smapi.lnu.se/api/?debug=true&api_key=" + APIkey + "&controller=food&method=getfromlatlng&lat=" + lat + "&lng=" + lng
@@ -174,12 +192,26 @@ async function fetchRestaurants(lat, lng) {
       restaurantMarkers.push(marker) //sparar markör i listan
     }
 
+    hideLoader()
+
   } catch (error) {
     console.error("Kunde inte hämta restauranger:", error);
   }
 }
 //Slut fetchRestaurants
 //_______________________________________________________________________________________________
+
+function hideLoader () {
+  document.querySelector("#mapoverlay").style.visibility = "hidden"
+
+  document.querySelector("#map").style.filter = "none"
+}
+
+function displayLoader () {
+document.querySelector("#mapoverlay").style.visibility = "visible"
+
+document.querySelector("#map").style.filter = "blur(3px)"
+}
 
 
 /*
@@ -262,7 +294,8 @@ async function fetchWeather(lat, lng, city) {
 
 async function fetchNatureReserve(county) {
 
-  
+  displayLoader();
+
   console.log("natureReservefunction");
 
   const url = "https://smapi.lnu.se/api/?debug=true&api_key=" + APIkey + "&controller=establishment&method=getall&descriptions=naturreservat&counties="+ county;
@@ -310,9 +343,13 @@ async function fetchNatureReserve(county) {
       natureMarkers.push(marker);
     }
 
+    hideLoader();
+
   } catch (error) {
     console.error("Kunde inte hämta naturreservat:", error);
   }
+
+
 }
 //Slut fetchNatureReserve
 //------------------------------------------
