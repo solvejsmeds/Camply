@@ -69,16 +69,29 @@ async function showSpecificCamping() {
 
     displayLoader()
 
+  
+
     document.querySelector("#showRestaurantsBtn").addEventListener("click", function () {
       fetchRestaurants(camping.lat, camping.lng);
     }); //anropar funktion för att hämta resturanger när resturang knappen klickas på
 
+    console.log("Province:", camping.province); // <-- Lägg till här
+
+
     document.querySelector("#natureReserveBtn").addEventListener("click", function () {
-      fetchNatureReserve(camping.county);
+      if (camping.province === "Öland") {
+        fetchJSONNatureReserves("oland");
+      } 
+      else if (camping.county === "Jönköpings län"){
+fetchJSONNatureReserves("jonkoping")
+      }
+      else {
+        fetchNatureReserve(camping.county);
+      }
     }); //anropar funktion för att hämta resturanger när resturang knappen klickas på
 
     document.querySelector("#golfBtn").addEventListener("click", function () {
-      fetchGolf(camping.city);
+      fetchGolf(camping.lat, camping.lng);
     }); //anropar funktion för att hämta resturanger när resturang knappen klickas på
 
 
@@ -120,7 +133,12 @@ function initMap(lat, lng, name) {
   myMarkers.push(marker);//sparar markören i en array
   marker.addTo(myMap); //lägger in markören på kartan
 
-
+  const mypositionIcon = L.icon({
+    iconUrl: "img/myplacemap.svg",
+    iconSize: [40, 40],         // Ändra om bilden är större/mindre
+    iconAnchor: [20, 40],       // Punkten som pekar på platsen (mitten-botten)
+    popupAnchor: [0, -40]       // Popupen visas ovanför
+  });
 
 
 // Efter att kartan för campingen skapats
@@ -133,7 +151,7 @@ function showUserPosition(pos) {
   const userLat = pos.coords.latitude;
   const userLng = pos.coords.longitude;
 
-  L.marker([userLat, userLng])
+  L.marker([userLat, userLng], {icon: mypositionIcon })
     .addTo(myMap)
     .bindPopup("Du är här")
     .openPopup();
@@ -179,13 +197,22 @@ async function fetchRestaurants(lat, lng) {
       return; //om inga resturanger finns visas felmeddelande och funktion avbryts
     }
 
+    const restaurantIcon = L.icon({
+      iconUrl: "img/restaurantsmap.svg",
+      iconSize: [40, 40],         // Ändra om bilden är större/mindre
+      iconAnchor: [20, 40],       // Punkten som pekar på platsen (mitten-botten)
+      popupAnchor: [0, -40]       // Popupen visas ovanför
+    });
+
     // loopar igem alla resturanger
     for (let i = 0; i < data.payload.length; i++) {
       const rest = data.payload[i];
 
-      //lägger till markör och popuptext
+   
+      
       const marker = L.marker([parseFloat(rest.lat), parseFloat(rest.lng)], {
-        title: rest.name
+        title: rest.name,
+        icon: restaurantIcon
       }).bindPopup(rest.name + "<br>" + rest.distance_in_km.toFixed(1) + " km bort");
 
       marker.addTo(myMap); //lägger till markör på kartan
@@ -214,47 +241,10 @@ document.querySelector("#map").style.filter = "blur(3px)"
 }
 
 
-/*
-//funktion för att hämta väder
-async function fetchWeather(lat, lng, city) {
-  const url = "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lng + "&daily=temperature_2m_max,temperature_2m_min&timezone=auto"; //api url för att hämta väder (Open-metero)
 
-  try {
-    const response = await fetch(url); //skickar förfrågan
-    const data = await response.json(); //gör om svaret till json
-
-    const dates = data.daily.time; //datum
-    const tempsMax = data.daily.temperature_2m_max; //maxtemperatur
-    const tempsMin = data.daily.temperature_2m_min; //min temperatur
-
-    let html = 
-   "<div class='weatherDiv'>";
-
-    //loopar igenom vare dag i prognosen
-    for (let i = 0; i < dates.length; i++) {
-      const date = new Date(dates[i]); //gör om sträng till date objekt
-      const day = date.toLocaleDateString("sv-SE", { day: 'numeric', month: 'numeric' }); // datum
-      const weekday = date.toLocaleDateString("sv-SE", { weekday: "long" });              // veckdag
-      const capitalizedWeekday = weekday.charAt(0).toUpperCase() + weekday.slice(1);      // Gör om till stor bokstav
-
-      html += "<p class='weatherbox'>" + day + " " + capitalizedWeekday + "<br>"  + tempsMin[i] + "°C – " + tempsMax[i] + "°C</p>";
-
- 
-    }
-    html += "</div>";
-    document.querySelector(".weatherDiv").innerHTML = html; //visar vädret i rätt element
-
-  } catch (error) {
-    console.error("Kunde inte hämta väderdata:", error);
-    document.querySelector(".weatherDiv").innerHTML = "Kunde inte hämta väderdata."; //loggar fel och visar felmedelande
-  }
-}
-//Slut fetchWeatcher
-//_______________________________________________________________________________________________
-*/
 
 async function fetchWeather(lat, lng, city) {
-  const url = "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lng + "&daily=temperature_2m_max,temperature_2m_min&timezone=auto";
+  const url = "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lng + "&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto";
 
   try {
     const response = await fetch(url);
@@ -266,17 +256,22 @@ async function fetchWeather(lat, lng, city) {
 
     let html = "<div class='weatherDiv'>";
 
+    const weatherCodes = data.daily.weathercode;
+
     for (let i = 0; i < dates.length; i++) {
       const date = new Date(dates[i]);
       const day = date.toLocaleDateString("sv-SE", { day: 'numeric', month: 'numeric' });
       const weekday = date.toLocaleDateString("sv-SE", { weekday: "long" });
       const capitalizedWeekday = weekday.charAt(0).toUpperCase() + weekday.slice(1);
 
+      const iconPath = getWeatherIcon(weatherCodes[i]);
+
       // Skapa URL till SMHI
       const smhiURL = "https://www.smhi.se/vader/prognoser-och-varningar/vaderprognos/q/" + encodeURIComponent(city);
 
       html += "<a href='"+smhiURL+"' target='_blank' class='weatherbox'>"+
-          day + "<br>" + capitalizedWeekday + "<br>" + tempsMin[i] + "°C – " + tempsMax[i] + "°C</a>";
+          day + "<br>" + capitalizedWeekday + "<br>" + 
+          "<img src='" + iconPath + "' alt='Väderikon' class='weathericon'><br>" + tempsMin[i] + "°C – " + tempsMax[i] + "°C</a>";
     }
 
     html += "</div>";
@@ -291,6 +286,19 @@ async function fetchWeather(lat, lng, city) {
 //---------------------------------------------------
 
 
+function getWeatherIcon(code) {
+  if (code === 0) return "img/solvej.svg"; //soligt
+  else if (code >= 1 && code <= 3) return "img/Solmolnanvända.svg"; //delvis molnigt
+  else if (code === 45 || code === 48) return "img/camply.svg"; //dimma
+  else if (code >= 51 && code <= 67) return "img/rengmolnigtanvändenna.svg"; //regnit
+  
+  else if (code >= 71 && code <= 77) return "img/camply.svg"; //snö
+  else if (code >= 80 && code <= 82) return "img/camply.svg"; //regnskur
+  else if (code >= 95 && code <= 99) return "img/camply.svg"; //åska
+  else return "img/camply.svg"; // fallback
+}
+
+
 
 async function fetchNatureReserve(county) {
 
@@ -299,6 +307,8 @@ async function fetchNatureReserve(county) {
   console.log("natureReservefunction");
 
   const url = "https://smapi.lnu.se/api/?debug=true&api_key=" + APIkey + "&controller=establishment&method=getall&descriptions=naturreservat&counties="+ county;
+
+
 
   try {
     const response = await fetch(url);
@@ -321,6 +331,13 @@ async function fetchNatureReserve(county) {
       return;
     }
 
+    const naturereserveIcon = L.icon({
+      iconUrl: "img/naturemap.svg",
+      iconSize: [40, 40],         // Ändra om bilden är större/mindre
+      iconAnchor: [20, 40],       // Punkten som pekar på platsen (mitten-botten)
+      popupAnchor: [0, -40]       // Popupen visas ovanför
+    });
+
     for (let i = 0; i < data.payload.length; i++) {
       const nature = data.payload[i];
 
@@ -335,8 +352,8 @@ async function fetchNatureReserve(county) {
   }
 
       const marker = L.marker([parseFloat(nature.lat), parseFloat(nature.lng)], {
-        title: nature.name
-
+        title: nature.name,
+icon: naturereserveIcon
       }).bindPopup(popupContent);
 
       marker.addTo(myMap);
@@ -355,15 +372,69 @@ async function fetchNatureReserve(county) {
 //------------------------------------------
 
 
+//funktion för att hämta naturreservat från json filen med naturreservat på öland
+async function fetchJSONNatureReserves(regionKey) {
+
+  console.log("hämta nautrreservat på öland/jönköping län")
+
+  console.log("Visar anpassade naturreservat för:", regionKey);
+
+  try {
+    const response = await fetch("naturereserve.json");
+    const data = await response.json();
+
+    if (!data[regionKey]) {
+      console.warn("Ingen data hittades för:", regionKey);
+      return;
+    }
+
+    const customIcon = L.icon({
+      iconUrl: "img/naturemap.svg",
+      iconSize: [40, 40],
+      iconAnchor: [20, 40],
+      popupAnchor: [0, -40]
+    });
+
+    // Ta bort gamla markörer
+    for (let i = 0; i < natureMarkers.length; i++) {
+      myMap.removeLayer(natureMarkers[i]);
+    }
+    natureMarkers = [];
+
+    const reserves = data[regionKey];
+
+    for (let i = 0; i < reserves.length; i++) {
+      const reserve = reserves[i];
+
+      const marker = L.marker([reserve.lat, reserve.lng], {
+        icon: customIcon,
+        title: reserve.name
+      }).bindPopup("<p>" + reserve.name + "</p>");
+
+      marker.addTo(myMap);
+      natureMarkers.push(marker);
+    }
+
+  } catch (error) {
+    console.error("Kunde inte hämta anpassade naturreservat:", error);
+  }
+}
+
+
+
+
+
 //funktion för att hämta golfbanor i staden som campingen ligger i 
-async function fetchGolf(city) {
+async function fetchGolf(lat, lng) {
 
   
   console.log("Golf!! :)");
 
-  console.log("stad: ", city)
+  
 
-  const url = "https://smapi.lnu.se/api/?debug=true&api_key=" + APIkey + "&controller=establishment&method=getall&descriptions=golfbana&cities="+city;
+
+
+  const url = "https://smapi.lnu.se/api/?api_key=" + APIkey + "&controller=establishment&method=getfromlatlng&lat=" + lat +"&lng=" + lng +"&descriptions=golfbana";
 
   try {
     const response = await fetch(url);
@@ -386,11 +457,19 @@ async function fetchGolf(city) {
       return;
     }
 
+    const golfIcon = L.icon({
+      iconUrl: "img/golfmap.svg",
+      iconSize: [40, 40],         // Ändra om bilden är större/mindre
+      iconAnchor: [20, 40],       // Punkten som pekar på platsen (mitten-botten)
+      popupAnchor: [0, -40]       // Popupen visas ovanför
+    });
+
     for (let i = 0; i < data.payload.length; i++) {
       const golf = data.payload[i];
 
       const marker = L.marker([parseFloat(golf.lat), parseFloat(golf.lng)], {
-        title: golf.name
+        title: golf.name,
+        icon: golfIcon
       }).bindPopup(golf.name);
 
       marker.addTo(myMap);

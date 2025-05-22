@@ -4,12 +4,14 @@ const APIkey = "R7PGDNjZ" //api nyckel till SMAPI
 let allCampings = []; //sparar alla cmapingar globalt
 
 const positionIds = { //id för campingarna uppdelade i kategorier för olika lägen
-  forest: [ //skog
-    659, 658, 657, 656, 655, 616, 615, 614, 613, 612, 611, 610, 609, 607, 606, 605, 604, 603, 602, 601, 600, 307, 305, 608, 303, 201, 202, 301, 286, 285, 281, 280, 277, 275, 273, 246, 245, 244, 243, 242, 241, 216, 217, 218, 219, 220, 238, 237
-  ],
+
   lake: [ //sjö
     659, 658, 657, 656, 655, 616, 615, 614, 613, 612, 611, 610, 609, 607, 606, 605, 604, 603, 602, 601, 600, 307, 305, 608, 303, 301, 286, 285, 281, 280, 275, 273, 246, 245, 244, 239
   ],
+  forest: [ //skog
+    659, 658, 657, 656, 655, 616, 615, 614, 613, 612, 611, 610, 609, 607, 606, 605, 604, 603, 602, 601, 600, 307, 305, 608, 303, 201, 202, 301, 286, 285, 281, 280, 277, 275, 273, 246, 245, 244, 243, 242, 241, 216, 217, 218, 219, 220, 238, 237
+  ],
+
   sea: [ //hav
     170, 173, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 197, 198, 200, 201, 202, 205, 207, 209, 210, 211, 215, 277, 216, 243, 242, 241, 217, 218, 219, 220, 240, 238, 237, 236
   ],
@@ -18,6 +20,12 @@ const positionIds = { //id för campingarna uppdelade i kategorier för olika l�
   ]
 };
 
+const campingImages = {
+  forest: ["skog1.jpg", "skog3.jpg", "fältskog1.jpg"],
+  lake: ["använddennacampingvidsjö.jpg", "använddennacampingvidsjö2.jpg"],
+  sea: ["hav1.jpg", "hav2.jpg", "hav3.jpg"],
+  city: ["stad1.jpg"]
+}
 
 
 function init() {
@@ -56,6 +64,15 @@ window.addEventListener("load", init)
 //Slut init
 //-----------------------------------------------------------------------------------
 
+//väljer den första kategorin där id:t hittas eftersom vissa id finns i flera kategorier
+function getCampingCategory(campingId) {
+  for (let category in positionIds) {
+    if (positionIds[category].includes(parseInt(campingId))) {
+      return category;
+    }
+  }
+  return null; // om ingen kategori hittas
+}
 
 
 //funktion för att hantera dropdown menyn med kryssruto för läge
@@ -155,8 +172,8 @@ contentRow.classList.add("campingrow");
      
       "<p class='campingtext'>" + camping.city + "</p>" +
       "<p class='campingtext'>" + camping.price_range + " kr</p>" +
-      "<p class='campingtext'>" + camping.abstract + "</p>" +
-      "<p class='campingtext'><a href='" + camping.website + "' target='_blank'>" + camping.website + "</a></p>";
+      "<p class='campingtext'>" + camping.abstract + "</p>" ;
+      
 
     // SKAPA KNAPP
     let button = document.createElement("button");
@@ -166,7 +183,19 @@ contentRow.classList.add("campingrow");
 
     // SKAPA BILD
     let img = document.createElement("img");
-    img.src = "img/användennafältcamping.jpg";
+
+    // Bestäm kategori
+const category = getCampingCategory(camping.id);
+let selectedImage = "användennafältcamping.jpg"; // fallback
+
+if (category && campingImages[category]) {
+  const imgs = campingImages[category];
+  const randomIndex = Math.floor(Math.random() * imgs.length);
+  selectedImage = imgs[randomIndex];
+}
+
+img.src = "img/" + selectedImage;
+
     img.alt = "bild på campingplatsen";
     img.classList.add("campingpic");
 

@@ -1,0 +1,46 @@
+{
+    "oland": [
+      {
+        "name": "Ottenby naturreservat",
+        "lat": 56.22603,
+        "lng": 16.43366
+      },
+      {
+        "name": "Halltorps hage naturreservat",
+        "lat": 56.7733,
+        "lng": 16.6456
+      },
+      {
+        "name": "Trollskogens naturreservat",
+        "lat": 57.3506,
+        "lng": 17.1016
+      }
+    ],
+    "jonkoping": [
+      {
+        "name": "Dumme mosse",
+        "lat": 57.7811,
+        "lng": 14.0232
+      },
+      {
+        "name": "Bondberget",
+        "lat": 57.7702,
+        "lng": 14.2221
+      },
+      {
+        "name": "Tabergsån",
+        "lat": 57.6979,
+        "lng": 14.0752
+      },
+      {
+        "name": "Flickornas källa",
+        "lat": 57.4586,
+        "lng": 14.2906
+      },
+      {
+        "name": "Stora Mosse",
+        "lat": 57.2950,
+        "lng": 13.9434
+      }
+    ]
+  }
