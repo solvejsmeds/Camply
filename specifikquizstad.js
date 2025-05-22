@@ -127,7 +127,7 @@ function findResult() {
       }
     }
   
-    document.querySelector(".result").innerHTML =   "<strong>" + result + "</strong><br>" + 
+    document.querySelector(".result").innerHTML =   "<strong><h3>Du borde åka till " + result + "!</h3></strong><br>" + 
     (descriptions[result] || "");
 
     // Skapa eller uppdatera knappen
