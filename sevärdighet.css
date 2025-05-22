@@ -245,3 +245,8 @@ body {
     height: 4em;
     width: 10em;
   }
+
+  h3 {
+    margin-bottom: 0;
+    
+  }
