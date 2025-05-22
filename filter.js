@@ -34,8 +34,17 @@ function init() {
 
   showCampings(); //anropar fuunktion som visar alla campingar
 
-  document.querySelector("#minPrice").addEventListener("change", filterCampings);
-document.querySelector("#maxPrice").addEventListener("change", filterCampings);
+  document.querySelector("#minPrice").addEventListener("change", function () {
+    filterCampings();
+    updateResetButtonState();
+  });
+
+
+document.querySelector("#maxPrice").addEventListener("change", function () {
+  filterCampings()
+  updateResetButtonState();
+});
+
 
   dropdown(); //dropdown för läge filtrering
   dropdownCity(); //dropdown för stad filtrering
@@ -44,25 +53,53 @@ document.querySelector("#maxPrice").addEventListener("change", filterCampings);
 
   for (let i = 0; i < positionCheckboxes.length; i++) {
     let checkbox = positionCheckboxes[i];
-    checkbox.addEventListener("change", filterCampings);
+    checkbox.addEventListener("change", function () {
+      filterCampings()
+      updateResetButtonState();
+    });
+    
   } //loopar igenom checkboxarna och lägger till change eventlyssnare, anropar filter campings
 
-  document.querySelector("#wifiSlider").addEventListener("change", filterCampings);
-  document.querySelector("#fishingSlider").addEventListener("change", filterCampings);
-  document.querySelector("#cafeSlider").addEventListener("change", filterCampings);
-  document.querySelector("#laundrySlider").addEventListener("change", filterCampings);
+  document.querySelector("#wifiSlider").addEventListener("change", function () {
+    filterCampings();
+updateResetButtonState();
+  });
+  document.querySelector("#fishingSlider").addEventListener("change", function () {
+    filterCampings();
+updateResetButtonState();
+  });
+  document.querySelector("#cafeSlider").addEventListener("change", function () {
+    filterCampings();
+updateResetButtonState();
+  });
+  document.querySelector("#laundrySlider").addEventListener("change", function () {
+    filterCampings();
+updateResetButtonState();
+  });
+
+
+
+ 
 
 
   document.querySelector("#hamburger").addEventListener("click", function () {
     document.querySelector("#nav-links").classList.toggle("show");
   });
 
-
+  
+  document.querySelector("#resetFiltersBtn").addEventListener("click", function () {
+    resetFilters();
+    filterCampings();
+    updateResetButtonState();
+  }); //knappen för att återställa filter
+  
 
 }
 window.addEventListener("load", init)
 //Slut init
 //-----------------------------------------------------------------------------------
+
+
 
 //väljer den första kategorin där id:t hittas eftersom vissa id finns i flera kategorier
 function getCampingCategory(campingId) {
@@ -209,6 +246,32 @@ container.appendChild(contentRow);
     // LÄGG TILL EVENTLYSSNARE
     container.addEventListener("click", function () {
       window.location.href = "specifikcamping.html?id=" + camping.id;
+
+      localStorage.setItem("selectedFilters", JSON.stringify({
+        minPrice: document.querySelector("#minPrice").value,
+        maxPrice: document.querySelector("#maxPrice").value,
+        selectedCities: (function () {
+          var checkboxes = document.querySelectorAll("#dropdownContentCity input[type='checkbox']:checked");
+          var cities = [];
+          for (var i = 0; i < checkboxes.length; i++) {
+            cities.push(checkboxes[i].value);
+          }
+          return cities;
+        })(),
+        selectedPositions: (function () {
+          var checkboxes = document.querySelectorAll("#dropdownContent input[type='checkbox']:checked");
+          var positions = [];
+          for (var i = 0; i < checkboxes.length; i++) {
+            positions.push(checkboxes[i].value);
+          }
+          return positions;
+        })(),
+        wifi: document.querySelector("#wifiSlider").checked,
+        fishing: document.querySelector("#fishingSlider").checked,
+        cafe: document.querySelector("#cafeSlider").checked,
+        laundry: document.querySelector("#laundrySlider").checked
+      }));
+
     });
 
     button.addEventListener("click", function (e) {
@@ -346,6 +409,38 @@ function filterCampings() {
 
 
 
+//funktion för att rensa filter som sparats i local storage
+function updateResetButtonState() {
+  var btn = document.querySelector("#resetFiltersBtn");
+  var isActive = false;
+
+  // Samma kontroll som tidigare...
+  if (document.querySelector("#minPrice").value || document.querySelector("#maxPrice").value) isActive = true;
+
+  var checkboxes = document.querySelectorAll("input[type='checkbox']");
+  for (var i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].checked) {
+      isActive = true;
+      break;
+    }
+  }
+
+  if (
+    document.querySelector("#wifiSlider").checked ||
+    document.querySelector("#fishingSlider").checked ||
+    document.querySelector("#cafeSlider").checked ||
+    document.querySelector("#laundrySlider").checked
+  ) {
+    isActive = true;
+  }
+
+  btn.disabled = !isActive; // gör den inaktiv om inget filter är valt
+}
+//slut resetFilters
+//----------------------------------------------------
+
+
+
 //funktion för att hämta städer från sampi
 async function fetchSmapiCities() {
   const cityContainer = document.querySelector("#dropdownContentCity"); //hämtar elementet där checkboxarna för städer ska ligga
@@ -372,22 +467,86 @@ async function fetchSmapiCities() {
 
   let cityCheckboxes = document.querySelectorAll("#dropdownContentCity input[type='checkbox']"); //hämtar alla checkboxar som skapats
 
+ 
   for (let i = 0; i < cityCheckboxes.length; i++) {
     let checkboxCity = cityCheckboxes[i];
-    checkboxCity.addEventListener("change", filterCampings);
+    checkboxCity.addEventListener("change", function () {
+filterCampings();
+updateResetButtonState();
+    });
   } //loopar igenom checkboxarna och lägger till change eventlyssnare, anropar filter campings
 
   var urlParams = new URLSearchParams(window.location.search);
   var cityFromQuiz = urlParams.get("city");
 
+  const savedFilters = localStorage.getItem("selectedFilters");
+
+  if (savedFilters) {
+    const filters = JSON.parse(savedFilters);
+  
+    document.querySelector("#minPrice").value = filters.minPrice;
+    document.querySelector("#maxPrice").value = filters.maxPrice;
+  
+    // Sätt checkboxar för städer
+    for (let checkbox of document.querySelectorAll("#dropdownContentCity input[type='checkbox']")) {
+      checkbox.checked = filters.selectedCities.includes(checkbox.value);
+    }
+  
+    // Sätt checkboxar för läge
+    for (let checkbox of document.querySelectorAll("#dropdownContent input[type='checkbox']")) {
+      checkbox.checked = filters.selectedPositions.includes(checkbox.value);
+    }
+  
+    document.querySelector("#wifiSlider").checked = filters.wifi;
+    document.querySelector("#fishingSlider").checked = filters.fishing;
+    document.querySelector("#cafeSlider").checked = filters.cafe;
+    document.querySelector("#laundrySlider").checked = filters.laundry;
+  
+    // Anropa filtreringen direkt
+    filterCampings();
+  }
+
+  function normalize(str) {
+    return str
+      .toLowerCase()
+      .normalize("NFD") // delar upp accenttecken
+      .replace(/[\u0300-\u036f]/g, "") // tar bort accenttecken
+      .trim(); // tar bort extra mellanslag
+  }
+  
   if (cityFromQuiz) {
+    const normalizedCityFromQuiz = normalize(cityFromQuiz);
     for (let i = 0; i < cityCheckboxes.length; i++) {
-      if (cityCheckboxes[i].value.toLowerCase() === cityFromQuiz.toLowerCase()) {
+      if (normalize(cityCheckboxes[i].value) === normalizedCityFromQuiz) {
         cityCheckboxes[i].checked = true;
       }
     }
     filterCampings();
   }
 
+  updateResetButtonState();
+
 } //Slut smapiCities
 //---------------------------------------------
+
+//funktion för att återställa filter
+function resetFilters() {
+  // Rensa priser
+  document.querySelector("#minPrice").value = "";
+  document.querySelector("#maxPrice").value = "";
+
+  // Avmarkera alla checkboxar
+  var checkboxes = document.querySelectorAll("input[type='checkbox']");
+  for (var i = 0; i < checkboxes.length; i++) {
+    checkboxes[i].checked = false;
+  }
+
+  // Nollställ sliders
+  document.querySelector("#wifiSlider").checked = false;
+  document.querySelector("#fishingSlider").checked = false;
+  document.querySelector("#cafeSlider").checked = false;
+  document.querySelector("#laundrySlider").checked = false;
+
+  // Radera från localStorage
+  localStorage.removeItem("selectedFilters");
+}
