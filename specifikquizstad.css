@@ -234,11 +234,18 @@ body {
       background-color: transparent;
       box-shadow: none;
       padding: 0;
+      gap: 7px;
     }
 
     .nav-links a{
       padding: 0.5rem 1rem;
       font-weight: bold;
+      background-color: #889063;
+      transition: background-color 0.2 ease;
+    }
+
+    .nav-links a:hover{
+      background-color:#9b9e8b;
     }
 
     .hamburger{
@@ -251,8 +258,13 @@ body {
       transform: translateY(-50%);
     }
 
-    .logo{
-      left: 100px;
-      transform: translateY(-50%);
+    .header-content {
+      height: 100px;
+      padding: 20px 40px;
+    }
+
+    .mainlogo{
+      width: 70px;
+      height: auto;
     }
   }
