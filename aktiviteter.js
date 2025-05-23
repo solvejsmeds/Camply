@@ -36,11 +36,8 @@ function init() {
   document.querySelector("#redoBtn").addEventListener("click", resetTest);
 
 
- 
 
-   document.querySelector("#hamburger").addEventListener("click", function () {
-    document.querySelector("#nav-links").classList.toggle("show");
-    });
+  
 
     document.querySelector("#closeModal").addEventListener("click", function () {
       document.querySelector("#activityModal").close();
