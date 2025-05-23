@@ -78,18 +78,24 @@ function findResult () {
       if (style === "classic") {
         if (time === "short") {
           result = "Grilla halloumiburgare med grönsaker!";
+          recipy = "https://www.ica.se/recept/vego-halloumiburgare-720380/"
         } else if (time === "middle") {
           result = "Grilla fyllda portabellosvampar!";
+          recipy = "https://www.ica.se/recept/fylld-grillad-portabello-med-ortfarskost-729858/"
         } else if (time === "long") {
-          result = "Grilla hela auberginer med långlagad tomatsås!";
+          result = "Grilla quinoabrugare med cheddar och sperskålsslaw"
+          recipy = "https://www.ica.se/recept/grillad-quinoaburgare-med-cheddar-och-spetskalsslaw-725172/"
         }
       } else if (style === "new") {
         if (time === "short") {
-          result = "Testa grillad tofu med asiatisk glaze!";
+          result = "Testa grillad kronärtskocka med salsa verde!";
+          recipy = "https://www.ica.se/recept/grillade-kronartskockshjartan-med-salsa-verde-740454/"
         } else if (time === "middle") {
-          result = "Grilla veganska spett med mango och chili!";
+          result = "Grilla yakitori på svamp!";
+          recipy = "https://www.ica.se/recept/yakitori-pa-svamp-740475/"
         } else if (time === "long") {
-          result = "Helgrillad blomkål med tahinisås!";
+          result = "Grilla kålrot med ingefärspuré och krassemarinad!";
+          recipy = "https://www.ica.se/recept/grillad-kalrot-med-ingefarspure-och-krassemarinad-1513/"
         }
       }
     }
@@ -98,18 +104,24 @@ function findResult () {
       if (style === "classic") {
         if (time === "short") {
           result = "Grilla hamburgare!";
+          recipy = "https://www.ica.se/recept/klassiska-hamburgare-av-notfars-720381/"
         } else if (time === "middle") {
-          result = "Grilla entrecôte med vitlökssmör!";
+          result = "Grilla ryggbiff med bbq glaze!";
+          recipy = "https://www.ica.se/recept/grillad-ryggbiff-med-kinesisk-bbq-glaze-723675/"
         } else if (time === "long") {
-          result = "Grilla pulled pork i flera timmar!";
+          result = "Grilla bbq T-bone med majskolv!";
+          recipy = "https://www.ica.se/recept/bbq-t-bone-med-majskolv-718782/"
         }
       } else if (style === "new") {
         if (time === "short") {
-          result = "Grilla koreanska bulgogispett!";
+          result = "Grilla melon med burrata och lufttorkad skinka!";
+          recipy = "https://www.ica.se/recept/grillad-melon-med-burrata-och-lufttorkad-skinka-729128/"
         } else if (time === "middle") {
-          result = "Prova lammfärsbiffar med mynta!";
+          result = "Salviagrillade kotlettracks med bacon och granatäpplerelish!";
+          recipy = "https://www.ica.se/recept/salviagrillade-kotlettracks-med-bacon-och-granatapplerelish-720727/"
         } else if (time === "long") {
-          result = "Slowcookad brisket på grillen!";
+          result = "Texas grillribs med grillad sallad och bacon!";
+          recipy = "https://www.ica.se/recept/texas-grillribs-med-grillad-sallad-och-bacon-718774/"
         }
       }
     }
@@ -117,44 +129,58 @@ function findResult () {
     else if (type === "fish") {
       if (style === "classic") {
         if (time === "short") {
-          result = "Grilla laxfilé med citron!";
+          result = "Grilla torsk med linser, soltorkade tomater och basilika!";
+          recipy = "https://www.ica.se/recept/torsk-i-folie-med-linser-soltorkade-tomater-och-basilika-724136/"
         } else if (time === "middle") {
-          result = "Grilla fiskspett med paprika och lök!";
+          result = "Grilla lax och räkburgare!";
+          recipy = "https://www.ica.se/recept/lax-och-rakburgare-720065/"
         } else if (time === "long") {
-          result = "Helgrilla en hel fisk med örter och citron!";
+          result = "Grilla lax med gurkyoghurt!";
+          recipy = "https://www.ica.se/recept/grillad-lax-med-gurkyoghurt-729690/"
         }
       } else if (style === "new") {
         if (time === "short") {
-          result = "Grilla tonfisk med sesam och soja!";
+          result = "Grilla kokoslax med melonsalsa!";
+          recipy = "https://www.ica.se/recept/kokoslax-med-melonsalsa-720647/"
         } else if (time === "middle") {
-          result = "Fisk-tacos med mango och koriander!";
+          result = "Vit tonfisk med tapanedepotatissallad!";
+          recipy = "https://www.ica.se/recept/vit-tonfisk-med-tapenadepotatissallad-718864/"
         } else if (time === "long") {
-          result = "Grilla bläckfisk eller experimentera med ceviche på grillen!";
+          result = "Dill och rosepeppargravad gör med bakad purjolök och mandeldressing!";
+          recipy = "https://www.ica.se/recept/dill-och-rosepeppargravad-gos-med-bakad-purjolok-och-mandeldressing-718800/"
         }
       }
     }
+
+    
     
     else if (type === "chicken") {
       if (style === "classic") {
         if (time === "short") {
-          result = "Grilla kycklingfilé med BBQ-sås!";
+          result = "Grilla enkel kycklingburgare med yoghurt!";
+          recipy = "https://www.ica.se/recept/enkel-kycklingburgare-med-yoghurt-723436/"
         } else if (time === "middle") {
-          result = "Grilla kycklingspett med paprika och lök!";
+          result = "Grillspett med kyckling!";
+          recipy = "https://www.ica.se/recept/grillspett-med-kyckling-720550/"
         } else if (time === "long") {
-          result = "Grilla en hel kyckling med glaze under lock!";
+          result = "Grilla Stephanies prisbelönta kyckling!";
+          recipy = "https://www.ica.se/recept/stephanies-prisbelonta-kyckling-50324/"
         }
       } else if (style === "new") {
         if (time === "short") {
-          result = "Testa jerk-kyckling med lime och chili!";
+          result = "Kryddiga kycklingfärsspett med ajvaryoghurt!";
+          recipy = "https://www.ica.se/recept/kryddiga-kycklingfarsspett-med-ajvaryoghurt-723942/"
         } else if (time === "middle") {
-          result = "Grilla kycklinglår med honung och senap!";
+          result = "Kycklingtacos med grillad sparris och kryddig gräddfil!";
+          recipy = "https://www.ica.se/recept/kycklingtacos-med-grillad-sparris-kryddig-graddfil-725806/"
         } else if (time === "long") {
-          result = "Helgrillad marinerad kyckling med exotiska kryddor!";
+          result = "Helgrillad kyckling med sommarprimörer och wasabimajonnäs!";
+          recipy = "https://www.ica.se/recept/helgrillad-kyckling-med-sommarprimorer-och-wasabimajonnas-719087/"
         }
       }
     }
     
-    document.querySelector(".result").innerText = result;
+    document.querySelector(".result").innerHTML = result + "<br><a href='" + recipy + "' target='_blank'>Visa recept</a>"
 
 
 }
