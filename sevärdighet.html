@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="sevärdighet.css">
      <script src= "quiz.js"></script>
       <link rel = "stylesheet" href = "specifikquizstad.css">
+      <script src = "sevärdhet.js"></script>
 </head>
 <body>
      <header class="header">
@@ -36,53 +37,60 @@
   </header>
     <h2>Quiz - Vilka sevärdheter passar dina intressen?</h2>
 
-    <div class = "vilkenstad">
-        <p>Hur välkänd eller betydelsefull ska sevärdheten vara?</p>
-        <form>
-            <label>
-              <input type="radio" name="läge" value="avskild">
-              Okänd
-            </label><br>
-          
-            <label>
-              <input type="radio" name="läge" value="centrum">
-              Lokalt
-            </label><br>
-
-            <label>
-                <input type="radio" name="läge" value="centrum">
-                Nationell
-              </label><br>
-
-              <label>
-                <input type="radio" name="läge" value="centrum">
-                Internationellt
-              </label><br>
-          </form>
+    <div class="vilkenstad">
+      <p>Vad lockar dig mest under en campingresa?</p>
+      <div class="choice-container">
+        <div class="elemchoice" data-question="province" data-value="oland">
+          <p>Att fördjupa mig i likal kultur och konst</p>
+        </div>
+        <div class="elemchoice" data-question="province" data-value="smaland">
+          <p>Att upptäcka mäktiga naturfenomen och landskap</p>
+        </div>
+        <div class="elemchoice" data-question="province" data-value="smaland">
+          <p>Att träffa människor och uppleva follkliv</p>
+        </div>
+      </div>
     </div>
-    <div class = "vilkenstad">
-        <p>Vad är du mest intresserad av?</p>
-        <form>
-            <label>
-              <input type="radio" name="sevärdhet" value="konst">
-              1000 per natt
-            </label><br>
-          
-            <label>
-              <input type="radio" name="sevärdhet" value="historia">
-              500 per natt
-            </label><br>
-          
-            <label>
-              <input type="radio" name="sevärdhet" value="naturvetenskap">
-              200 per natt
-            </label><br>
-
-            <label>
-                <input type="radio" name="sevärdhet" value="socialt">
-                200 per natt
-              </label><br>
-          </form>
+    
+    <div class="vilkenstad">
+      <p>Vad skulle du helst vilja besöka?</p>
+      <div class="choice-container">
+        <div class="elemchoice" data-question="type" data-value="city">
+          <p>Ett museum eller ett galleri med lokal konst</p>
+        </div>
+        <div class="elemchoice" data-question="type" data-value="nature">
+          <p>Ett vattenfall, en grotta eller ett naturreservat</p>
+        </div>
+        <div class="elemchoice" data-question="type" data-value="nature">
+          <p>Ett torg eller en festival</p>
+        </div>
+      </div>
     </div>
+
+    <div class="vilkenstad">
+      <p>Vilken typ av sevärdhet tycker du ger mest?</p>
+      <div class="choice-container">
+        <div class="elemchoice" data-question="mood" data-value="city">
+          <p>En plats där man lär sig om historia och traditioner</p>
+        </div>
+        <div class="elemchoice" data-question="mood" data-value="nature">
+          <p>En naturskön plats som  get lugn och intryck</p>
+        </div>
+        <div class="elemchoice" data-question="mood" data-value="nature">
+          <p>En plats där människor möts och delar upplevelser</p>
+        </div>
+      </div>
+    </div>
+    
+    <button id="submitBtn">Visa mitt resultat!</button>
+    <button id="redoBtn">Gör testet igen</button>
+
+    <div class="result">
+      <!-- Här ska resultatet från testet visas.-->
+    </div>
+
+
+
+<div id="showBtnContainer"></div>
 </body>
 </html>
