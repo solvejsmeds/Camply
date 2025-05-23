@@ -265,14 +265,14 @@ async function fetchWeather(lat, lng, city) {
       const weekday = date.toLocaleDateString("sv-SE", { weekday: "long" });
       const capitalizedWeekday = weekday.charAt(0).toUpperCase() + weekday.slice(1);
 
-      const iconPath = getWeatherIcon(weatherCodes[i]);
+      const icon = getWeatherIcon(weatherCodes[i]);
 
       // Skapa URL till SMHI
       const smhiURL = "https://www.smhi.se/vader/prognoser-och-varningar/vaderprognos/q/" + encodeURIComponent(city);
 
       html += "<a href='"+smhiURL+"' target='_blank' class='weatherbox'>"+
           day + "<br>" + capitalizedWeekday + "<br>" + 
-          "<img src='" + iconPath + "' alt='Väderikon' class='weathericon'><br>" + tempsMin[i] + "°C – " + tempsMax[i] + "°C</a>";
+          "<img src='" + icon.src + "' alt='"+ icon.alt +"' class='weathericon'><br>" + tempsMin[i] + "°C – " + tempsMax[i] + "°C</a>";
     }
 
     html += "</div>";
@@ -288,15 +288,23 @@ async function fetchWeather(lat, lng, city) {
 
 
 function getWeatherIcon(code) {
-  if (code === 0) return "img/solvej.svg"; //soligt
-  else if (code >= 1 && code <= 3) return "img/Solmolnanvända.svg"; //delvis molnigt
-  else if (code === 45 || code === 48) return "img/camply.svg"; //dimma
-  else if (code >= 51 && code <= 67) return "img/rengmolnigtanvändenna.svg"; //regnit
-  
-  else if (code >= 71 && code <= 77) return "img/camply.svg"; //snö
-  else if (code >= 80 && code <= 82) return "img/camply.svg"; //regnskur
-  else if (code >= 95 && code <= 99) return "img/camply.svg"; //åska
-  else return "img/camply.svg"; // fallback
+  if (code === 0) {
+    return { src: "img/solvej.svg", alt: "Soligt" };
+  } else if (code >= 1 && code <= 3) {
+    return { src: "img/Solmolnanvända.svg", alt: "Delvis molnigt" };
+  } else if (code === 45 || code === 48) {
+    return { src: "img/camply.svg", alt: "Dimma" };
+  } else if (code >= 51 && code <= 67) {
+    return { src: "img/rengmolnigtanvändenna.svg", alt: "Regnigt" };
+  } else if (code >= 71 && code <= 77) {
+    return { src: "img/camply.svg", alt: "Snöfall" };
+  } else if (code >= 80 && code <= 82) {
+    return { src: "img/camply.svg", alt: "Regnskurar" };
+  } else if (code >= 95 && code <= 99) {
+    return { src: "img/camply.svg", alt: "Åska" };
+  } else {
+    return { src: "img/camply.svg", alt: "Okänt väder" };
+  }
 }
 
 
@@ -462,61 +470,61 @@ async function fetchJSONNatureReserves(regionKey) {
 
 //funktion för att hämta golfbanor i staden som campingen ligger i 
 async function fetchGolf(lat, lng) {
-
-  
   console.log("Golf!! :)");
 
-  
+  // Hjälpfunktion för att göra själva anropet
+  async function requestGolfData(radius) {
+    const url = "https://smapi.lnu.se/api/?api_key=" + APIkey +
+                "&controller=establishment&method=getfromlatlng" +
+                "&lat=" + lat + "&lng=" + lng +
+                "&descriptions=golfbana&radius=" + radius;
 
-
-
-  const url = "https://smapi.lnu.se/api/?api_key=" + APIkey + "&controller=establishment&method=getfromlatlng&lat=" + lat +"&lng=" + lng +"&descriptions=golfbana";
-
-  try {
     const response = await fetch(url);
     const data = await response.json();
+    return data;
+  }
 
-    for (let marker of golfMarkers) {
-      myMap.removeLayer(marker); // Rensa ev. gamla markörer
-    }
+  // Rensa gamla markörer
+  for (let marker of golfMarkers) {
+    myMap.removeLayer(marker);
+  }
+  golfMarkers = [];
 
-    for (let marker of golfMarkers) {
-      myMap.removeLayer(marker); // Rensa gamla naturreservat
-    }
+  // Försök först med 15 km
+  let data = await requestGolfData(15);
 
-    golfMarkers = [];
-
-    console.log("golf", data);
+  // Om inga golfbanor hittas – försök igen med 30 km
+  if (data.payload.length === 0) {
+    console.log("Inga golfbanor inom 15 km – försöker med 30 km...");
+    data = await requestGolfData(30);
 
     if (data.payload.length === 0) {
-      alert("Inga golfbanor hittades.");
+      alert("Inga golfbanor hittades inom 30 km.");
       return;
     }
+  }
 
-    const golfIcon = L.icon({
-      iconUrl: "img/golfmap.svg",
-      iconSize: [40, 40],         // Ändra om bilden är större/mindre
-      iconAnchor: [20, 40],       // Punkten som pekar på platsen (mitten-botten)
-      popupAnchor: [0, -40]       // Popupen visas ovanför
-    });
+  console.log("golf", data);
 
-    for (let i = 0; i < data.payload.length; i++) {
-      const golf = data.payload[i];
+  const golfIcon = L.icon({
+    iconUrl: "img/golfmap.svg",
+    iconSize: [40, 40],
+    iconAnchor: [20, 40],
+    popupAnchor: [0, -40]
+  });
 
-      const marker = L.marker([parseFloat(golf.lat), parseFloat(golf.lng)], {
-        title: golf.name,
-        icon: golfIcon
-      }).bindPopup(golf.name);
+  for (let i = 0; i < data.payload.length; i++) {
+    const golf = data.payload[i];
 
-      marker.addTo(myMap);
-      golfMarkers.push(marker);
-    }
+    const marker = L.marker([parseFloat(golf.lat), parseFloat(golf.lng)], {
+      title: golf.name,
+      icon: golfIcon
+    }).bindPopup(golf.name + "<br>"+ golf.distance_in_km.toFixed(1) + " km bort");
 
-  } catch (error) {
-    console.error("Kunde inte hämta golfbanor:", error);
+    marker.addTo(myMap);
+    golfMarkers.push(marker);
   }
 }
-
 
 //funktion för att visa cmapingens recensioner
 async function fetchReviews(campingId, name) {
