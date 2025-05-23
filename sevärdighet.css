@@ -1,5 +1,4 @@
 body {
-    width: 380px;
     background-color: #CFBB99
 }
 
@@ -13,7 +12,6 @@ body {
     margin-bottom: 20px;
     border-radius: 1em;
 }
-
 
 
 .choice-container {

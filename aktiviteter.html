@@ -6,7 +6,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="aktiviteter.css">
     <script src= "quiz.js"></script>
+    <script src = "aktiviteter.js"></script>
      <link rel = "stylesheet" href = "specifikquizstad.css">
+
 </head>
 <body>
      <header class="header">
@@ -36,48 +38,48 @@
   </header>
     <h2>Quiz - Vilka aktiviteter ska du göra?</h2>
 
-    <div class = "vilkenstad">
-        <p>Vilken nivå av fysisk ansträngning vill du ha?</p>
-        <form>
-            <label>
-              <input type="radio" name="typakv" value="högakv">
-              Hög
-            </label><br>
-          
-            <label>
-              <input type="radio" name="typakv" value="mellanakv">
-              Mellan
-            </label>
-
-            <label>
-                <input type="radio" name="typakv" value="lågakv">
-                Låg
-              </label><br>
-          </form>
+   <div class="vilkenstad">
+      <p>Vilken nivå av fysisk ansträngning vill du ha?</p>
+      <div class="choice-container">
+        <div class="elemchoice" data-question="province" data-value="oland">
+          <p>Hög</p>
+        </div>
+        <div class="elemchoice" data-question="province" data-value="smaland">
+          <p>Mellan</p>
+        </div>
+         <div class="elemchoice" data-question="province" data-value="smaland">
+          <p>Låg</p>
+        </div>
+      </div>
     </div>
-    <div class = "vilkenstad">
-        <p>Vart vill du göra din aktivitet?</p>
-        <form>
-            <label>
-              <input type="radio" name="vartakv" value="inomhus">
-              Inomhus
-            </label><br>
-          
-            <label>
-              <input type="radio" name="vartakv" value="utomhus">
-              Utomhus
-            </label><br>
-          
-            <label>
-              <input type="radio" name="vartakv" value="vatten">
-              Involverar vatten
-            </label>
-
-            <label>
-                <input type="radio" name="vartakv" value="djur">
-                Involverar djur
-              </label><br>
-          </form>
+    
+    <div class="vilkenstad">
+      <p>Vart vill du göra din aktivitet</p>
+      <div class="choice-container">
+        <div class="elemchoice" data-question="type" data-value="city">
+          <p>Inomhus</p>
+        </div>
+        <div class="elemchoice" data-question="type" data-value="nature">
+          <p>Utomhus</p>
+        </div>
+        <div class="elemchoice" data-question="type" data-value="nature">
+          <p>Involverar vatten</p>
+        </div>
+        <div class="elemchoice" data-question="type" data-value="nature">
+          <p>Involverar djur</p>
+        </div>
+      </div>
     </div>
+    
+    <button id="submitBtn">Visa mitt resultat!</button>
+    <button id="redoBtn">Gör testet igen</button>
+
+    <div class="result">
+      <!-- Här ska resultatet från testet visas.-->
+    </div>
+
+
+
+<div id="showBtnContainer"></div>
 </body>
 </html>

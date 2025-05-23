@@ -1,6 +1,24 @@
 body {
-    width: 380px;
-    background-color: #CFBB99
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    background-color: #CFBB99;
+}
+
+.choice-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.elemchoice {
+  background-color:#f5f0e6;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 5px rgba();
+  cursor: pointer;
 }
 
 #firsttitle{
@@ -201,7 +219,83 @@ body {
     font-size: 1.2rem;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) and (max-width: 1014px) {
+
+    body{
+    padding: 0 3rem;
+  }
+
+  .choice-container {
+    padding: 0 1.5rem;
+  }
+
+  .header-content{
+    padding: 15px 1.5rem;
+  }
+
+  .nav-links{
+    right: 1.5rem;
+  }
+
+  .hamburger{
+    right: 1.5rem;
+  }
+}
+
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    body{
+    padding: 0 1rem;
+  }
+
+  .choice-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; 
+    padding: 0 1rem;
+  }
+
+  .elemchoice {
+    flex: 1 1 0;
+    max-width: 45%;
+
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+.nav-links {
+      display: flex !important;
+      position:static;
+      flex-direction: row;
+      background-color: transparent;
+      box-shadow: none;
+      padding: 0;
+      gap: 7px;
+    }
+
+    .nav-links a{
+      padding: 0.5rem 1rem;
+      font-weight: bold;
+      background-color: #889063;
+      transition: background-color 0.2 ease;
+    }
+
+    .nav-links a:hover{
+      background-color:#9b9e8b;
+    }
+
+  .header-content {
+    padding: 15px 20px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+
+}
+
+  @media screen and (min-width: 1025px) {
     body {
       width: auto;
       max-width: 1200px;
