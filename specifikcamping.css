@@ -3,6 +3,10 @@ body {
     background-color: #CFBB99
 }
 
+html{
+    font-family: 'Quicksand', sans-serif;
+}
+
 #map {
     height: 300px;
     width: 100%;

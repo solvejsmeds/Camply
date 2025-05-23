@@ -5,6 +5,10 @@ body {
     background-color: #CFBB99;
 }
 
+html{
+    font-family: 'Quicksand', sans-serif;
+}
+
 .choice-container {
   display: flex;
   flex-direction: row;

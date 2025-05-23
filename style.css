@@ -3,6 +3,11 @@ body {
  
     background-color: #CFBB99;
 }
+
+p{
+    font-family: 'Quicksand', sans-serif;
+}
+
 .wrapbild{
     width: 100%;
     margin: 0 auto;

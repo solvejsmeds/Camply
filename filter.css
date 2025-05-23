@@ -4,6 +4,10 @@ body {
   background-color: #CFBB99
 }
 
+html{
+    font-family: 'Quicksand', sans-serif;
+}
+
 #firsttitle{
     text-align: center;
 }
