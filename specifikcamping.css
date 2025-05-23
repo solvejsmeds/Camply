@@ -171,6 +171,15 @@ body {
     gap:1rem;
     flex-wrap: wrap;
     margin-top: 1rem;
+    
+  }
+
+  button {
+    background-color: #ccd0bb;
+    border-color: #889063;
+    border-radius: 15px;
+   font-size: 1rem;
+   padding: 0.3em;
   }
   
 
@@ -265,6 +274,7 @@ mix-blend-mode: screen;
 #map {
   z-index: 1;
   filter: blur(2px);
+  margin-top: 1em;
 }
 
 
@@ -272,6 +282,14 @@ mix-blend-mode: screen;
   width: 40px;
   height: 40px;
   margin-bottom: 5px;
+}
+
+.specificCampingDiv{
+background-color: #E5D7C4;
+padding: 1em;
+margin-top: 1em;
+margin-bottom: 1em;
+
 }
 
 @media screen and (min-width: 768px) {
@@ -356,9 +374,10 @@ mix-blend-mode: screen;
     }
 
     .specificCampingDiv{
-      flex: 2;
+      flex: 1;
     display: flex;
     flex-direction: column;
+    
   }
 
   .weatherDiv{
@@ -369,6 +388,7 @@ mix-blend-mode: screen;
     flex-direction: row;
     overflow-x: auto;
     max-width: 100%;
+    margin-top: 0.45em;
   }
 
   .weatherbox{
@@ -392,10 +412,7 @@ mix-blend-mode: screen;
     display:flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    max-width: 350px;
+  
+   
   }
 }

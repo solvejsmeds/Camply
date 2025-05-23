@@ -52,11 +52,12 @@ async function showSpecificCamping() {
       "<p class='campingtext'> Campingen ligger i " + camping.city + ".</p>" +
       "<p class='campingtext'> Priset ligger runt " + camping.price_range + " kr.</p>" +
       "<p class='campingtext'>" + camping.text + "</p>" +
+      "<p> Betyget för " + camping.name + " är " + parseFloat(camping.rating).toFixed(1) + " av 5</p>" +
       "<p class='campingtext'><a href='" + camping.website + "' target='_blank'>" + camping.website + "</a></p>";
 
     //fetchReviews(campingId) // anrop av funktion för att hämta campingens recensioner
 
-    reviewsDiv.innerHTML = "<p> Betyget för " + camping.name + " är " + parseFloat(camping.rating).toFixed(1) + " av 5</p>";
+   
     
 
 
