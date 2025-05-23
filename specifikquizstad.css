@@ -219,6 +219,20 @@ body {
     font-size: 1.2rem;
   }
 
+  h2{
+  font-family: 'Quicksand', sans-serif;
+  }
+
+  p{
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+  }
+
+  button{
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+  }
+
   @media screen and (min-width: 768px) and (max-width: 1014px) {
 
     body{

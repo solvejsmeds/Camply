@@ -172,6 +172,26 @@ body {
     flex-wrap: wrap;
     margin-top: 1rem;
   }
+
+  h1,
+  h3{
+    font-family: 'Quicksand', sans-serif;
+     font-weight: bold;
+  }
+
+  p{
+    font-family: 'Quicksand', sans-serif;
+  }
+
+  a,
+  a.weatherbox{
+    font-family: 'Quicksand', sans-serif;
+  }
+
+  button,
+  select{
+    font-family: 'Quicksand', sans-serif;
+  }
   
 
   .switch {
@@ -283,6 +303,27 @@ mix-blend-mode: screen;
 
   #map{
     height: 100%;
+  }
+
+  
+  h1,
+  h3{
+    font-family: 'Quicksand', sans-serif;
+     font-weight: bold;
+  }
+
+  p{
+    font-family: 'Quicksand', sans-serif;
+  }
+
+  a,
+  a.weatherbox{
+    font-family: 'Quicksand', sans-serif;
+  }
+
+  button,
+  select{
+    font-family: 'Quicksand', sans-serif;
   }
 
   header-content {

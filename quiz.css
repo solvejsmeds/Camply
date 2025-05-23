@@ -210,3 +210,9 @@ body {
     margin-top: 26px;
     font-size: 1.2rem;
   }
+
+  h1,
+  h4{
+     font-family: 'Quicksand', sans-serif;
+     font-weight: bold;
+  }

@@ -62,7 +62,7 @@ body {
 }
 
 button.campingtext {
-  background-color: #b9bea4;
+  background-color: #889063;
   border-radius: 20px;
   width: 8em;
   height: 3em;
@@ -110,16 +110,16 @@ button.campingtext {
   }
 
   .nav-links {
-    display: none; /* gömd från början */
+    display: none;
     flex-direction: column;
     background-color: #e5d7c4;
     position: absolute;
-    top: 50%; /* under headern – justera vid behov */
-    right: 1em; /* högra hörnet */
+    top: 50%; 
+    right: 1em; 
     padding: 1rem;
    
     border-radius: 6px;
-    z-index: 999; /* säkerställer att den ligger över annat */
+    z-index: 999;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     width: max-content;
     list-style: none;
@@ -243,6 +243,93 @@ button.campingtext {
     font-size: 1.2rem;
   }
 
+  #backToTopWrapper{
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+  }
+
+  #upBtn{
+    background-color: #889063;
+    color: #fff;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor:pointer;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    margin-left: 17px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3)
+  }
+
+  #upBtn.show{
+    opacity:1;
+    pointer-events: auto;
+  }
+
+  #upBtn:hover{
+    background-color: #889063;
+    transform: scale(1.1);
+  }
+
+  #resetFiltersBtn{
+background-color:#555;
+border-color: #919191;
+color:#f9f9f9;
+padding: 7px;
+  }
+
+   button {
+    background-color: #ccd0bb;
+    border-color: #889063;
+    border-radius: 15px;
+   font-size: 1rem;
+   padding: 0.3em;
+   cursor: pointer;
+  }
+
+  button:hover{
+    background-color: #ccd0bb;
+  }
+
+   p{
+     font-family: 'Quicksand', sans-serif;
+  
+  }
+
+  #hittacampingsompassardig{
+font-family: 'Quicksand', sans-serif;
+     font-weight: bold;
+  }
+
+  h3,
+  h1 {
+    font-family: 'Quicksand', sans-serif;
+  }
+
+  label{
+     font-family: 'Quicksand', sans-serif;
+  }
+
+  #dropdownBtn{
+    font-family: 'Quicksand', sans-serif;
+     font-weight: bold;
+  }
+
+   #dropdownBtnCity{
+     font-family: 'Quicksand', sans-serif;
+     font-weight: bold;
+   }
+
+   #resetFiltersBtn{
+     font-family: 'Quicksand', sans-serif;
+   }
+
   @media (min-width: 768px) {
     body {
       width: auto;
@@ -250,6 +337,40 @@ button.campingtext {
       margin: 0 auto;
       padding: 0 2rem;
     }
+
+     p{
+     font-family: 'Quicksand', sans-serif;
+  
+  }
+
+  #hittacampingsompassardig{
+font-family: 'Quicksand', sans-serif;
+     font-weight: bold;
+  }
+
+  h3,
+  h1 {
+    font-family: 'Quicksand', sans-serif;
+  }
+
+  label{
+     font-family: 'Quicksand', sans-serif;
+  }
+
+  #dropdownBtn{
+    font-family: 'Quicksand', sans-serif;
+     font-weight: bold;
+  }
+
+   #dropdownBtnCity{
+     font-family: 'Quicksand', sans-serif;
+     font-weight: bold;
+   }
+
+   #resetFiltersBtn{
+     font-family: 'Quicksand', sans-serif;
+   }
+
 
     .header-content {
       height: 100px;
@@ -278,9 +399,10 @@ button.campingtext {
 
     .nav-links a{
       padding: 0.5rem 1rem;
-      font-weight: bold;
-      background-color: #889063;
+       background-color: #889063;
       transition: background-color 0.2 ease;
+      font-family: 'Quicksand', sans-serif;
+     font-weight: bold;
     }
 
     .nav-links a:hover{
@@ -309,7 +431,31 @@ button.campingtext {
     .campcontainer{
       width: 100%;
       margin: 0;
+      transition: transform 0.3s ease, background-color 0.3s ease;
     }
+
+    .campcontainer:hover{
+      background-color: #e0dad1;
+      transform:scale(1.02);
+      cursor:pointer;
+    }
+
+    button.campingtext {
+  border-radius: 20px;
+  width: 8em;
+  height: 3em;
+  font-weight: 600;
+  margin-top: 0.1em;
+  border-color: #889063;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+button.campingtext:hover {
+   transform:scale(1.02);
+      cursor:pointer;
+      color:#ffffffd2;
+}
+
 
     .campingpic{
       width:200px;
