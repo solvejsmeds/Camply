@@ -2,21 +2,21 @@
 <html lang="sv">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camply</title>
-    <link rel="stylesheet" href="specifikcamping.css">
-    <script src="specifikcamping.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Camply</title>
+  <link rel="stylesheet" href="specifikcamping.css">
+  <script src="specifikcamping.js"></script>
 
-    <!-- Leaflet CSS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<!-- Leaflet JS -->
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 </head>
 
 <body>
-      <header class="header">
+  <header class="header">
     <div class="header-content">
       <div class="camplylogo">
         <a href="index.html">
@@ -42,67 +42,42 @@
     </nav>
   </header>
 
-  <div class = "info-wrapper">
-   <div class="specificCampingDiv">
-    <!--Här kommer informationen om cmapingen läggas in-->
-   </div>
-
-
-   <div class = "right-column">
-    <div class="weatherDiv">
-    <!--Här ska vädret visas-->
+  <div class="info-wrapper">
+    <div class="specificCampingDiv">
+      <!--Här kommer informationen om cmapingen läggas in-->
     </div>
 
-   <div id = "mapcontainer">
-    <div id = "mapoverlay">
-      <img src = "img/loader7.gif" id = "loadingicon">
+
+    <div class="right-column">
+      <div class="weatherDiv">
+        <!--Här ska vädret visas-->
       </div>
-      <div id = "map"></div>
+
+      <div id="mapcontainer">
+        <div id="mapoverlay">
+          <img src="img/loader7.gif" id="loadingicon">
+        </div>
+        <div id="map"></div>
       </div>
+      <div class="filters-wrapper"> <!--Här ska kartknapparna visas -->
+        <button class="btn" id="showRestaurantsBtn">Restauranger</button>
+        <button class="btn" id="natureReserveBtn">Naturreservat</button>
+        <button class="btn" id="golfBtn">Golfbanor</button>
+        <label for="monument"></label>
+        <select id="monuments">
+          <option value=""> Alla sevärdheter </option>
+          <option value=""> Museum </option>
+          <option value=""> Slott </option>
+          <option value=""> Konst </option>
+          <option value=""> Kyrkor </option>
+          <option value=""> Bilkyrkogård </option>
+          <option value=""> Slottsruin </option>
+        </select>
       </div>
-    </div>
-
-   <div class = "filters-wrapper"> <!--Här ska kartknapparna visas -->
-
-    <button class= "btn" id="showRestaurantsBtn">Restauranger</button>
+    </div> 
 
 
 
-
-
-<button class= "btn" id="natureReserveBtn">Naturreservat</button>
-
-<button class = "btn" id="golfBtn">Golfbanor</button>
-
-
-
-    <label for="monument"></label>
-    <select id="monuments">
-
-        <option value=""> Alla sevärdheter </option>
-
-        <option value=""> Museum </option>
-
-        <option value=""> Slott </option>
-
-        <option value=""> Konst </option>
-
-        <option value=""> Kyrkor </option>
-
-        <option value=""> Bilkyrkogård </option>
-
-        <option value=""> Slottsruin </option>
-        
-
-        
-
-    </select>
-   </div>
-
-   <div class="reviewsDiv">
-    <!--Här ska recensionerna visas-->
-  
-   </div>
 
 
 </body>

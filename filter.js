@@ -30,21 +30,21 @@ const campingImages = {
 
 function init() {
 
-  fetchSmapiCities() //funktion anrop: hämtar städer till stad filtrer
+  
 
   showCampings(); //anropar fuunktion som visar alla campingar
+
+  fetchSmapiCities() //funktion anrop: hämtar städer till stad filtrer
 
   document.querySelector("#minPrice").addEventListener("change", function () {
     filterCampings();
     updateResetButtonState();
-  });
-
+  }); //händelselyssnare för minimipris. 
 
 document.querySelector("#maxPrice").addEventListener("change", function () {
-  filterCampings()
-  updateResetButtonState();
-});
-
+  filterCampings() //filtrera utifårn pris
+  updateResetButtonState(); //aktivera rensa filter knappen
+}); //händelslyssnare för maxpris
 
   dropdown(); //dropdown för läge filtrering
   dropdownCity(); //dropdown för stad filtrering
@@ -60,6 +60,7 @@ document.querySelector("#maxPrice").addEventListener("change", function () {
     
   } //loopar igenom checkboxarna och lägger till change eventlyssnare, anropar filter campings
 
+  //händelsyssnare för lsider filtrera (wifi, fiske, cafe och ttvättmaskin)
   document.querySelector("#wifiSlider").addEventListener("change", function () {
     filterCampings();
 updateResetButtonState();
@@ -79,12 +80,11 @@ updateResetButtonState();
 
 
 
- 
 
 
   document.querySelector("#hamburger").addEventListener("click", function () {
     document.querySelector("#nav-links").classList.toggle("show");
-  });
+  }); //navigeringen
 
   
   document.querySelector("#resetFiltersBtn").addEventListener("click", function () {
@@ -92,6 +92,7 @@ updateResetButtonState();
     filterCampings();
     updateResetButtonState();
   }); //knappen för att återställa filter
+  
   
 
 }
@@ -101,7 +102,7 @@ window.addEventListener("load", init)
 
 
 
-//väljer den första kategorin där id:t hittas eftersom vissa id finns i flera kategorier
+//väljer den första kategorin där id:t hittas eftersom vissa id finns i flera kategorier, denna funktion är till för att hämta en bild baserat på campingens läge (kanske ändra? Är det dumt att bilderna ändras?)
 function getCampingCategory(campingId) {
   for (let category in positionIds) {
     if (positionIds[category].includes(parseInt(campingId))) {
@@ -114,21 +115,30 @@ function getCampingCategory(campingId) {
 
 //funktion för att hantera dropdown menyn med kryssruto för läge
 function dropdown() {
-  let dropdownBtn = document.querySelector("#dropdownBtn"); //knappen för läge
+  const dropdownBtn = document.querySelector("#dropdownBtn");
+  const dropdownContent = document.querySelector("#dropdownContent");
 
-  let dropdownContent = document.querySelector("#dropdownContent"); //hämtas dropdownmenyn med lägen
-
-  dropdownBtn.addEventListener("click", function (event) { //händelselyssnare på knappen för läge
-    event.stopPropagation(); //förhindrar bubbla upp
-    dropdownContent.classList.toggle("show"); //visar menun
+  // 1) När man klickar på knappen: stoppa propagation och toggla öppet/stängt
+  dropdownBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    dropdownContent.classList.toggle("show");
   });
 
+  // 2) När man klickar var som helst på dokumentet: stäng dropdownen
+  document.addEventListener("click", function () {
+    dropdownContent.classList.remove("show");
+  });
+
+  // 3) När man klickar inne i dropdown-content: stoppa propagation så att inte document-listenern stänger den
+  dropdownContent.addEventListener("click", function (e) {
+    e.stopPropagation();
+  });
 }
 //Slut dropodown
 //-----------------------------------------------------------------------------------
 
 
-
+//funktion för att hantera dropdown menyn för stad alternativen
 function dropdownCity() {
   let dropdownBtnCity = document.querySelector("#dropdownBtnCity");
 
@@ -180,14 +190,14 @@ function displayCampings(campings) {
   campingDiv.innerHTML = "";
 
   if (campings.length === 0) {
-    campingDiv.innerHTML = "<p>Inga campingar med dina valda filter finns. Justera dina filter för att hitta campingar som passar dig.</p>";
+    campingDiv.innerHTML = "<p>Det finns inga campingar med dina valda filter. Justera dina filter för att hitta campingar som passar dig.</p>";
     return;
   }
 
   for (let i = 0; i < campings.length; i++) {
     const camping = campings[i];
 
-    // SKAPA CONTAINER
+    // Skapa container
     let container = document.createElement("div");
     container.classList.add("campcontainer");
 
@@ -197,11 +207,11 @@ title.classList.add("campingtitle");
 title.textContent = camping.name;
 container.appendChild(title);
 
-// UNDRE RAD: text + bild i två kolumner
+// text + bild i två kolumner
 let contentRow = document.createElement("div");
 contentRow.classList.add("campingrow");
 
-    // SKAPA TEXTDEL
+    // textdelen skapas
     let textDiv = document.createElement("div");
     textDiv.classList.add("campingtext-container");
 
@@ -212,13 +222,13 @@ contentRow.classList.add("campingrow");
       "<p class='campingtext'>" + camping.abstract + "</p>" ;
       
 
-    // SKAPA KNAPP
+    // Skapa knapp
     let button = document.createElement("button");
     button.classList.add("campingtext");
     button.textContent = "Läs mer";
     textDiv.appendChild(button);
 
-    // SKAPA BILD
+    // skapa bilden
     let img = document.createElement("img");
 
     // Bestäm kategori
@@ -228,7 +238,7 @@ let selectedImage = "användennafältcamping.jpg"; // fallback
 if (category && campingImages[category]) {
   const imgs = campingImages[category];
   const randomIndex = Math.floor(Math.random() * imgs.length);
-  selectedImage = imgs[randomIndex];
+  selectedImage = imgs[randomIndex]; //random bild utifrån kategorien
 }
 
 img.src = "img/" + selectedImage;
@@ -236,32 +246,33 @@ img.src = "img/" + selectedImage;
     img.alt = "bild på campingplatsen";
     img.classList.add("campingpic");
 
-    // LÄGG TILL I CONTAINER
+    // Lägg in i cnintainer n
     contentRow.appendChild(textDiv);
     contentRow.appendChild(img);
 
     // Lägg till rad i containern
 container.appendChild(contentRow);
 
-    // LÄGG TILL EVENTLYSSNARE
+    // lägg till evensyssnare
     container.addEventListener("click", function () {
       window.location.href = "specifikcamping.html?id=" + camping.id;
 
+      //spara valda filter i local storage så att de inte försvinner direkt 
       localStorage.setItem("selectedFilters", JSON.stringify({
-        minPrice: document.querySelector("#minPrice").value,
+        minPrice: document.querySelector("#minPrice").value, 
         maxPrice: document.querySelector("#maxPrice").value,
         selectedCities: (function () {
-          var checkboxes = document.querySelectorAll("#dropdownContentCity input[type='checkbox']:checked");
-          var cities = [];
-          for (var i = 0; i < checkboxes.length; i++) {
+          let checkboxes = document.querySelectorAll("#dropdownContentCity input[type='checkbox']:checked");
+          let cities = [];
+          for (let i = 0; i < checkboxes.length; i++) {
             cities.push(checkboxes[i].value);
           }
           return cities;
         })(),
         selectedPositions: (function () {
-          var checkboxes = document.querySelectorAll("#dropdownContent input[type='checkbox']:checked");
-          var positions = [];
-          for (var i = 0; i < checkboxes.length; i++) {
+          let checkboxes = document.querySelectorAll("#dropdownContent input[type='checkbox']:checked");
+          let positions = [];
+          for (let i = 0; i < checkboxes.length; i++) {
             positions.push(checkboxes[i].value);
           }
           return positions;
@@ -279,7 +290,7 @@ container.appendChild(contentRow);
       window.location.href = "specifikcamping.html?id=" + camping.id;
     });
 
-    // LÄGG IN I SIDAN
+    // Lägg in på sidan
     campingDiv.appendChild(container);
   }
 }
@@ -314,15 +325,6 @@ function filterCampings() {
     return campingMax >= minPrice && campingMin <= maxPrice;
   });
   
-  /*const selectedPrice = document.querySelector("#selectedPrice").value; //hämtar värdet från pris filter
-
- 
-
-  if (selectedPrice !== "") { // Filtrera på prisklass om något valts
-    filtered = filtered.filter(function (camping) {
-      return camping.price_range === selectedPrice; // Behåll campingar med matchande pris
-    });
-  }*/
 
   // Hämtar alla stad-checkboxar som är ibockade
   const selectedCheckboxesCity = document.querySelectorAll("#dropdownContentCity input[type='checkbox']:checked");
@@ -372,9 +374,6 @@ function filterCampings() {
       return text.includes("fisk");
     });
   }
-
-
-
     // Filtrering: endast campingar med cafe om slidern är aktiverad
     const cafeChecked = document.querySelector("#cafeSlider").checked;
 
@@ -411,14 +410,14 @@ function filterCampings() {
 
 //funktion för att rensa filter som sparats i local storage
 function updateResetButtonState() {
-  var btn = document.querySelector("#resetFiltersBtn");
-  var isActive = false;
+  let btn = document.querySelector("#resetFiltersBtn"); //knapp för att rensa filter
+  let isActive = false;
 
   // Samma kontroll som tidigare...
   if (document.querySelector("#minPrice").value || document.querySelector("#maxPrice").value) isActive = true;
 
-  var checkboxes = document.querySelectorAll("input[type='checkbox']");
-  for (var i = 0; i < checkboxes.length; i++) {
+  let checkboxes = document.querySelectorAll("input[type='checkbox']");
+  for (let i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i].checked) {
       isActive = true;
       break;
@@ -440,94 +439,105 @@ function updateResetButtonState() {
 //----------------------------------------------------
 
 
-
-//funktion för att hämta städer från sampi
+//funktion för att hämta städer från SMAPI och förinställa filtren
 async function fetchSmapiCities() {
-  const cityContainer = document.querySelector("#dropdownContentCity"); //hämtar elementet där checkboxarna för städer ska ligga
+  const cityContainer = document.querySelector("#dropdownContentCity");
 
-  let response = await fetch("https://smapi.lnu.se/api/?debug=true&api_key=R7PGDNjZ&controller=establishment&method=getall&descriptions=camping"); //api antop till smpai, hämtar cmapingarna
-  const data = await response.json(); //tolkar svaret, sparar det i data
+  // 1) Hämta alla campingar från SMAPI
+  const response = await fetch(
+    "https://smapi.lnu.se/api/?api_key=R7PGDNjZ&controller=establishment&method=getall&descriptions=camping"
+  );
+  const data = await response.json();
 
-  const uniqueCities = new Set(); //används för att det inte ska bli flera av samma stad, lista där varje värde är unikt
-
+  // 2) Bygg en unik lista av städer
+  const uniqueCities = new Set();
   for (let i = 0; i < data.payload.length; i++) {
     const city = data.payload[i].city;
-    if (city) {
-      uniqueCities.add(city);
-    }
-  } //loopar igenom alla campingar och hämtar namn och lägger in dom i uniqueCities listan
+    if (city) uniqueCities.add(city);
+  }
 
-  let sortedCities = Array.from(uniqueCities).sort(function (a, b) {
-    return a.localeCompare(b, 'sv');
-  }); //gör om till en array och sorterar i alfabetisk ordning
+  // 3) Sortera alfabetiskt och skapa checkboxar
+  const sortedCities = Array.from(uniqueCities).sort(function(a, b) {
+    return a.localeCompare(b, "sv");
+  });
+  for (let i = 0; i < sortedCities.length; i++) {
+    const c = sortedCities[i];
+    cityContainer.innerHTML +=
+      "<label><input type='checkbox' value='" + c + "'> " + c + "</label><br>";
+  }
 
-  for (let city of sortedCities) {
-    cityContainer.innerHTML += "<label><input type='checkbox' value='" + city + "'>" + city + "</label><br>";
-  } //skapar checkbox för varje stad och lägger in i html
+  // 4) Hämta checkbox-elementen
+  const cityCheckboxes = document.querySelectorAll(
+    "#dropdownContentCity input[type='checkbox']"
+  );
 
-  let cityCheckboxes = document.querySelectorAll("#dropdownContentCity input[type='checkbox']"); //hämtar alla checkboxar som skapats
-
- 
+  // 5) Lägg på change-lyssnare på varje stad-checkbox
   for (let i = 0; i < cityCheckboxes.length; i++) {
-    let checkboxCity = cityCheckboxes[i];
-    checkboxCity.addEventListener("change", function () {
-filterCampings();
-updateResetButtonState();
+    cityCheckboxes[i].addEventListener("change", function() {
+      filterCampings();
+      updateResetButtonState();
     });
-  } //loopar igenom checkboxarna och lägger till change eventlyssnare, anropar filter campings
+  }
 
-  var urlParams = new URLSearchParams(window.location.search);
-  var cityFromQuiz = urlParams.get("city");
+  // 6) Läs in tidigare sparade filter (om några)
+  const saved = localStorage.getItem("selectedFilters");
+  if (saved) {
+    const filters = JSON.parse(saved);
 
-  const savedFilters = localStorage.getItem("selectedFilters");
-
-  if (savedFilters) {
-    const filters = JSON.parse(savedFilters);
-  
+    // priser
     document.querySelector("#minPrice").value = filters.minPrice;
     document.querySelector("#maxPrice").value = filters.maxPrice;
-  
-    // Sätt checkboxar för städer
-    for (let checkbox of document.querySelectorAll("#dropdownContentCity input[type='checkbox']")) {
-      checkbox.checked = filters.selectedCities.includes(checkbox.value);
+
+    // stads-checkboxar
+    for (let i = 0; i < cityCheckboxes.length; i++) {
+      cityCheckboxes[i].checked =
+        filters.selectedCities.indexOf(cityCheckboxes[i].value) !== -1;
     }
-  
-    // Sätt checkboxar för läge
-    for (let checkbox of document.querySelectorAll("#dropdownContent input[type='checkbox']")) {
-      checkbox.checked = filters.selectedPositions.includes(checkbox.value);
+
+    // läges-checkboxar
+    const posCheckboxes = document.querySelectorAll(
+      "#dropdownContent input[type='checkbox']"
+    );
+    for (let i = 0; i < posCheckboxes.length; i++) {
+      posCheckboxes[i].checked =
+        filters.selectedPositions.indexOf(posCheckboxes[i].value) !== -1;
     }
-  
+
+    // sliders
     document.querySelector("#wifiSlider").checked = filters.wifi;
     document.querySelector("#fishingSlider").checked = filters.fishing;
     document.querySelector("#cafeSlider").checked = filters.cafe;
     document.querySelector("#laundrySlider").checked = filters.laundry;
-  
-    // Anropa filtreringen direkt
+
     filterCampings();
+    updateResetButtonState();
   }
 
-  function normalize(str) {
-    return str
-      .toLowerCase()
-      .normalize("NFD") // delar upp accenttecken
-      .replace(/[\u0300-\u036f]/g, "") // tar bort accenttecken
-      .trim(); // tar bort extra mellanslag
-  }
-  
+  // 7) Om vi fått en stad via URL (?city=...), markera den
+  const urlParams = new URLSearchParams(window.location.search);
+  const cityFromQuiz = urlParams.get("city");
   if (cityFromQuiz) {
-    const normalizedCityFromQuiz = normalize(cityFromQuiz);
+
+    // hjälpfunktion för att ta bort specialrtecken och jämföra
+    function normalize(str) {
+      return str
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .trim();
+    }
+    const normCity = normalize(cityFromQuiz);
     for (let i = 0; i < cityCheckboxes.length; i++) {
-      if (normalize(cityCheckboxes[i].value) === normalizedCityFromQuiz) {
+      if (normalize(cityCheckboxes[i].value) === normCity) {
         cityCheckboxes[i].checked = true;
+        break;
       }
     }
-    filterCampings();
+    filterCampings(); 
+    updateResetButtonState(); 
   }
+}
 
-  updateResetButtonState();
-
-} //Slut smapiCities
-//---------------------------------------------
 
 //funktion för att återställa filter
 function resetFilters() {
@@ -536,8 +546,8 @@ function resetFilters() {
   document.querySelector("#maxPrice").value = "";
 
   // Avmarkera alla checkboxar
-  var checkboxes = document.querySelectorAll("input[type='checkbox']");
-  for (var i = 0; i < checkboxes.length; i++) {
+  let checkboxes = document.querySelectorAll("input[type='checkbox']");
+  for (let i = 0; i < checkboxes.length; i++) {
     checkboxes[i].checked = false;
   }
 
