@@ -21,20 +21,22 @@ const positionIds = { //id för campingarna uppdelade i kategorier för olika l�
 };
 
 const campingImages = {
-  forest: ["skog1.jpg", "skog3.jpg", "fältskog1.jpg"],
-  lake: ["använddennacampingvidsjö.jpg", "använddennacampingvidsjö2.jpg"],
+  forest: ["skog1.jpg", "skog2.jpg", "skog3.jpg", "skog4.jpg"],
+  lake: ["sjö1.jpg", "sjö3.jpg"],
   sea: ["hav1.jpg", "hav2.jpg", "hav3.jpg"],
   city: ["stad1.jpg"]
 }
 
 
-function init() {
+async function init() {
 
   
 
-  showCampings(); //anropar fuunktion som visar alla campingar
+  await showCampings(); //anropar fuunktion som visar alla campingar
 
   fetchSmapiCities() //funktion anrop: hämtar städer till stad filtrer
+
+
 
   document.querySelector("#minPrice").addEventListener("change", function () {
     filterCampings();
@@ -118,18 +120,18 @@ function dropdown() {
   const dropdownBtn = document.querySelector("#dropdownBtn");
   const dropdownContent = document.querySelector("#dropdownContent");
 
-  // 1) När man klickar på knappen: stoppa propagation och toggla öppet/stängt
+  // När man klickar på knappen: stoppa propagation och toggla öppet/stängt
   dropdownBtn.addEventListener("click", function (e) {
     e.stopPropagation();
     dropdownContent.classList.toggle("show");
   });
 
-  // 2) När man klickar var som helst på dokumentet: stäng dropdownen
+  //  När man klickar var som helst  stäng dropdownen
   document.addEventListener("click", function () {
     dropdownContent.classList.remove("show");
   });
 
-  // 3) När man klickar inne i dropdown-content: stoppa propagation så att inte document-listenern stänger den
+  // När man klickar inne i dropdown-content: stoppa propagation så att inte document-listenern stänger den
   dropdownContent.addEventListener("click", function (e) {
     e.stopPropagation();
   });
@@ -233,7 +235,7 @@ contentRow.classList.add("campingrow");
 
     // Bestäm kategori
 const category = getCampingCategory(camping.id);
-let selectedImage = "användennafältcamping.jpg"; // fallback
+let selectedImage = "skog1.jpg"; // fallback eftersom alla cmapingar inte har id i läge kategorien
 
 if (category && campingImages[category]) {
   const imgs = campingImages[category];
@@ -513,7 +515,7 @@ async function fetchSmapiCities() {
     updateResetButtonState();
   }
 
-  // 7) Om vi fått en stad via URL (?city=...), markera den
+  //om man fått city från quizet !!!!!!!!!!!!!!!!!!!!!!!
   const urlParams = new URLSearchParams(window.location.search);
   const cityFromQuiz = urlParams.get("city");
   if (cityFromQuiz) {

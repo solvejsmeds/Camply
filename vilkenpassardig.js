@@ -71,30 +71,14 @@ function checkIfAllAnswered() {
 
 //funktion för att ge rätt resultat baserat på valen
 function findResult() {
-    const province = document.querySelector('.elemchoice.selected[data-question="province"]')?.dataset.value;
-    const type = document.querySelector('.elemchoice.selected[data-question="type"]')?.dataset.value;
-    const word = document.querySelector('.elemchoice.selected[data-question="mood"]')?.dataset.value;
+  const province = document.querySelector('.elemchoice.selected[data-question="province"]')?.dataset.value;
+    const position = document.querySelector('.elemchoice.selected[data-question="position"]')?.dataset.value;
+    const price = document.querySelector('.elemchoice.selected[data-question="price"]')?.dataset.value;
+   
 
-    const descriptions = {
-      "Färjestaden": "Färjestaden bjuder på lugn småstadskänsla nära havet – perfekt för dig som vill koppla av med lite stadsliv på Öland.",
-      "Borgholm": "Historiska Borgholm passar dig som älskar kultur – slott, museum och charmiga gränder väntar.",
-      "Byxelkrok": "Äventyr väntar i Byxelkrok med kustnära läge, naturupplevelser och vackra solnedgångar.",
-      "Mörbylånga": "Mörbylånga är ett exklusivt val med naturskön miljö och fina boenden, perfekt för dig som söker det lilla extra.",
-      "Högby": "Lugna Högby på norra Öland är ett paradis för den som söker rofyllda naturupplevelser.",
-      "Degerhamn": "Degerhamn bjuder på kulturarv i ett stillsamt format – ett riktigt smultronställe.",
-      "Torsås": "I Torsås kan du ge dig ut på äventyr i naturen – paddla, vandra och upptäck nya vyer.",
-      "Köpingsvik": "Köpingsvik har ett exklusivt strandläge och är ett perfekt val för dig som vill njuta av bekvämligheter och havsutsikt.",
-      "Vetlanda": "Vetlanda är en trivsam småstad där du kan koppla av men ändå ha tillgång till bekvämligheter och service.",
-      "Eksjö": "Eksjö är en av Sveriges bäst bevarade trästäder – ett måste för dig som uppskattar historia och arkitektur.",
-      "Västervik": "Västervik erbjuder ett havsnära äventyr med klippor, skärgård och upplevelser både på land och till sjöss.",
-      "Växjö": "Lyxiga Växjö kombinerar stadens puls med natur och hållbar livsstil – här finns det mesta.",
-      "Lönashult": "I naturnära Lönashult får du tystnad, skogar och sjöar – ett perfekt val för återhämtning.",
-      "Mariannelund": "Mariannelund bjuder på Astrid Lindgren-magi och kulturhistoria i småländsk idyll.",
-      "Hillerstorp": "I Hillerstorp väntar äventyr i naturen – perfekt för dig som gillar att vara aktiv.",
-      "Älmhult": "Älmhult är ett lyxigt val för den designintresserade – hemstad till IKEA och vackra miljöer."
-    }; //motivation till resultaten
+
   
-    if (!province || !type || !word) {
+    if (!position || !price || !province) {
       document.querySelector(".result").innerText = "Du måste svara på alla frågor!";
       return;
     }
@@ -102,16 +86,16 @@ function findResult() {
     let result = "";
   
     if (province === "oland") {
-      if (type === "city") {
-        if (word === "relaxing") result = "Färjestaden";
-        else if (word === "cultural") result = "Borgholm";
-        else if (word === "adventurous") result = "Byxelkrok";
-        else if (word === "luxury") result = "Mörbylånga";
-      } else if (type === "nature") {
-        if (word === "relaxing") result = "Högby";
-        else if (word === "cultural") result = "Degerhamn";
-        else if (word === "adventurous") result = "Torsås";
-        else if (word === "luxury") result = "Köpingsvik";
+      if (position === "distand") {
+        if (price === "250") result = "Färjestaden";
+        else if (price === "500") result = "Borgholm";
+        else if (price === "adventurous") result = "Byxelkrok";
+        else if (price === "luxury") result = "Mörbylånga";
+      } else if (position === "nature") {
+        if (price === "relaxing") result = "Högby";
+        else if (price === "cultural") result = "Degerhamn";
+        else if (price === "adventurous") result = "Torsås";
+        else if (price === "luxury") result = "Köpingsvik";
       }
     } else if (province === "smaland") {
       if (type === "city") {
