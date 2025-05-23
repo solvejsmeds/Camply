@@ -138,6 +138,7 @@ const btn = document.createElement("button");
 btn.textContent = "Visa campingar i " + result;
 btn.classList.add("campingbtn");
 
+console.log("resultat:", result)
 btn.addEventListener("click", function () {
   window.location.href = "filter.html?city=" + encodeURIComponent(result);
 }); ///????????????SKICKAR MED STADEN TILL FILTER:HMTL

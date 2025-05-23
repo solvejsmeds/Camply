@@ -87,7 +87,7 @@ async function showSpecificCamping() {
 fetchJSONNatureReserves("jonkoping")
       }
       else {
-        fetchNatureReserve(camping.county);
+        fetchNatureReserve(camping.lat, camping.lng);
       }
     }); //anropar funktion för att hämta resturanger när resturang knappen klickas på
 
@@ -301,13 +301,13 @@ function getWeatherIcon(code) {
 
 
 
-async function fetchNatureReserve(county) {
+async function fetchNatureReserve(lat, lng) {
 
   displayLoader();
 
   console.log("natureReservefunction");
 
-  const url = "https://smapi.lnu.se/api/?debug=true&api_key=" + APIkey + "&controller=establishment&method=getall&descriptions=naturreservat&counties="+ county;
+  const url = "https://smapi.lnu.se/api/?debug=true&api_key=" + APIkey + "&controller=establishment&method=getfromlatlng&lat="+ lat+"&lng="+ lng+ "descriptions=naturreservat";
 
 
 
@@ -373,12 +373,28 @@ icon: naturereserveIcon
 //------------------------------------------
 
 
+
+//functioner för att räkna ut asvåndet fårn campingen till ntaurreservaten som finns i json
+function getDistanceFromLatLng(lat1, lng1, lat2, lng2) {
+  const R = 6371; // jordens radie i km
+  const dLat = toRad(lat2 - lat1);
+  const dLng = toRad(lng2 - lng1);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+    Math.sin(dLng / 2) * Math.sin(dLng / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c;
+}
+
+function toRad(deg) {
+  return deg * Math.PI / 180;
+}
+
+
 //funktion för att hämta naturreservat från json filen med naturreservat på öland
 async function fetchJSONNatureReserves(regionKey) {
-
-  console.log("hämta nautrreservat på öland/jönköping län")
-
-  console.log("Visar anpassade naturreservat för:", regionKey);
+  console.log("Visar naturreservat inom 15 km för:", regionKey);
 
   try {
     const response = await fetch("naturereserve.json");
@@ -389,35 +405,54 @@ async function fetchJSONNatureReserves(regionKey) {
       return;
     }
 
-    const customIcon = L.icon({
+    var reserves = data[regionKey];
+    var nearbyReserves = [];
+
+    // Filtrera ut reservat som ligger inom 15 km
+    for (var i = 0; i < reserves.length; i++) {
+      var reserve = reserves[i];
+      var distance = getDistanceFromLatLng(lat, lng, reserve.lat, reserve.lng);
+      if (distance <= 30) {
+        reserve.distance = distance;
+        nearbyReserves.push(reserve);
+      }
+    }
+
+    if (nearbyReserves.length === 0) {
+      alert("Inga naturreservat inom 15 km.");
+      return;
+    }
+
+    // Rensa gamla markörer
+    for (var j = 0; j < natureMarkers.length; j++) {
+      myMap.removeLayer(natureMarkers[j]);
+    }
+    natureMarkers = [];
+
+    var customIcon = L.icon({
       iconUrl: "img/naturemap.svg",
       iconSize: [40, 40],
       iconAnchor: [20, 40],
       popupAnchor: [0, -40]
     });
 
-    // Ta bort gamla markörer
-    for (let i = 0; i < natureMarkers.length; i++) {
-      myMap.removeLayer(natureMarkers[i]);
-    }
-    natureMarkers = [];
+    // Lägg till nya markörer för närliggande reservat
+    for (var k = 0; k < nearbyReserves.length; k++) {
+      var r = nearbyReserves[k];
 
-    const reserves = data[regionKey];
+      var popupText = "<p>" + r.name + "</p><p>" + r.distance.toFixed(1) + " km bort</p>";
 
-    for (let i = 0; i < reserves.length; i++) {
-      const reserve = reserves[i];
-
-      const marker = L.marker([reserve.lat, reserve.lng], {
+      var marker = L.marker([r.lat, r.lng], {
         icon: customIcon,
-        title: reserve.name
-      }).bindPopup("<p>" + reserve.name + "</p>");
+        title: r.name
+      }).bindPopup(popupText);
 
       marker.addTo(myMap);
       natureMarkers.push(marker);
     }
 
   } catch (error) {
-    console.error("Kunde inte hämta anpassade naturreservat:", error);
+    console.error("Kunde inte hämta lokala naturreservat från JSON:", error);
   }
 }
 
