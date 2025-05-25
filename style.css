@@ -26,6 +26,8 @@ body {
 }
 
 .flex-box{
+    text-decoration: none;
+    color: inherit;
     opacity:90%;
     display: flex;
     align-items: center;
