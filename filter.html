@@ -7,7 +7,7 @@
   <title>Camply</title>
   <link rel="stylesheet" href="filter.css">
   <script src="filter.js"></script>
-  <link href = "https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel = "stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -27,20 +27,20 @@
 
     <hr>
 
-     <nav class="navbar">
-    <ul class="nav-links" id="nav-links">
-      <li><a href="index.html">Hem</a></li>
-      <li><a href="filter.html">Filtrering</a></li>
-      <li><a href="quiz.html">Quiz</a></li>
-    </ul>
-  </nav>
+    <nav class="navbar">
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Hem</a></li>
+        <li><a href="filter.html">Filtrering</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+      </ul>
+    </nav>
 
-    <div id = "hittacampingsompassardig">
+    <div id="hittacampingsompassardig">
       <p>
         Filtrera utifrån dina behov för att hitta campingar som passar dig!
       </p>
     </div>
-  
+
   </header>
 
 
@@ -60,42 +60,42 @@
 
 
   <div class="filterbuttons">
-  <div class="selectedCity">
-    <button id="dropdownBtnCity">Alla städer &#9660;
+    <div class="selectedCity">
+      <button id="dropdownBtnCity">Alla städer &#9660;
 
 
-    </button>
-    <div id="dropdownContentCity" class="dropdown-content-city">
+      </button>
+      <div id="dropdownContentCity" class="dropdown-content-city">
 
-      <!-- här läggs checkboxar + städer in-->
+        <!-- här läggs checkboxar + städer in-->
 
+      </div>
     </div>
-  </div>
 
-  <div class="dropdown">
-    <button id="dropdownBtn">Alla lägen &#9660; </button>
-    <div id="dropdownContent" class="dropdown-content">
-      <label><input type="checkbox" value="forest"> Skog</label><br>
-      <label><input type="checkbox" value="lake"> Sjö</label><br>
-      <label><input type="checkbox" value="sea"> Hav</label><br>
-      <label><input type="checkbox" value="city"> Stad</label>
+    <div class="dropdown">
+      <button id="dropdownBtn">Alla lägen &#9660; </button>
+      <div id="dropdownContent" class="dropdown-content">
+        <label><input type="checkbox" value="forest"> Skog</label><br>
+        <label><input type="checkbox" value="lake"> Sjö</label><br>
+        <label><input type="checkbox" value="sea"> Hav</label><br>
+        <label><input type="checkbox" value="city"> Stad</label>
+      </div>
     </div>
-  </div>
 
-</div>
+  </div>
 
   <br>
 
   <!-- slide knappar-->
   <div class="switchDiv">
     <label class="switch">
-      
+
       <input type="checkbox" id="wifiSlider">
       <span class="slider">
         <img src="img/Untitled-3 [Recovered].svg" alt="ikon: wifiikon, campingar med wifi" class="circle-img" />
       </span>
 
-    
+
     </label>
 
     <label class="switch">
@@ -104,7 +104,7 @@
         <img src="img/Untitled-2 [Recovered].svg" alt="ikon: fisk, campingar med fiske" class="circle-img" />
       </span>
 
-     
+
     </label>
 
     <label class="switch">
@@ -113,7 +113,7 @@
         <img src="img/Untitled-4 [Recovered]1.svg" alt="ikon: kaffekopp, campingar med café" class="circle-img" />
       </span>
 
-    
+
     </label>
 
     <label class="switch">
@@ -122,12 +122,12 @@
         <img src="img/Untitled-5 [Recovered]3.svg" alt="ikon: tvättmaskin, campingar med tvättmaskin" class="circle-img" />
       </span>
 
-    
+
     </label>
   </div>
-<br>
-<br>
-<br>
+  <br>
+  <br>
+  <br>
   <button id="resetFiltersBtn" disabled title="Rensa alla valda filter">Rensa filter</button>
   <br>
   <br>
@@ -136,9 +136,9 @@
 
   <div id="campingsContainer"></div>
 
-  <div id = "backToTopWrapper">
-  <button id = "upBtn" title = "Till toppen igen">^</button>
-</div>
+  <div id="backToTopWrapper">
+    <button id="upBtn" title="Till toppen igen">^</button>
+  </div>
 
 </body>
 

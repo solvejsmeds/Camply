@@ -1,5 +1,5 @@
 body {
-  width: 380px;
+  
     background-color: #CFBB99
 }
 
@@ -166,9 +166,12 @@ body {
     display: block;
   }
 
+
+  /*behövs denna? Vad är den till för enst*/
   .filterbuttons {
     display:flex;
     gap:1rem;
+    
     flex-wrap: wrap;
     margin-top: 1rem;
     
@@ -180,6 +183,15 @@ body {
     border-radius: 15px;
    font-size: 1rem;
    padding: 0.3em;
+
+  }
+
+  button.active {
+    background-color: #bac0a3;   /* mörkare grön för "aktiv" */
+                   /* kontrast så text syns bättre */
+    font-weight: bold;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2); /* lite skugga */
+    
   }
 
   h1,
@@ -233,6 +245,8 @@ body {
     transition: 0.4s;
   }
   
+
+  /*denna också*/
   .circle-img {
     position: absolute;
     top: 4px;
@@ -245,6 +259,8 @@ body {
     background-color: #ffffff;
   }
   
+
+  /*???*/
   .price-field {
     display: flex;
     flex-direction: column;
@@ -281,7 +297,8 @@ body {
 #mapoverlay {
     z-index: 2;
     position: absolute;
-    
+    visibility: hidden;
+  
     width: 100%;
     height: 100%;
 display: flex;
@@ -293,7 +310,7 @@ mix-blend-mode: screen;
 
 #map {
   z-index: 1;
-  filter: blur(2px);
+  /*filter: blur(2px);*/
   margin-top: 1em;
 }
 
@@ -312,37 +329,18 @@ margin-bottom: 1em;
 
 }
 
-@media screen and (min-width: 768px) {
-  body{
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+.right-column {
+  width: 100%;
+}
 
-  #map{
-    height: 100%;
-  }
+#closeModal {
+  background-color: #f6bcbc;
+  border-radius: 8px;
+}
 
-  
-  h1,
-  h3{
-    font-family: 'Quicksand', sans-serif;
-     font-weight: bold;
-  }
+@media screen and (min-width: 795px) {
+ 
 
-  p{
-    font-family: 'Quicksand', sans-serif;
-  }
-
-  a,
-  a.weatherbox{
-    font-family: 'Quicksand', sans-serif;
-  }
-
-  button,
-  select{
-    font-family: 'Quicksand', sans-serif;
-  }
 
   header-content {
     position: relative;
@@ -369,7 +367,7 @@ margin-bottom: 1em;
   }
 
   .nav-links {
-    display: flex !important;
+    display: flex;
     flex-direction: row;
     position: static;
     background-color: transparent;
@@ -389,71 +387,59 @@ margin-bottom: 1em;
       background-color:#9b9e8b;
     }
 
-    .btn, #monuments{
-      margin-top: 1em;
-      margin-right: 1em;
-    }
-
-    .map-and-info{
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 40px;
-      flex-wrap: wrap;
-    }
-
-    .reviewsDiv{
-      margin-top: 40px;
-    }
-
-    .info-wrapper {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .specificCampingDiv{
-      flex: 1;
-    display: flex;
-    flex-direction: column;
-    
-  }
-
-  .weatherDiv{
-    display: flex;
-    flex-wrap: nowrap;
-    max-width: 350px;
-    gap: 10px;
-    flex-direction: row;
-    overflow-x: auto;
-    max-width: 100%;
-    margin-top: 0.45em;
-  }
-
-  .weatherbox{
-    flex: 1 1 30%;
-    min-width: 100px;
-  }
-
-  .right-column{
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    gap: 20px;
-  }
-
-  #mapcontainer{
-    width: 100%;
-    height: 400px;
-  }
-
-  .filters-wrapper{
-    display:flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  
    
+
+ 
+
+   /* Ny del: gör info-wrapper till flex */
+  .info-wrapper {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    align-items: flex-start;
   }
+
+  /* Vänsterkolumnen */
+  .specificCampingDiv {
+    flex: 1 1 35%;  /* tar ca 35% av bredden */
+    background-color: #E5D7C4;
+    padding: 1em;
+    margin-top: 0;   /* ta bort extra topp-marginal om du vill */
+    margin-bottom: 0;
+  }
+
+  /* Högerkolumnen */
+  .right-column {
+    flex: 2 1 60%;  /* tar resterande ca 60% */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* Gör väder, karta och knappar staplade med gap */
+  .weatherDiv {
+  display:flex;
+  }
+
+  #mapcontainer {
+    width: 100%;
+  
+    max-width: 1000px;
+  }
+
+  
+
+  .filters-wrapper {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+
+
+  
+
+
+
+  
 }

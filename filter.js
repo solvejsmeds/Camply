@@ -95,7 +95,24 @@ updateResetButtonState();
     updateResetButtonState();
   }); //knappen för att återställa filter
   
-  
+   
+
+  let upBtn = document.getElementById("upBtn");
+  if (upBtn) {
+    // Klick-funktion utan arrow
+    upBtn.addEventListener("click", function() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Visa/göm beroende på scroll-position utan arrow
+    window.addEventListener("scroll", function() {
+      if (window.scrollY > 200) {
+        upBtn.classList.add("show");
+      } else {
+        upBtn.classList.remove("show");
+      }
+    });
+  }
 
 }
 window.addEventListener("load", init)
@@ -310,7 +327,7 @@ function filterCampings() {
   const maxPrice = parseInt(document.querySelector("#maxPrice").value) || 1250; //hämtas valt max pris och gör om till siffra (eller 1250 om inget är valt)
   
   filtered = filtered.filter(function (camping) { //filtrera bort campingar osm inte matchar valt pris
-   // if (!camping.price_range) return false; 
+   
   
    
     const priceParts = camping.price_range.split("-").map(function (p) { 

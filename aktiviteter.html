@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="sv">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="aktiviteter.css">
-    <script src= "quiz.js"></script>
-    <script src = "aktiviteter.js"></script>
-     <link rel = "stylesheet" href = "specifikquizstad.css">
-     <link href = "https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel = "stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="aktiviteter.css">
+  <script src="quiz.js"></script>
+  <script src="aktiviteter.js"></script>
+  <link rel="stylesheet" href="specifikquizstad.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
 
 </head>
+
 <body>
-     <header class="header">
+  <header class="header">
     <div class="header-content">
       <div class="camplylogo">
         <a href="index.html">
@@ -37,21 +39,22 @@
       </ul>
     </nav>
   </header>
-    <h2>Quiz - Vilka aktiviteter ska du göra?</h2>
+  <h2>Quiz - Vilka aktiviteter ska du göra?</h2>
+
+  <div class="vilkenstad">
+    <p>Vill du göra en utomhus- eller innomhusaktivitet?</p>
+    <div class="choice-container">
+      <div class="elemchoice" data-question="place" data-value="outside">
+        <p>Utomhus!</p>
+      </div>
+      <div class="elemchoice" data-question="place" data-value="inside">
+        <p>Inomhus!</p>
+      </div>
+
+    </div>
+  </div>
 
     <div class="vilkenstad">
-      <p>Vill du göra en utomhus- eller innomhusaktivitet?</p>
-      <div class="choice-container">
-        <div class="elemchoice" data-question="place" data-value="outside">
-          <p>Utomhus!</p>
-        </div>
-        <div class="elemchoice" data-question="place" data-value="inside">
-          <p>Inomhus!</p>
-        </div>
-     
-    </div>
-
-   <div class="vilkenstad">
       <p>Vem ska du göra aktiviteten med?</p>
       <div class="choice-container">
         <div class="elemchoice" data-question="company" data-value="smallkids">
@@ -60,7 +63,7 @@
         <div class="elemchoice" data-question="company" data-value="kids">
           <p>Med barn, 7-12 år</p>
         </div>
-         <div class="elemchoice" data-question="company" data-value="friendgoup">
+        <div class="elemchoice" data-question="company" data-value="friendgoup">
           <p>Med kompisgänget, vuxna</p>
         </div>
         <div class="elemchoice" data-question="company" data-value="alone">
@@ -68,7 +71,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="vilkenstad">
       <p>Vad vill du känna eller uppleva?</p>
       <div class="choice-container">
@@ -83,7 +86,7 @@
         </div>
       </div>
     </div>
-    
+
     <button id="submitBtn">Visa mitt resultat!</button>
     <button id="redoBtn">Gör testet igen</button>
 
@@ -93,17 +96,18 @@
 
 
 
-<div id="showBtnContainer"></div>
+    <div id="showBtnContainer"></div>
 
 
-<dialog id="activityModal" class="activity-modal">
-  <button id="closeModal">Stäng</button>
-  <h3>Om aktivit</h3>
-  <p id="modalDescription"></p>
-  <div id="smapiinfo"><!--Här ska info om aktivitetet från smapi läggas in--></div>
- 
-</dialog>
+    <dialog id="activityModal" class="activity-modal">
+      <button id="closeModal">Stäng</button>
+      <h3>Om aktivit</h3>
+      <p id="modalDescription"></p>
+      <div id="smapiinfo"><!--Här ska info om aktivitetet från smapi läggas in--></div>
+
+    </dialog>
 
 
 </body>
+
 </html>

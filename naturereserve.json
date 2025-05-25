@@ -3,44 +3,60 @@
       {
         "name": "Ottenby naturreservat",
         "lat": 56.22603,
-        "lng": 16.43366
+        "lng": 16.43366, 
+        "rating": 3.9,
+        "website": "https://naturumottenby.se/ottenby-naturreservat/"
       },
       {
         "name": "Halltorps hage naturreservat",
         "lat": 56.7733,
-        "lng": 16.6456
+        "lng": 16.6456,
+        "rating": 4.2,
+        "price": "0-25",
+        "website": "https://alltpaoland.se/platser/halltorps-hage/"
       },
       {
         "name": "Trollskogens naturreservat",
         "lat": 57.3506,
-        "lng": 17.1016
+        "lng": 17.1016,
+        "rating": 4.5,
+        "price": "0-25",
+        "website": "https://www.oland.se/trollskogen"
       }
     ],
     "jonkoping": [
       {
         "name": "Dumme mosse",
         "lat": 57.7811,
-        "lng": 14.0232
+        "lng": 14.0232,
+        "rating": 4.4,
+        "price": "0-25",
+        "website": "https://jkpg.com/upplevelser/dumme-mosse"
       },
       {
         "name": "Bondberget",
         "lat": 57.7702,
-        "lng": 14.2221
+        "lng": 14.2221,
+        "rating": 4.7,
+        "price": "0-25",
+        "website": "https://www.naturkartan.se/sv/jonkopings-lan/bondberget-3"
       },
       {
         "name": "Tabergsån",
         "lat": 57.6979,
-        "lng": 14.0752
+        "lng": 14.0752,
+        "rating": 4.9,
+        "price": "0-25",
+        "website": "https://www.naturkartan.se/sv/jonkopings-lan/tabergsans-fvof"
       },
-      {
-        "name": "Flickornas källa",
-        "lat": 57.4586,
-        "lng": 14.2906
-      },
+     
       {
         "name": "Stora Mosse",
         "lat": 57.2950,
-        "lng": 13.9434
+        "lng": 13.9434,
+        "rating": 4.6,
+        "price": "0-25",
+        "website": "https://www.naturkartan.se/sv/jonkopings-lan/store-mosse-nationalpark"
       }
     ]
   }
