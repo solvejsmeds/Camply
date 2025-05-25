@@ -194,7 +194,9 @@ button.campingtext {
   }
   
   .switch input {
-    display: none;
+    position: absolute;
+    opacity: 0;
+    z-index: 2;
   }
   .switch input:checked + .slider .circle-img {
     transform: translateX(29px); 
@@ -203,6 +205,11 @@ button.campingtext {
   .switch input:checked + .slider {
     
     background-color: #889063; 
+  }
+
+  .switch input:focus + .slider{
+    outline: 3px solid rgb(0, 191, 255);
+    border-radius: 34px;
   }
   
   .slider {
@@ -253,6 +260,7 @@ button.campingtext {
   }
 
   #upBtn{
+    opacity: 70%;
     background-color: #889063;
     color: #fff;
     border: 3px solid #fff;
@@ -267,10 +275,6 @@ button.campingtext {
     margin-left: 17px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 
-
-    opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
   }
 
   #upBtn.show{
@@ -293,6 +297,11 @@ background-color:#555;
 border-color: #919191;
 color:#f9f9f9;
 padding: 7px;
+  }
+
+  #resetFiltersBtn input:focus{
+    outline: 3px solid rgb(0, 191, 255);
+    border-radius: 34px;
   }
 
    button {
