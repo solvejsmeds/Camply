@@ -13,6 +13,9 @@ font-family: 'Quicksand', sans-serif;
     padding: 7px;
     margin-bottom: 20px;
     border-radius: 1em;
+    display:block;
+    text-decoration: none;
+    color: inherit;
 }
 
 .storlekstad{
