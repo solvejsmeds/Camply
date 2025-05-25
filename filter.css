@@ -271,20 +271,26 @@ button.campingtext {
     font-weight: bold;
     cursor:pointer;
     transition: all 0.3s ease;
-    pointer-events: none;
+    
     margin-left: 17px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
   }
 
   #upBtn.show{
     opacity:1;
     pointer-events: auto;
+
+   
   }
 
   #upBtn:hover{
     background-color: #889063;
     transform: scale(1.1);
+
   }
+
+ 
 
   #resetFiltersBtn{
 background-color:#555;
