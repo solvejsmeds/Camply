@@ -207,9 +207,13 @@ button.campingtext {
     background-color: #889063; 
   }
 
-  .switch input:focus + .slider{
+  body.user-is-tabbing .switch input:focus + .slider{
     outline: 3px solid rgb(0, 191, 255);
     border-radius: 34px;
+  }
+
+  .switch input:focus{
+    outline:none;
   }
   
   .slider {
@@ -299,7 +303,12 @@ color:#f9f9f9;
 padding: 7px;
   }
 
-  #resetFiltersBtn input:focus{
+  #resetFiltersBtn:focus{
+    outline: none;
+  }
+
+  
+  body.user-is-tabbing #resetFiltersBtn:focus{
     outline: 3px solid rgb(0, 191, 255);
     border-radius: 34px;
   }
@@ -501,7 +510,8 @@ font-family: 'Quicksand', sans-serif;
 button.campingtext:hover {
    transform:scale(1.02);
       cursor:pointer;
-      color:#ffffffd2;
+      color:#000;
+      background-color: #c2c8a5;
 }
 
 
