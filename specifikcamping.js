@@ -227,35 +227,41 @@ console.log("visas cmapingen nu?")
 
 //kart funktion
 function initMap(lat, lng, name) {
+  const zoom = 7;
 
-  const zoom = 7 //zoom för kartan
+  // Skapa kartan
+  myMap = L.map("map").setView([lat, lng], zoom);
 
-  myMap = L.map("map").setView([lat, lng], zoom); //skapar kartan i "map" elementet
-
+  //OpenStreetMap tiles
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "&copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
-  }).addTo(myMap); //ladar in kartbilden och lägger in den i kartan
+  }).addTo(myMap);
 
-  // Skapa markörer
-  let marker = L.marker([lat, lng]).bindPopup(name);//skapar en markör för campingen, titeln visas vid hover visas vid
-
-  myMarkers.push(marker);//sparar markören i en array
-  marker.addTo(myMap); //lägger in markören på kartan
-
-  const mypositionIcon = L.icon({
-    iconUrl: "img/myplacemap.svg",
-    iconSize: [40, 40],         // Ändra om bilden är större/mindre
-    iconAnchor: [20, 40],       // Punkten som pekar på platsen (mitten-botten)
-    popupAnchor: [0, -40]       // Popupen visas ovanför
+  // Campingikon
+  const campingIcon = L.icon({
+    iconUrl: "img/tältikonkarta4.svg",
+    iconSize: [40, 40],
+    iconAnchor: [20, 40],
+    popupAnchor: [0, -40]
   });
 
+  // Lägg till campingmarkör med ikonem
+  let marker = L.marker([lat, lng], { icon: campingIcon }).bindPopup(name);
+  myMarkers.push(marker);
+  marker.addTo(myMap);
 
-  // Efter att kartan för campingen skapats
+  // Ikon för användarens plats
+  const mypositionIcon = L.icon({
+    iconUrl: "img/myplacemap.svg",
+    iconSize: [40, 40],
+    iconAnchor: [20, 40],
+    popupAnchor: [0, -40]
+  });
+
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showUserPosition, showError);
   }
 
-  // Funktion som visar användarens position
   function showUserPosition(pos) {
     const userLat = pos.coords.latitude;
     const userLng = pos.coords.longitude;
@@ -266,11 +272,9 @@ function initMap(lat, lng, name) {
       .openPopup();
   }
 
-  // Felhantering (valfritt men rekommenderas)
   function showError(error) {
     console.warn("Fel vid hämtning av plats:", error);
   }
-
 }
 //Slut initMap
 //_______________________________________________________________________________________________
