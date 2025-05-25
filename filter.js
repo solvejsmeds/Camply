@@ -114,6 +114,16 @@ updateResetButtonState();
     });
   }
 
+  //Gör så att switchknapparna bara blir outlinade och lyssnar bara på tangentbordet och inte musen.
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Tab') {
+      document.body.classList.add('user-is-tabbing');
+    }
+  });
+
+  document.addEventListener('mousedown', function(){
+    document.body.classList.remove('user-is-tabbing');
+  });
 }
 window.addEventListener("load", init)
 //Slut init
