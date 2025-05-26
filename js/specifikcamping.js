@@ -39,6 +39,10 @@ function init() {
     });
   } //stäng knapp till modalen
 
+  document.querySelector("#hamburger").addEventListener("click", function () {
+    document.querySelector("#nav-links").classList.toggle("show");
+  }); //navigeringen
+
 
 }
 window.addEventListener("load", init);
