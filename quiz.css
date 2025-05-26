@@ -30,12 +30,6 @@ font-family: 'Quicksand', sans-serif;
     text-align: center;
 }
 
-
-
-  #firsttitle{
-    text-align: center;
-}
-
 .filter-container{
     display:flex;
     gap:1rem;
@@ -63,7 +57,7 @@ font-family: 'Quicksand', sans-serif;
   
   .logo {
     position: absolute;
-    left:50%;
+    left:80%;
     top: 50%;
     transform: translate(-50%, -50%);
     font-size: 2em;
@@ -129,7 +123,7 @@ font-family: 'Quicksand', sans-serif;
 
   .camplylogo {
     position: absolute;
-    left: 20px;
+    left: 30px;
     top:52% ;
     width: 100px;
     width:40px;
