@@ -66,7 +66,7 @@ async function showSpecificCamping() {
   const data = await response.json(); // Omvandla svaret till JSON
 
   if (data.payload.length > 0) {
-    const camping = data.payload[0]; // Hämta första (och enda) campingdata från svaret
+    camping = data.payload[0]; // Hämta första (och enda) campingdata från svaret
 
     // Skapa och visa campinginformation på sidan
     specificCampingDiv.innerHTML =
@@ -298,23 +298,20 @@ async function fetchRestaurants(lat, lng) {
   }
   restaurantMarkers = [];
 
-  let data = await requestRestaurantData(15);
-
+  let data = await tryFetchWithExpandingRadius(requestRestaurantData);
   if (data.payload.length === 0) {
-    console.log("Inga restauranger inom 15 km – försöker med 30 km...");
-    data = await requestRestaurantData(30);
-
-    if (data.payload.length === 0) {
-      console.log("Inga restauranger inom 30 km – försöker med 50 km...");
-      data = await requestRestaurantData(50);
-
-      if (data.payload.length === 0) {
-        alert("Inga restauranger hittades inom 50 km.");
-        hideLoader();
-        return;
-      }
-    }
+    alert("Inga restauranger hittades inom 70 km.");
+    hideLoader();
+    return;
   }
+
+  data.payload = filterByProvinceOrCity(data.payload);
+
+if (data.payload.length === 0) {
+  alert("Inga resultat hittades inom det valda området.");
+  hideLoader();
+  return;
+}
 
   let restaurantIcon = L.icon({
     iconUrl: "../img/restaurantsmap.svg",
@@ -416,25 +413,21 @@ async function fetchGolf(lat, lng) {
   golfMarkers = [];
 
   // Försök först med 15 km
-  let data = await requestGolfData(15);
-
-  // Om inga golfbanor hittas – försök igen med 30 km
+  let data = await tryFetchWithExpandingRadius(requestGolfData);
   if (data.payload.length === 0) {
-    console.log("Inga golfbanor inom 15 km – försöker med 30 km...");
-    data = await requestGolfData(30);
-
-    if (data.payload.length === 0) {
-      console.log ("inga golfbanor inom 30km")
-      data = await requestGolfData(50)
-    }
-    
-    if (data.payload.length === 0) {
-      alert("inga golfbanot inom 50 km hitades :(")
-      return;
-    }
-    
-
+    alert("Inga restauranger hittades inom 70 km.");
+    hideLoader();
+    return;
   }
+
+  data.payload = filterByProvinceOrCity(data.payload);
+
+  if (data.payload.length === 0) {
+    alert("Inga resultat hittades inom det valda området.");
+    hideLoader();
+    return;
+  }
+
 
   console.log("golf", data);
 
@@ -570,23 +563,20 @@ async function fetchNatureReserve(lat, lng) {
   }
   natureMarkers = [];
 
-  let data = await requestNatureData(15);
-
+  let data = await tryFetchWithExpandingRadius(requestNatureData);
   if (data.payload.length === 0) {
-    console.log("Inga naturreservat inom 15 km – försöker med 30 km...");
-    data = await requestNatureData(30);
-
-    if (data.payload.length === 0) {
-      console.log("Inga naturreservat inom 30 km – försöker med 50 km...");
-      data = await requestNatureData(50);
-
-      if (data.payload.length === 0) {
-        alert("Inga naturreservat hittades inom 50 km.");
-        hideLoader();
-        return;
-      }
-    }
+    alert("Inga restauranger hittades inom 70 km.");
+    hideLoader();
+    return;
   }
+
+  data.payload = filterByProvinceOrCity(data.payload);
+
+if (data.payload.length === 0) {
+  alert("Inga resultat hittades inom det valda området.");
+  hideLoader();
+  return;
+}
 
   let naturereserveIcon = L.icon({
     iconUrl: "../img/naturemap.svg",
@@ -653,6 +643,43 @@ function toRad(deg) {
 }
 
 
+//funktion för att bara visa saker på öland och i kalmar om man är där, annars visas bara småland grejer, eftersom det blir dumt om man är i typ mönsterås så orkar man ju inte åka ner hela vägen till bron o så upp igen ju
+function filterByProvinceOrCity(dataArray) {
+  let allowedProvinces = [];
+
+  if (camping.province === "Öland" || camping.city === "Kalmar") {
+    allowedProvinces = ["Öland", "Kalmar"];
+  } else {
+    allowedProvinces = ["Småland"];
+  }
+
+  let filtered = [];
+
+  for (let i = 0; i < dataArray.length; i++) {
+    let item = dataArray[i];
+    if (allowedProvinces.indexOf(item.province) !== -1 || allowedProvinces.indexOf(item.city) !== -1) {
+      filtered.push(item);
+    }
+  }
+
+  return filtered;
+}
+//slut filterByProvinceOrCity
+
+// Hjälpfunktion: testar flera radier tills data hittas
+async function tryFetchWithExpandingRadius(requestFn, radii = [15, 30, 50, 70]) {
+  for (let i = 0; i < radii.length; i++) {
+    let radius = radii[i];
+    let data = await requestFn(radius);
+    if (data.payload.length > 0) {
+      return data;
+    }
+  }
+  return { payload: [] }; // Om inget hittas
+}
+
+
+
 //funktion för att hämta naturreservat från json filen med naturreservat på öland
 async function fetchJSONNatureReserves(regionKey) {
   console.log("Visar naturreservat inom 15 km för:", regionKey);
@@ -669,21 +696,20 @@ async function fetchJSONNatureReserves(regionKey) {
     let reserves = data[regionKey];
     let nearbyReserves = [];
 
-    // Filtrera ut reservat som ligger inom 15 km
-    for (let i = 0; i < reserves.length; i++) {
-      let reserve = reserves[i];
-      let distance = getDistanceFromLatLng(lat, lng, reserve.lat, reserve.lng);
-      if (distance <= 30) {
-        reserve.distance = distance;
-        nearbyReserves.push(reserve);
-      }
-    }
+   
 
     if (nearbyReserves.length === 0) {
       alert("Inga naturreservat inom 30 km.");
       return;
     }
+    nearbyReserves = filterByProvinceOrCity(nearbyReserves);
 
+    if (nearbyReserves.length === 0) {
+      alert("Inga resultat hittades inom det valda området.");
+      hideLoader();
+      return;
+    }
+ 
     // Rensa gamla markörer
     for (let marker of natureMarkers) {
       myMap.removeLayer(marker);
@@ -785,18 +811,15 @@ async function fetchAttraction(lat, lng) {
   }
   attractionMarkers = [];
 
-  // Försök först med 15 km, sedan 30 och 50 km om inget hittas
-  let data = await requestAttractionData(15);
-  if (data.payload.length === 0) {
-    data = await requestAttractionData(30);
-    if (data.payload.length === 0) {
-      data = await requestAttractionData(50);
-      if (data.payload.length === 0) {
-        alert("Inga sevärdheter hittades inom 50 km.");
-        return;
-      }
-    }
-  }
+  let data = await tryFetchWithExpandingRadius(requestAttractionData);
+
+  data.payload = filterByProvinceOrCity(data.payload);
+
+if (data.payload.length === 0) {
+  alert("Inga resultat hittades inom det valda området.");
+  hideLoader();
+  return;
+}
 
   // Hämta extra info (website och abstract)
   let ids = [];
