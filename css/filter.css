@@ -164,9 +164,9 @@ button.campingtext {
     position: absolute;
     left: 30px;
     top:50%;
-    width:40px;
+    width:100px;
     transform:translateY(-50%);
-    width: 40;
+   
   }
 
   .dropdown-content-city {
@@ -556,13 +556,5 @@ button.campingtext:hover {
       flex-wrap: wrap;
     }
 
-    .quizstad{
-      transition: transform 0.3s ease, background-color 0.3s ease;
-    }
 
-    .quizstad:hover{
-      background-color: #e0dad1;
-      transform:scale(1.02);
-      cursor:pointer;
-    }
   }

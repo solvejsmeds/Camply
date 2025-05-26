@@ -26,10 +26,15 @@ let loaderVisible = false;
 
 function init() {
 
+ 
 
 
   showSpecificCamping();  // Anropa funktionen för att visa specifik camping
 
+
+  document.querySelector("#hamburger").addEventListener("click", function () {
+    document.querySelector("#nav-links").classList.toggle("show");
+  }); //navigeringen
 
   const closeBtn = document.querySelector("#closeModal");
   if (closeBtn) {
@@ -39,9 +44,6 @@ function init() {
     });
   } //stäng knapp till modalen
 
-  document.querySelector("#hamburger").addEventListener("click", function () {
-    document.querySelector("#nav-links").classList.toggle("show");
-  }); //navigeringen
 
 
 }

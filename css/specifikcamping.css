@@ -110,7 +110,7 @@ body {
   background-color: #e5d7c4;
   position: absolute;
   top: 60px;
-  /* under headern – justera vid behov */
+  
   right: 20px;
   /* högra hörnet */
   padding: 1rem;
@@ -135,7 +135,7 @@ body {
   display: flex;
 }
 
-
+/*
 .dropdown-content {
   display: none;
   position: absolute;
@@ -150,7 +150,7 @@ body {
 .dropdown-content.show {
   display: block;
 }
-
+*/
 .camplylogo {
   position: absolute;
   left: 20px;
@@ -159,7 +159,7 @@ body {
   width: 40px;
   transform: translateY(-50%);
 }
-
+/*
 .dropdown-content-city {
   display: none;
   position: absolute;
@@ -175,8 +175,10 @@ body {
   display: block;
 }
 
-
+*/
 /*behövs denna? Vad är den till för enst*/
+
+/*
 .filterbuttons {
   display: flex;
   gap: 1rem;
@@ -185,7 +187,7 @@ body {
   margin-top: 1rem;
 
 }
-
+*/
 button {
   background-color: #ccd0bb;
   border-color: #889063;
@@ -225,7 +227,7 @@ select {
   font-family: 'Quicksand', sans-serif;
 }
 
-
+/*
 .switch {
   position: relative;
   display: inline-block;
@@ -256,9 +258,10 @@ select {
   height: 100%;
   transition: 0.4s;
 }
-
+*/
 
 /*denna också*/
+/*
 .circle-img {
   position: absolute;
   top: 4px;
@@ -270,9 +273,9 @@ select {
   transition: 0.4s;
   background-color: #ffffff;
 }
+*/
 
-
-/*???*/
+/*
 .price-field {
   display: flex;
   flex-direction: column;
@@ -288,7 +291,7 @@ select {
   margin-top: 26px;
   font-size: 1.2rem;
 }
-
+*/
 #loadingicon {
 
   left: 0px;
@@ -342,7 +345,7 @@ left: 0;
   border-radius: 8px;
 }
 
-@media screen and (min-width: 795px) {
+@media screen and (min-width: 890px) {
 
     body {
       width: auto;
