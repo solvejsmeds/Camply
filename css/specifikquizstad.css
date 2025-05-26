@@ -114,7 +114,6 @@ body {
   display: flex;
 }
 
-
 .dropdown-content {
   display: none;
   position: absolute;
@@ -139,58 +138,11 @@ body {
   transform: translateY(-50%);
 }
 
-.dropdown-content-city {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 200px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 10px;
-  z-index: 100;
-}
-
-.dropdown-content-city.show {
-  display: block;
-}
-
 .filterbuttons {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
   margin-top: 1rem;
-}
-
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 75px;
-  height: 37px;
-
-}
-
-.switch input {
-  display: none;
-}
-
-.switch input:checked+.slider .circle-img {
-  transform: translateX(29px);
-}
-
-.switch input:checked+.slider {
-
-  background-color: #889063;
-}
-
-.slider {
-  background-color: #354024;
-  border-radius: 34px;
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
-  transition: 0.4s;
 }
 
 .circle-img {
@@ -203,37 +155,6 @@ body {
   border-radius: 50%;
   transition: 0.4s;
   background-color: #ffffff;
-}
-
-.price-field {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-}
-
-.price-field input {
-  width: 8em;
-}
-
-.separator {
-  margin-top: 26px;
-  font-size: 1.2rem;
-}
-
-h2 {
-  font-family: 'Quicksand', sans-serif;
-}
-
-p {
-  font-family: 'Quicksand', sans-serif;
-  font-weight: bold;
-}
-
-button {
-  font-family: 'Quicksand', sans-serif;
-  font-weight: bold;
-  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1014px) {
