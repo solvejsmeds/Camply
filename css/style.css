@@ -1,6 +1,5 @@
 
 body {
- 
     background-color: #CFBB99;
 }
 .wrapbild{
@@ -66,7 +65,7 @@ p {
         border-radius: 20px;
         background-size: cover;
         background-position: center;
-                background-image: url("../img/bakgrund2.jpg"); /* Större bild för tablet/desktop */
+        background-image: url("../img/bakgrund2.jpg"); /* Större bild för tablet/desktop */
     }
 
     #fj{
