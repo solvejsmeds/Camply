@@ -1,5 +1,6 @@
 body {
-  background-color: #CFBB99
+  background-color: #CFBB99;
+  margin-bottom: 3em;
 }
 
 .weatherDiv {
@@ -314,6 +315,7 @@ left: 0;
   z-index: 1;
   /*filter: blur(2px);*/
   margin-top: 1em;
+    overflow-y: auto;
 }
 
 
@@ -328,7 +330,6 @@ left: 0;
   padding: 1em;
   margin-top: 1em;
   margin-bottom: 1em;
-
 }
 
 .right-column {
@@ -341,6 +342,13 @@ left: 0;
 }
 
 @media screen and (min-width: 795px) {
+
+    body {
+      width: auto;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
 
   header-content {
     position: relative;
@@ -404,6 +412,7 @@ left: 0;
     margin-top: 0;
     /* ta bort extra topp-marginal om du vill */
     margin-bottom: 0;
+    overflow-y: auto;
   }
 
   /* Högerkolumnen */
@@ -419,8 +428,6 @@ left: 0;
   .weatherDiv {
     display: flex;
   }
-
- 
 
   .filters-wrapper {
     display: flex;
