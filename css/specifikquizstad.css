@@ -1,46 +1,37 @@
 body {
-  background-color: #CFBB99
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  background-color: #CFBB99;
 }
 
-.weatherDiv {
+.choice-container {
   display: flex;
-  gap: 10px;
-  overflow-x: auto;
+  flex-direction: row;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
-#map {
-  height: 300px;
-  width: 100%;
-}
-
-.weatherbox {
-  display: inline-block;
-  padding: 10px;
-  margin: 2px;
-
-  margin-bottom: 1em;
-
-  background-color: #e5d7c4;
-
-  color: black;
+.elemchoice {
+  background-color: #f5f0e6;
+  border-radius: 10px;
+  padding: 1rem;
   text-align: center;
-  text-decoration: none;
-  /* ingen underline på länken */
-
-  width: fit-content;
-  transition: background-color 0.2s;
-  font-size: smaller;
-}
-
-.weatherbox:hover {
-  background-color: #ebe1d3;
+  box-shadow: 0 5px rgba();
   cursor: pointer;
 }
 
-.btn {
-  margin-top: 1em;
-  cursor: pointer;
+#firsttitle {
+  text-align: center;
 }
+
+.vilkenstad {
+  background-color: #E5D7C4;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 1em;
+}
+
 
 #firsttitle {
   text-align: center;
@@ -97,19 +88,14 @@ body {
 
 .nav-links {
   display: none;
-  /* gömd från början */
   flex-direction: column;
   background-color: #e5d7c4;
   position: absolute;
   top: 60px;
-  /* under headern – justera vid behov */
-  right: 20px;
-  /* högra hörnet */
+  right: 1em;
   padding: 1rem;
-
   border-radius: 6px;
   z-index: 999;
-  /* säkerställer att den ligger över annat */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   width: max-content;
   list-style: none;
@@ -120,6 +106,8 @@ body {
   padding: 10px;
   text-decoration: none;
   color: black;
+  font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
 }
 
 .nav-links.show {
@@ -166,54 +154,11 @@ body {
   display: block;
 }
 
-
-/*behövs denna? Vad är den till för enst*/
 .filterbuttons {
   display: flex;
   gap: 1rem;
-
   flex-wrap: wrap;
   margin-top: 1rem;
-
-}
-
-button {
-  background-color: #ccd0bb;
-  border-color: #889063;
-  border-radius: 15px;
-  font-size: 1rem;
-  padding: 0.3em;
-
-}
-
-button.active {
-  background-color: #bac0a3;
-  /* mörkare grön för "aktiv" */
-  /* kontrast så text syns bättre */
-  font-weight: bold;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  /* lite skugga */
-
-}
-
-h1,
-h3 {
-  font-family: 'Quicksand', sans-serif;
-  font-weight: bold;
-}
-
-p {
-  font-family: 'Quicksand', sans-serif;
-}
-
-a,
-a.weatherbox {
-  font-family: 'Quicksand', sans-serif;
-}
-
-button,
-select {
-  font-family: 'Quicksand', sans-serif;
 }
 
 
@@ -248,8 +193,6 @@ select {
   transition: 0.4s;
 }
 
-
-/*denna också*/
 .circle-img {
   position: absolute;
   top: 4px;
@@ -262,8 +205,6 @@ select {
   background-color: #ffffff;
 }
 
-
-/*???*/
 .price-field {
   display: flex;
   flex-direction: column;
@@ -280,97 +221,79 @@ select {
   font-size: 1.2rem;
 }
 
-#loadingicon {
-
-  left: 0px;
-  top: 0px;
-  width: 50px;
-
+h2 {
+  font-family: 'Quicksand', sans-serif;
 }
 
-#mapoverlay {
-  z-index: 2;
-  position: absolute;
-  visibility: hidden;
-
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  mix-blend-mode: screen;
+p {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
 }
 
-#map {
-  z-index: 1;
-  /*filter: blur(2px);*/
-  margin-top: 1em;
+button {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
 }
 
+@media screen and (min-width: 768px) and (max-width: 1014px) {
 
-.weathericon {
-  width: 40px;
-  height: 40px;
-  margin-bottom: 5px;
+  body {
+    padding: 0 3rem;
+  }
+
+  .choice-container {
+    padding: 0 1.5rem;
+  }
+
+  .header-content {
+    padding: 15px 1.5rem;
+  }
+
+  .nav-links {
+    right: 1.5rem;
+  }
+
+  .hamburger {
+    right: 1.5rem;
+  }
 }
 
-.specificCampingDiv {
-  background-color: #E5D7C4;
-  padding: 1em;
-  margin-top: 1em;
-  margin-bottom: 1em;
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  body {
+    padding: 0 1rem;
+  }
 
-}
-
-.right-column {
-  width: 100%;
-}
-
-#closeModal {
-  background-color: #f6bcbc;
-  border-radius: 8px;
-}
-
-@media screen and (min-width: 795px) {
-
-  header-content {
-    position: relative;
-    display: flex;
+  .choice-container {
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    height: 100px;
+    gap: 20px;
+    padding: 0 1rem;
+  }
+
+  .elemchoice {
+    flex: 1 1 0;
+    max-width: 45%;
+
   }
 
   .hamburger {
     display: none;
   }
 
-  .camplylogo {
-    position: absolute;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  .mainlogo {
-    width: 70px;
-    height: auto;
-  }
-
   .nav-links {
-    display: flex;
-    flex-direction: row;
+    display: flex !important;
     position: static;
+    flex-direction: row;
     background-color: transparent;
     box-shadow: none;
     padding: 0;
-    gap: 1rem;
+    gap: 7px;
   }
 
   .nav-links a {
     padding: 0.5rem 1rem;
-    font-weight: bold;
     background-color: #889063;
     transition: background-color 0.2 ease;
   }
@@ -379,47 +302,78 @@ select {
     background-color: #9b9e8b;
   }
 
-  /* Ny del: gör info-wrapper till flex */
-  .info-wrapper {
+  .header-content {
+    padding: 15px 20px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+
+}
+
+@media screen and (min-width: 1025px) {
+  body {
+    width: auto;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .choice-container {
     display: flex;
-    gap: 1rem;
-    padding: 1rem;
-    align-items: flex-start;
-  }
-
-  /* Vänsterkolumnen */
-  .specificCampingDiv {
-    flex: 1 1 35%;
-    /* tar ca 35% av bredden */
-    background-color: #E5D7C4;
-    padding: 1em;
-    margin-top: 0;
-    /* ta bort extra topp-marginal om du vill */
-    margin-bottom: 0;
-  }
-
-  /* Högerkolumnen */
-  .right-column {
-    flex: 2 1 60%;
-    /* tar resterande ca 60% */
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  /* Gör väder, karta och knappar staplade med gap */
-  .weatherDiv {
-    display: flex;
-  }
-
-  #mapcontainer {
-    width: 100%;
-    max-width: 1000px;
-  }
-
-  .filters-wrapper {
-    display: flex;
-    gap: 1rem;
+    justify-content: space-between;
     flex-wrap: wrap;
+    padding: 10px 20px;
+  }
+
+  .elemchoice {
+    flex: 1;
+    min-width: 150px;
+    padding: 15px;
+    background-color: #f5f0e6;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .nav-links {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+    gap: 7px;
+  }
+
+  .nav-links a {
+    padding: 0.5rem 1rem;
+    background-color: #889063;
+    transition: background-color 0.2 ease;
+  }
+
+  .nav-links a:hover {
+    background-color: #9b9e8b;
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  .camplylogo {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .header-content {
+    height: 100px;
+    padding: 20px 40px;
+  }
+
+  .mainlogo {
+    width: 70px;
+    height: auto;
   }
 }

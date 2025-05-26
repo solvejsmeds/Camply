@@ -239,7 +239,7 @@ function initMap(lat, lng, name) {
 
   // Campingikon
   const campingIcon = L.icon({
-    iconUrl: "img/tältikonkarta4.svg",
+    iconUrl: "../img/tältikonkarta4.svg",
     iconSize: [40, 40],
     iconAnchor: [20, 40],
     popupAnchor: [0, -40]
@@ -252,7 +252,7 @@ function initMap(lat, lng, name) {
 
   // Ikon för användarens plats
   const mypositionIcon = L.icon({
-    iconUrl: "img/myplacemap.svg",
+    iconUrl: "../img/myplacemap.svg",
     iconSize: [40, 40],
     iconAnchor: [20, 40],
     popupAnchor: [0, -40]
@@ -317,7 +317,7 @@ async function fetchRestaurants(lat, lng) {
   }
 
   let restaurantIcon = L.icon({
-    iconUrl: "img/restaurantsmap.svg",
+    iconUrl: "../img/restaurantsmap.svg",
     iconSize: [40, 40],
     iconAnchor: [20, 40],
     popupAnchor: [0, -40]
@@ -439,7 +439,7 @@ async function fetchGolf(lat, lng) {
   console.log("golf", data);
 
   const golfIcon = L.icon({
-    iconUrl: "img/golfmap.svg",
+    iconUrl: "../img/golfmap.svg",
     iconSize: [40, 40],
     iconAnchor: [20, 40],
     popupAnchor: [0, -40]
@@ -532,21 +532,21 @@ displayLoader();
 
 function getWeatherIcon(code) {
   if (code === 0) {
-    return { src: "img/solvej.svg", alt: "Soligt" };
+    return { src: "../img/solvej.svg", alt: "Soligt" };
   } else if (code >= 1 && code <= 3) {
-    return { src: "img/Solmolnanvända.svg", alt: "Delvis molnigt" };
+    return { src: "../img/Solmolnanvända.svg", alt: "Delvis molnigt" };
   } else if (code === 45 || code === 48) {
-    return { src: "img/camply.svg", alt: "Dimma" };
+    return { src: "../img/dimma.svg", alt: "Dimma" };
   } else if (code >= 51 && code <= 67) {
-    return { src: "img/rengmolnigtanvändenna.svg", alt: "Regnigt" };
+    return { src: "../img/literegn.svg", alt: "Regnigt" };
   } else if (code >= 71 && code <= 77) {
-    return { src: "img/camply.svg", alt: "Snöfall" };
+    return { src: "../img/camply.svg", alt: "Snöfall" };
   } else if (code >= 80 && code <= 82) {
-    return { src: "img/camply.svg", alt: "Regnskurar" };
+    return { src: "../img/regnmolnigtanvändenna.svg", alt: "Regnskurar" };
   } else if (code >= 95 && code <= 99) {
-    return { src: "img/camply.svg", alt: "Åska" };
+    return { src: "../img/camply.svg", alt: "Åska" };
   } else {
-    return { src: "img/camply.svg", alt: "Okänt väder" };
+    return { src: "../img/camply.svg", alt: "Okänt väder" };
   }
 }
 
@@ -589,7 +589,7 @@ async function fetchNatureReserve(lat, lng) {
   }
 
   let naturereserveIcon = L.icon({
-    iconUrl: "img/naturemap.svg",
+    iconUrl: "../img/naturemap.svg",
     iconSize: [40, 40],
     iconAnchor: [20, 40],
     popupAnchor: [0, -40]
@@ -658,7 +658,7 @@ async function fetchJSONNatureReserves(regionKey) {
   console.log("Visar naturreservat inom 15 km för:", regionKey);
 
   try {
-    const response = await fetch("naturereserve.json");
+    const response = await fetch("../json/naturereserve.json");
     const data = await response.json();
 
     if (!data[regionKey]) {
@@ -691,7 +691,7 @@ async function fetchJSONNatureReserves(regionKey) {
     natureMarkers = [];
 
     let customIcon = L.icon({
-      iconUrl: "img/naturemap.svg",
+      iconUrl: "../img/naturemap.svg",
       iconSize: [40, 40],
       iconAnchor: [20, 40],
       popupAnchor: [0, -40]
@@ -818,11 +818,11 @@ async function fetchAttraction(lat, lng) {
     let abstract = info.abstract || null;
 
     // Välj ikon baserat på typ
-    let iconUrl = "img/användbinocuallrs.svg"; // default: sevärdhet
+    let iconUrl = "../img/användbinocuallrs4.svg"; // default: sevärdhet
     if (description.includes("museum")) {
-      iconUrl = "img/museumkarta.svg";
+      iconUrl = "../img/museumkarta.svg";
     } else if (description.includes("slott")) {
-      iconUrl = "img/slottkarta.svg";
+      iconUrl = "../img/slottkarta.svg";
     }
 
     let customIcon = L.icon({

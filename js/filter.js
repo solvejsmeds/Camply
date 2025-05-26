@@ -270,7 +270,7 @@ if (category && campingImages[category]) {
   selectedImage = imgs[randomIndex]; //random bild utifrån kategorien
 }
 
-img.src = "img/" + selectedImage;
+img.src = "../img/" + selectedImage;
 
     img.alt = "bild på campingplatsen";
     img.classList.add("campingpic");
@@ -284,7 +284,7 @@ container.appendChild(contentRow);
 
     // lägg till evensyssnare
     container.addEventListener("click", function () {
-      window.location.href = "specifikcamping.html?id=" + camping.id;
+      window.location.href = "../html/specifikcamping.html?id=" + camping.id;
 
       //spara valda filter i local storage så att de inte försvinner direkt 
       localStorage.setItem("selectedFilters", JSON.stringify({
@@ -316,7 +316,7 @@ container.appendChild(contentRow);
 
     button.addEventListener("click", function (e) {
       e.stopPropagation(); // så inte hela kortet triggas
-      window.location.href = "specifikcamping.html?id=" + camping.id;
+      window.location.href = "../html/specifikcamping.html?id=" + camping.id;
     });
 
     // Lägg in på sidan
