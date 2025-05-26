@@ -205,6 +205,11 @@ async function showCampings() {
 
   allCampings = data.payload; //sparar alla campingar i allCampings
 
+   // sortera campingarna alfabetiskt efter namn 
+   allCampings.sort(function(a, b) {
+    return a.name.localeCompare(b.name, 'sv'); // 'sv' för svenska bokstäver som å, ä, ö
+  });
+
   displayCampings(allCampings); //antopar funktion som visar cmapingarna
 
 }

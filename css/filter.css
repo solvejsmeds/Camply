@@ -112,6 +112,7 @@ button.campingtext {
   .mainlogo{
     width:100%;
     height:auto;
+    display: block;
   }
 
   .nav-links {
@@ -161,11 +162,11 @@ button.campingtext {
 
   .camplylogo {
     position: absolute;
-    left: 20px;
-    top:52% ;
-    width: 100px;
+    left: 30px;
+    top:50%;
     width:40px;
     transform:translateY(-50%);
+    width: 40;
   }
 
   .dropdown-content-city {
@@ -270,7 +271,7 @@ button.campingtext {
   }
 
   #upBtn{
-    opacity: 70%;
+    opacity: 0%;
     background-color: #889063;
     color: #fff;
     border: 3px solid #fff;
@@ -309,10 +310,15 @@ color:#f9f9f9;
 padding: 7px;
   }
 
-  #resetFiltersBtn:focus{
-    outline: none;
+ 
+  #resetFiltersBtn:disabled {
+    background-color: #ccc;
+    color: #666;
+    border-color: #aaa;
+    cursor: not-allowed;
+    opacity: 0.6;
+    pointer-events: none;
   }
-
   
   body.user-is-tabbing #resetFiltersBtn:focus{
     outline: 3px solid rgb(0, 191, 255);
