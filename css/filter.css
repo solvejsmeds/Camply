@@ -18,6 +18,12 @@ body {
     flex-direction: column;
 }
 
+input[type="checkbox"] {
+  /* Byt ut mot den färg ni vill ha */
+  accent-color: #889063;
+}
+
+
 .campcontainer {
   background-color: #E5D7C4;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -61,7 +67,7 @@ body {
 }
 
 button.campingtext {
-  background-color: #889063;
+  background-color: #bbc0a1;
   border-radius: 20px;
   width: 8em;
   height: 3em;
