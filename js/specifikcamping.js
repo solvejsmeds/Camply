@@ -113,6 +113,8 @@ async function showSpecificCamping() {
         restaurantBtn.classList.remove("active");
         showRestaurants = false;
       } else {
+
+        myMap.setView([lat, lng], 9);
         // Om restauranger inte visas hämta nya data och visa markörer
         fetchRestaurants(camping.lat, camping.lng);
         restaurantBtn.classList.add("active");
@@ -136,6 +138,8 @@ async function showSpecificCamping() {
         natureBtn.classList.remove("active");
         showNature = false;
       } else {
+
+        myMap.setView([lat, lng], 9);
         //hämta naturresreat beroende på region, eftersom det inte fanns några i smpai på öland o i jönköping
         if (camping.province === "Öland") {
           fetchJSONNatureReserves("oland");
@@ -161,6 +165,7 @@ golfBtn.addEventListener("click", function () {
     golfBtn.classList.remove("active");
     showGolf = false;
   } else {
+    myMap.setView([lat, lng], 9);
     fetchGolf(camping.lat, camping.lng);
     golfBtn.classList.add("active");
     showGolf = true;
@@ -178,6 +183,7 @@ attractionBtn.addEventListener("click", function () {
     attractionBtn.classList.remove("active");
     showAttractions = false;
   } else {
+    myMap.setView([lat, lng], 9);
     fetchAttraction(camping.lat, camping.lng);
     attractionBtn.classList.add("active");
     showAttractions = true;
@@ -217,9 +223,9 @@ attractionBtn.addEventListener("click", function () {
     fetchWeather(camping.lat, camping.lng, camping.city); //anropar funktion för att visa väderprognosen, skickar med lat och lng
 
    
-
+/*
     fetchReviews(camping.id, camping.name); // Anropa funktionen och skicka in campingens id
-    
+    */
 
 
   }
@@ -351,7 +357,8 @@ if (data.payload.length === 0) {
               name: rest.name,
               rating: rest.rating,
               price: rest.price_range,
-              website: rest.website
+              website: rest.website,
+              address: rest.address
             });
           });
         }
@@ -363,19 +370,7 @@ if (data.payload.length === 0) {
 }
 //Slut fetchRestaurants
 //_______________________________________________________________________________________________
-/*
-function hideLoader() {
-  document.querySelector("#mapoverlay").style.visibility = "hidden"
 
-  document.querySelector("#map").style.filter = "none"
-}
-
-function displayLoader() {
-  document.querySelector("#mapoverlay").style.visibility = "visible"
-
-  document.querySelector("#map").style.filter = "blur(3px)"
-}
-  */
 
 function displayLoader() {
   loaderTimeout = setTimeout(function () {
@@ -449,6 +444,7 @@ async function fetchGolf(lat, lng) {
     const name = golf.name
     const distance = golf.distance_in_km.toFixed(1)
 
+
     const btnId = "readMoreBtn_" + i;
     const popupContent = name + "<br>" + distance + " km från campingen<br>" +
       "<button id='" + btnId + "'>Läs mer</button>";
@@ -470,7 +466,9 @@ async function fetchGolf(lat, lng) {
               name: golf.name,
               website: golf.website,
               rating: golf.rating,
+              address: golf.address,
               price: golf.price_range
+          
           }); // skicka datan direkt
           });
         }
@@ -539,13 +537,13 @@ function getWeatherIcon(code) {
   } else if (code >= 51 && code <= 67) {
     return { src: "../img/literegn.svg", alt: "Regnigt" };
   } else if (code >= 71 && code <= 77) {
-    return { src: "../img/camply.svg", alt: "Snöfall" };
+    return { src: "../img/snö.svg", alt: "Snöfall" };
   } else if (code >= 80 && code <= 82) {
     return { src: "../img/regnmolnigtanvändenna.svg", alt: "Regnskurar" };
   } else if (code >= 95 && code <= 99) {
-    return { src: "../img/camply.svg", alt: "Åska" };
+    return { src: "../img/åskamoln.svg", alt: "Åska" };
   } else {
-    return { src: "../img/camply.svg", alt: "Okänt väder" };
+    return { src: "../img/molnigtljusmoln.svg", alt: "Okänt väder" };
   }
 }
 
@@ -673,11 +671,14 @@ function filterByProvinceOrCity(dataArray) {
 //slut filterByProvinceOrCity
 
 // Hjälpfunktion: testar flera radier tills data hittas
-async function tryFetchWithExpandingRadius(requestFn, radii = [15, 30, 50, 70]) {
+async function tryFetchWithExpandingRadius(requestFn, radii = [15, 30, 50, 70, 1000]) {
   for (let i = 0; i < radii.length; i++) {
+   
     let radius = radii[i];
     let data = await requestFn(radius);
+    console.log(data)
     if (data.payload.length > 0) {
+      console.log("found data", i)
       return data;
     }
   }
@@ -772,85 +773,50 @@ async function fetchJSONNatureReserves(regionKey) {
 
 
 
-//funktion för att hämta golfbanor i staden som campingen ligger i 
+//funktion för att hämta sevärdheter i närheten av campingen 
 async function fetchAttraction(lat, lng) {
   console.log("Hämtar sevärdheter...");
-
   displayLoader();
 
-  // 1. Hämta sevärdheter från "attraction"-API:t
   async function requestAttractionData(radius) {
     const url = "https://smapi.lnu.se/api/?api_key=" + APIkey +
-      "&controller=attraction&method=getfromlatlng" +
-      "&lat=" + lat + "&lng=" + lng +
-      "&descriptions=museum,slott,sevärdhet&radius=" + radius;
-
+      "&controller=establishment&method=getfromlatlng&lat=" + lat + "&lng=" + lng +
+      "&radius=" + radius + "&descriptions=museum,slott,sevärdhet";
     const response = await fetch(url);
     return await response.json();
   }
 
-  // 2. Hämta website + abstract från "establishment"-API:t
-  async function fetchAttractionExtraData(ids) {
-    const url = "https://smapi.lnu.se/api/?api_key=" + APIkey +
-      "&controller=establishment&method=getall&ids=" + ids.join(",");
-
-    const response = await fetch(url);
-    const data = await response.json();
-
-    let result = {};
-    for (let i = 0; i < data.payload.length; i++) {
-      let item = data.payload[i];
-      result[item.id] = {
-        website: item.website,
-        abstract: item.abstract,
-        
-
-      };
-    }
-
-    return result;
-  }
-
   // Rensa gamla markörer
-  for (let j = 0; j < attractionMarkers.length; j++) {
-    myMap.removeLayer(attractionMarkers[j]);
+  for (let marker of attractionMarkers) {
+    myMap.removeLayer(marker);
   }
   attractionMarkers = [];
 
   let data = await tryFetchWithExpandingRadius(requestAttractionData);
+  if (data.payload.length === 0) {
+    alert("Inga sevärdheter hittades inom 70 km.");
+    hideLoader();
+    return;
+  }
 
   data.payload = filterByProvinceOrCity(data.payload);
-
-if (data.payload.length === 0) {
-  alert("Inga resultat hittades inom det valda området.");
-  hideLoader();
-  return;
-}
-
-  // Hämta extra info (website och abstract)
-  let ids = [];
-  for (let i = 0; i < data.payload.length; i++) {
-    ids.push(data.payload[i].id);
+  if (data.payload.length === 0) {
+    alert("Inga resultat hittades inom det valda området.");
+    hideLoader();
+    return;
   }
-  let extraInfo = await fetchAttractionExtraData(ids);
 
-  // Gå igenom varje sevärdhet
   for (let i = 0; i < data.payload.length; i++) {
     let attraction = data.payload[i];
-    let name = attraction.name;
-    let description = attraction.description.toLowerCase();
-    let distance = attraction.distance_in_km.toFixed(1);
     let btnId = "readMoreAttraction_" + i;
 
-    let info = extraInfo[attraction.id] || {};
-    let website = info.website || null;
-    let abstract = info.abstract || null;
+    // Välj ikon baserat på beskrivningen
+    let iconUrl = "../img/användbinocuallrs4.svg"; // standardikon för "sevärdhet"
+    const desc = attraction.description.toLowerCase();
 
-    // Välj ikon baserat på typ
-    let iconUrl = "../img/användbinocuallrs4.svg"; // default: sevärdhet
-    if (description.includes("museum")) {
+    if (desc.includes("museum")) {
       iconUrl = "../img/museumkarta.svg";
-    } else if (description.includes("slott")) {
+    } else if (desc.includes("slott")) {
       iconUrl = "../img/slottkarta.svg";
     }
 
@@ -861,29 +827,30 @@ if (data.payload.length === 0) {
       popupAnchor: [0, -40]
     });
 
-    let popupContent = name + "<br>" + distance + "km från campingen<br>" +
+    let popupContent = attraction.name + "<br>" +
+      attraction.distance_in_km.toFixed(1) + " km från campingen<br>" +
       "<button id='" + btnId + "'>Läs mer</button>";
 
     let marker = L.marker([parseFloat(attraction.lat), parseFloat(attraction.lng)], {
-      title: name,
+      title: attraction.name,
       icon: customIcon
     }).bindPopup(popupContent);
 
     marker.addTo(myMap);
     attractionMarkers.push(marker);
 
-    // Klick på "Läs mer"
     marker.on("popupopen", function () {
       setTimeout(function () {
         let btn = document.getElementById(btnId);
         if (btn) {
           btn.addEventListener("click", function () {
             openInfoModal({
-              name: name,
+              name: attraction.name,
               rating: attraction.rating,
-              website: website,
-              abstract: abstract,
-              price: info.price
+              price: attraction.price_range,
+              website: attraction.website,
+              address: attraction.address,
+              abstract: attraction.abstract
             });
           });
         }
@@ -891,7 +858,7 @@ if (data.payload.length === 0) {
     });
   }
 
-  hideLoader()
+  hideLoader();
 }
 
 
@@ -922,9 +889,14 @@ if (data.price) {
    infoText += "Priset ligger runt " + data.price + " kr. <br>"
 }
 
+if (data.address) {
+  infoText += "Adressen är " +  data.address+ "<br>"
+}
+
 if (data.abstract) {
   infoText +=  data.abstract + "<br>"
 }
+
 
 
   if (data.website) {
@@ -941,7 +913,7 @@ if (data.abstract) {
 
 
 
-
+/*
 
 
 //funktion för att visa cmapingens recensioner
@@ -980,4 +952,4 @@ async function fetchReviews(campingId, name) {
   } else {
     reviewsDiv.innerHTML += "<p>Det finns inga recensioner för " + name + " </p>";
   }
-} 
+} */

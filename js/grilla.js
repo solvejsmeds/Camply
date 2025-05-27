@@ -182,7 +182,7 @@ function findResult () {
     
     document.querySelector(".result").innerHTML = result + "<br><a href='" + recipy + "' target='_blank'>Visa recept</a>"
 
-
+    document.querySelector(".result").scrollIntoView({ behavior: "smooth" });
 }
 //slut findResult
 //------------------------------------------------------------------------------------

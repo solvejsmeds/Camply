@@ -2,6 +2,10 @@
 let submitBtn; //knapp för att visa resulatt
 
 
+let result = "";
+let id = null;
+let description = "";
+const APIkey = "R7PGDNjZ"; // API-nyckel till SMAPI
 
 function init() {
   console.log("init funktion")
@@ -84,105 +88,102 @@ function findResult() {
   let activity = "";
   let description = "";
 
-  // NY if-struktur UTAN 'nature'-kategori
   if (place === "outside") {
     if (company === "smallkids") {
       if (category === "fun") {
-        activity = "Lekplats";
-        description = "Perfekt plats för de små att leka, springa och ha kul.";
+        activity = "Geometriparken!";
+        id = 836;
       } else if (category === "adventure") {
-        activity = "Lådbilslandet";
-        description = "Barnen kör runt i små bilar på en miniatyrväg – superkul!";
+        activity = "Lådbilslandet!";
+        id = 47;
       } else {
-        activity = "Djurpark";
-        description = "En lugn dag med roliga djurmöten i friska luften.";
+        activity = "Djurparken Traryds Skans!";
+        id = 11;
       }
     } else if (company === "kids") {
       if (category === "fun") {
-        activity = "High Chaparral";
-        description = "Vilda västern-liknande nöjespark – perfekt för barn i skolåldern!";
+        activity = "High Chaparral!";
+        id = 2;
       } else if (category === "adventure") {
-        activity = "Zipline";
-        description = "Fart och höjd bland träden – en riktig adrenalinkick!";
+        activity = "Little Rock Lake Zipline!";
+        id = 40;
       } else {
-        activity = "Minigolf";
-        description = "Avkopplande, men ändå klurigt och socialt för barn.";
+        activity = "Leklandet Visingsö!";
+        id = 98;
       }
     } else if (company === "friendgoup") {
       if (category === "fun") {
         activity = "Skateboardpark";
-        description = "Häng, tricks och tempo tillsammans med kompisarna.";
+        id = 114;
       } else if (category === "adventure") {
-        activity = "Paintball";
-        description = "Teamwork och tävling i en spännande miljö.";
+        activity = "Glabo Gokart och Paintball!";
+        id = 36;
       } else {
-        activity = "Golf";
-        description = "Chill och social aktivitet för vuxna – med tävlingsnerv.";
+        activity = "Gränna Golfklubb";
+        id = 62;
       }
     } else if (company === "alone") {
       if (category === "fun") {
-        activity = "Pumptrack eller skatepark";
-        description = "Motion och nöje i eget tempo – ute!";
+        activity = "Hovs aktivitetspark!";
+        id = 837;
       } else if (category === "adventure") {
-        activity = "Naturklättring";
-        description = "Prova bouldering eller klättring på klippa – utmanande och stärkande.";
+        activity = "Glasrikets Golfklubb!";
+        id = 61;
       } else {
-        activity = "Promenad eller parkhäng";
-        description = "Enkla, avkopplande stunder för dig själv.";
+        activity = "Åkerbobadet i Löttorp!";
+        id = 29;
       }
     }
   } else if (place === "inside") {
     if (company === "smallkids") {
       if (category === "fun") {
-        activity = "Lekland";
-        description = "Bollhav, studsmattor och rutschkanor – barnens paradis!";
+        activity = "Leo's Lekland!";
+        id = 93;
       } else if (category === "adventure") {
-        activity = "Barnvänligt äventyrshus";
-        description = "Ett miniformat av äventyrscenter anpassat för de små.";
+        activity = "Area äventyrsbad!";
+        id = 16;
       } else {
-        activity = "Simhall";
-        description = "Lekbassänger och lugn vattenlek – roligt och tryggt.";
+        activity = "Kalmar Gamecenter!";
+        id = 46;
       }
     } else if (company === "kids") {
       if (category === "fun") {
         activity = "Boda Borg";
-        description = "Kreativa uppdrag i olika rum – hela familjen engageras!";
+        id = 41;
       } else if (category === "adventure") {
-        activity = "Escape Room Junior";
-        description = "Barnvänligt klurigt och spännande!";
+        activity = "Escape Room!";
+        id = 42;
       } else {
-        activity = "Simhall";
-        description = "Avkopplande vattenlek, rutschkanor och bubbelpooler.";
+        activity = "Medley Vattenpalatset Kaskad";
+        id = 12;
       }
     } else if (company === "friendgoup") {
       if (category === "fun") {
-        activity = "The Big Bang eller Game Center";
-        description = "Arkader, VR och socialt kaos – kul för alla!";
+        activity = "The Big Bang";
+        id = 44;
       } else if (category === "adventure") {
-        activity = "Escape Room";
-        description = "Pussla och samarbeta för att ta er ut i tid!";
+        activity = "Äventyrsbadet i Kalmar!";
+        id = 27;
       } else {
-        activity = "Bowling";
-        description = "Avslappnad och social tävling – alltid en klassiker.";
+        activity = "Knock 'em Down bowlinghall";
+        id = 99;
       }
     } else if (company === "alone") {
       if (category === "fun") {
-        activity = "VR-spelhall";
-        description = "Testa nya världar helt på egen hand!";
+        activity = "Nöjeshuset!";
+        id = 43;
       } else if (category === "adventure") {
-        activity = "Klättervägg";
-        description = "Fysiskt och fokuserat – perfekt när du vill utmana dig själv.";
+        activity = "Västerviks Klättercenter";
+        id = 113;
       } else {
-        activity = "Biograf";
-        description = "En filmstund helt för dig själv – bekvämt och njutbart.";
+        activity = "Filmstaden i Växjö!";
+        id = 851;
       }
     }
   }
 
-  // Visa resultatet
-  document.querySelector(".result").innerHTML = "<h3> Du borde testa: <strong>"+ activity +"</strong>!</h3><p>"+description+"</p>";
+  document.querySelector(".result").innerHTML = "<h3> Du borde testa: <strong>" + activity + "</strong>!</h3><p>" + description + "</p>";
 
-  // Visa knapp om du vill
   const showBtnContainer = document.querySelector("#showBtnContainer");
   showBtnContainer.innerHTML = "";
 
@@ -190,16 +191,60 @@ function findResult() {
     const btn = document.createElement("button");
     btn.textContent = "Läs mer om " + activity;
     btn.classList.add("campingbtn");
-    btn.addEventListener("click", function () {
-     document.querySelector("#activityModal").showModal(); //visar dialog ruta med mer information om campingen.
+
+    btn.addEventListener("click", async function () {
+      try {
+        const url = "https://smapi.lnu.se/api/?api_key=" + APIkey + "&controller=establishment&method=getall&ids=" + id;
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.payload && data.payload.length > 0) {
+          const info = data.payload[0];
+
+          document.querySelector("#modalTitle").innerText = activity;
+
+          let html = "";
+
+          if(info.text){
+            html += "<p>" + info.text + "</p>";
+          }
+          else {
+            html += "<p>" + info.abstract + "</p>";
+          }
+            
+        
+         
+            html += "<p><strong>Adress:</strong> " + info.address + "</p>";
+         
+         
+            html += "<p><strong>Stad:</strong> " + info.city + "</p>";
+          
+         
+            html += "<p><strong>Pris:</strong> " + info.price_range + " kr</p>";
+       
+      
+            html += "<p><a href='" + info.website + "' target='_blank'>Besök webbplats</a></p>";
+      
+
+          document.querySelector("#modalDescription").innerHTML = html;
+        } else {
+          document.querySelector("#modalTitle").innerText = "Fel";
+          document.querySelector("#modalDescription").innerText = "Kunde inte hämta information om aktiviteten.";
+        }
+
+        document.querySelector("#activityModal").showModal();
+
+      } catch (error) {
+        console.error("Fel vid hämtning av aktivitet:", error);
+        document.querySelector("#modalTitle").innerText = "Fel";
+        document.querySelector("#modalDescription").innerText = "Något gick fel. Försök igen senare.";
+        document.querySelector("#activityModal").showModal();
+      }
     });
+
     showBtnContainer.appendChild(btn);
-
-  
+    document.querySelector(".result").scrollIntoView({ behavior: "smooth" });
   }
-
-  document.querySelector("#modalDescription").innerText = description + smapidescription;
-
 }
 //slut findResult
 //------------------------------------------------------------------------------------

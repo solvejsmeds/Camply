@@ -3,13 +3,30 @@ body {
   margin: 0 auto;
   padding: 0 1rem;
   background-color: #CFBB99;
+  margin-bottom: 8em;
 }
 
+html{
+  font-family: 'Quicksand', sans-serif;
+    
+    }
 .choice-container {
   display: flex;
   flex-direction: row;
   gap: 1rem;
   margin-bottom: 2rem;
+}
+
+.activity-modal {
+  margin: 1em;
+
+}
+
+#closeModal {
+  background-color: #f6bcbc;
+  font-weight: bold;
+  font-size: large;
+  width: 7em;
 }
 
 .elemchoice {
@@ -82,7 +99,7 @@ body {
 }
 
 .mainlogo {
-  width: 100%;
+  width: 70px;
   height: auto;
 }
 
@@ -297,4 +314,13 @@ body {
     width: 70px;
     height: auto;
   }
+
+
+}
+@media (min-width: 768px) {
+
+  .mainlogo{
+    margin-left: 30px;
+  }
+
 }

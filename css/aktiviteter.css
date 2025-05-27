@@ -1,6 +1,12 @@
 body {
-    background-color: #CFBB99
+    background-color: #CFBB99;
+    margin-bottom: 8em;
 }
+
+html{
+  font-family: 'Quicksand', sans-serif;
+       font-weight: bold;
+    }
 
 #firsttitle{
     text-align: center;
@@ -153,4 +159,12 @@ body {
 .elemchoice.selected {
     border: 2px solid #5c835d;
     background-color: #e5efe5;
+}
+
+@media (min-width: 768px) {
+
+  .mainlogo{
+    margin-left: 30px;
+  }
+
 }
