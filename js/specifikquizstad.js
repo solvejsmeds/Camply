@@ -146,7 +146,7 @@ btn.addEventListener("click", function () {
 showBtnContainer.appendChild(btn);
 
 
-
+document.querySelector(".result").scrollIntoView({ behavior: "smooth" });
   
 
   }

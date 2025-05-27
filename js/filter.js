@@ -258,7 +258,7 @@ contentRow.classList.add("campingrow");
 
     // Skapa knapp
     let button = document.createElement("button");
-    button.classList.add("campingtext");
+    button.classList.add("campingBtn");
     button.textContent = "Läs mer";
     textDiv.appendChild(button);
 

@@ -30,7 +30,7 @@
     <nav class="navbar">
       <ul class="nav-links" id="nav-links">
         <li><a href="../index.html">Hem</a></li>
-        <li><a href="../html/filter.html">Filtrering</a></li>
+        <li><a href="../html/filter.html" class="active">Filtrering</a></li>
         <li><a href="../html/quiz.html">Quiz</a></li>
       </ul>
     </nav>
@@ -47,14 +47,14 @@
   <div class="filter-container">
     <div class="price-field">
       <label for="minPrice">Min</label>
-      <input type="number" id="minPrice" name="minPrice" placeholder="0 kr" min="0">
+      <input type="number" id="minPrice" name="minPrice" placeholder="0 kr" min="0" step="50">
     </div>
 
     <div class="separator">–</div>
 
     <div class="price-field">
       <label for="maxPrice">Max</label>
-      <input type="number" id="maxPrice" name="maxPrice" placeholder="1250 kr" min="0">
+      <input type="number" id="maxPrice" name="maxPrice" placeholder="1250 kr" min="0" step="50">
     </div>
   </div>
 
@@ -94,17 +94,20 @@
 
       <input type="checkbox" id="wifiSlider">
       <span class="slider">
+       
         <img src="../img/Untitled-3 [Recovered].svg" alt="ikon: wifi-ikon, campingar med wifi" class="circle-img" />
+        
       </span>
+      <p class="slideinfo">Wifi</p>
 
     </label>
 
      <label class="switch" for="fishingSlider">
       <input type="checkbox" id="fishingSlider">
       <span class="slider">
-        <img src="../img/Untitled-2 [Recovered].svg" alt="ikon: fisk, campingar med fiske" class="circle-img" />
+        <img src="../img/fiska.svg" alt="ikon: fisk, campingar med fiske" class="circle-img" />
       </span>
-
+      <p class="slideinfo">Fiske</p>
 
     </label>
 
@@ -113,7 +116,7 @@
       <span class="slider">
         <img src="../img/Untitled-4 [Recovered]1.svg" alt="ikon: kaffekopp, campingar med café" class="circle-img" />
       </span>
-
+      <p class="slideinfo">Café</p>
 
     </label>
 
@@ -122,7 +125,7 @@
       <span class="slider">
         <img src="../img/Untitled-5 [Recovered]3.svg" alt="ikon: tvättmaskin, campingar med tvättmaskin" class="circle-img"/>
       </span>
-
+      <p class="slideinfo">Tvättstuga</p>
     </label>
   </div>
   <br>

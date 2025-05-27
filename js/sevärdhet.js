@@ -1,4 +1,8 @@
 let submitBtn;
+let result = "";
+let id = null;
+let description = "";
+const APIkey = "R7PGDNjZ"; // API-nyckel till SMAPI
 
 function init() {
   submitBtn = document.querySelector("#submitBtn");
@@ -24,11 +28,18 @@ function init() {
   submitBtn.addEventListener("click", findResult);
   document.querySelector("#redoBtn").addEventListener("click", resetTest);
 
+  document.querySelector("#closeModal").addEventListener("click", function () {
+    document.querySelector("#infoModal").close();
+  });
+
   // Hamburger-meny
   document.querySelector("#hamburger").addEventListener("click", function () {
     document.querySelector("#nav-links").classList.toggle("show");
   });
 }
+
+
+
 
 window.addEventListener("load", init);
 
@@ -46,6 +57,8 @@ function checkIfAllAnswered() {
   submitBtn.disabled = !allAnswered;
 }
 
+
+
 function findResult() {
   const category = document.querySelector('.elemchoice.selected[data-question="category"]')?.dataset.value;
   const type = document.querySelector('.elemchoice.selected[data-question="type"]')?.dataset.value;
@@ -59,106 +72,123 @@ function findResult() {
   let result = "";
   let description = "";
 
-  // ------------------ 24 KOMBINATIONSRESULTAT ------------------
-
+ 
+//HISTORIA
   if (category === "history" && type === "beauty" && company === "kids") {
     result = "Kalmar Slott";
-    description = "Ett pampigt slott med historia och spännande miljöer som även barn kan uppskatta.";
+    id = 452; //
   } else if (category === "history" && type === "beauty" && company === "grownups") {
     result = "Kronobergs Slott";
-    description = "En vacker slottsruin med sjöutsikt och historiska vingslag – perfekt för vuxna.";
+    id = 633;//
   } else if (category === "history" && type === "unique" && company === "kids") {
-    result = "Sagomuseet";
-    description = "Berättelser och myter från förr – roligt och lärorikt för hela familjen.";
+    result = "Gemla leksaksmuseum";
+    id = 474;//
   } else if (category === "history" && type === "unique" && company === "grownups") {
-    result = "Eksjöhovgårds Slottsruin";
-    description = "En udda historisk plats med vacker natur omkring – en dold pärla.";
+    result = "Grenna museum";
+    id = 462; //
   } else if (category === "history" && type === "educative" && company === "kids") {
-    result = "Tändsticksmuseet";
-    description = "Ett unikt museum där barn kan lära sig om hur tändstickor förändrade världen.";
+    result = "Älmhults skolmuseum";
+    id = 517;//
   } else if (category === "history" && type === "educative" && company === "grownups") {
-    result = "Utställningen Rätt & Slätt";
-    description = "En spännande och lärorik utställning om rättssystemets historia.";
+    result = "IKEA museum";
+    id = 433;
   }
 
+
+
+
+  //KONST
   else if (category === "art" && type === "beauty" && company === "kids") {
     result = "Vida Museum & Konsthall";
-    description = "Färgsprakande konst i vacker miljö – inspirerande även för yngre.";
+    id = 529 //inte för barn egentligen, fixa ny
   } else if (category === "art" && type === "beauty" && company === "grownups") {
     result = "Ljungbergmuseet";
-    description = "Ett elegant konstmuseum för dig som uppskattar svensk bildkonst.";
+    id = 525;//
   } else if (category === "art" && type === "unique" && company === "kids") {
-    result = "Gemla Leksaksmuseum";
-    description = "En färgglad och nostalgisk plats full av gamla träleksaker.";
+    result = "Skallagrim Gert Schuld trädgårdsgalleri";
+    id = 733; // !!!!!!!!!!!!!!!!!!!!!!!!!
   } else if (category === "art" && type === "unique" && company === "grownups") {
-    result = "Vandalorum";
-    description = "En samtida konsthall i häftig arkitektur – unik och inspirerande.";
+    result = "Tändsticksmuseet";
+    id = 457 //
   } else if (category === "art" && type === "educative" && company === "kids") {
-    result = "MX World Collection";
-    description = "Ett annorlunda museum med motocross och motorcyklar som fascinerar stora som små.";
+    result = "Virserums konsthall";
+    id = 708 //!!!!!!!!!!!!!!!!!!!!!!!
   } else if (category === "art" && type === "educative" && company === "grownups") {
-    result = "Jönköpings Länsmuseum";
-    description = "För dig som vill lära dig om konstnären John Bauer och Smålands historia.";
+    result = "Vandalorum";
+    id = 451 //
   }
 
+
+  //NATUR
   else if (category === "nature" && type === "beauty" && company === "kids") {
     result = "Bullerbyn";
-    description = "Följ med in i Astrid Lindgrens värld – magiskt och vackert för barn.";
+    id = 712 
   } else if (category === "nature" && type === "beauty" && company === "grownups") {
     result = "Långe Jan";
-    description = "Sveriges högsta fyr med utsikt över Östersjön och fågelliv – vacker och fridfull.";
+    id = 678;
   } else if (category === "nature" && type === "unique" && company === "kids") {
-    result = "Lasse-Maja Grottan";
-    description = "Ett litet äventyr för barn – in i skogens gömda grotta!";
+    result = "Arla-kon i väceklsång";
+    id = 688
   } else if (category === "nature" && type === "unique" && company === "grownups") {
     result = "Bilkyrkogården Kyrkömosse";
-    description = "En märklig plats där natur och nostalgi möts – perfekt för nyfikna vuxna.";
+    id = 619;
   } else if (category === "nature" && type === "educative" && company === "kids") {
     result = "Naturum Kronoberg";
-    description = "Upptäck naturen inomhus – barnvänligt och lärorikt.";
+    id = 478
   } else if (category === "nature" && type === "educative" && company === "grownups") {
     result = "Ismantorps Borg";
-    description = "En spännande ringborg från järnåldern – perfekt för historieintresserade naturälskare.";
+    id = 682;
   }
 
-  else if (category === "tech" && type === "beauty" && company === "kids") {
-    result = "Bruno Mathsson Center";
-    description = "Design och form som tilltalar både barn och vuxna med sin lekfullhet.";
-  } else if (category === "tech" && type === "beauty" && company === "grownups") {
-    result = "Teleborgs Slott";
-    description = "En sagolik byggnad i teknisk symbios med modern historia.";
-  } else if (category === "tech" && type === "unique" && company === "kids") {
-    result = "James Bond 007 Museum";
-    description = "Spiontema, prylar och coola fordon – barnvänligt och unikt.";
-  } else if (category === "tech" && type === "unique" && company === "grownups") {
-    result = "Hylténs Industrimuseum";
-    description = "Ett ovanligt museum om maskiner, smide och svensk industrihistoria.";
-  } else if (category === "tech" && type === "educative" && company === "kids") {
-    result = "IKEA Museum";
-    description = "Lär dig om möbler, design och smarta lösningar – på barnens nivå.";
-  } else if (category === "tech" && type === "educative" && company === "grownups") {
-    result = "Husqvarna Museum";
-    description = "Teknisk utveckling och innovation från vapen till symaskiner – fascinerande och lärorikt.";
 
-  }
+
+
 
   // ------------------ SLUT KOMBINATIONSRESULTAT ------------------
 
   document.querySelector(".result").innerHTML =
-    `<strong><h3>Du borde besöka ${result}!</h3></strong><p>${description}</p>`;
+    "<strong><h3>Du borde besöka " + result +"!</h3></strong><p class='resulttext'>"+description+"</p>";
 
   const showBtnContainer = document.querySelector("#showBtnContainer");
   showBtnContainer.innerHTML = "";
 
   const btn = document.createElement("button");
-  btn.textContent = "Läs mer om " + result;
+  btn.textContent = "Läs mer";
   btn.classList.add("campingbtn");
 
-  btn.addEventListener("click", function () {
-    alert("Här kan du länka vidare till mer information om " + result);
+  btn.addEventListener("click", async function () {
+    if (!id) return;
+  
+    const info = await fetchAttractionDetails(id);
+    const modal = document.querySelector("#infoModal");
+    const titleEl = document.querySelector("#modalTitle");
+    const contentEl = document.querySelector("#modalContent");
+  
+    
+      titleEl.textContent = result;
+  
+      let html = "";
+  
+      
+        html += "<p><strong>Stad: </strong>"+info.city+"</p>";
+        html += "<p><strong>Pris: </strong>"+info.price_range+"</p>";
+   
+        html += "<p>"+info.text+"</p>";
+    
+ 
+        html += "<p><a href="+info.website+" target='_blank'>Besök webbplats</a></p>";
+     
+  
+      contentEl.innerHTML = html;
+  
+  
+    modal.showModal();
   });
 
   showBtnContainer.appendChild(btn);
+
+
+  document.querySelector(".result").scrollIntoView({ behavior: "smooth" });
 }
 
 function resetTest() {
@@ -173,6 +203,24 @@ function resetTest() {
 }
 
 
+// Hämta sevärdhetens info från SMAPI
+async function fetchAttractionDetails(id) {
+  try {
+    const searchUrl = "https://smapi.lnu.se/api/?api_key=" + APIkey +
+      "&controller=establishment&method=getall&ids=" + id;
+    
+    const response = await fetch(searchUrl);
+    const data = await response.json();
+
+    if (data.payload && data.payload.length > 0) {
+      return data.payload[0]; // Returnera första träffen
+    }
+  } catch (error) {
+    console.error("Kunde inte hämta info från SMAPI:", error);
+  }
+
+  return null;
+}
 
 
 
