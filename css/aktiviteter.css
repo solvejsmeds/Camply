@@ -5,7 +5,7 @@ body {
 
 html{
   font-family: 'Quicksand', sans-serif;
-       font-weight: bold;
+       
     }
 
 #firsttitle{
@@ -18,7 +18,9 @@ html{
     margin-bottom: 20px;
     border-radius: 1em;
 }
-
+#submitBtn, #redoBtn, .campingbtn {
+  font-size: 17px;
+}
 
   #firsttitle{
     text-align: center;
@@ -68,10 +70,7 @@ html{
     cursor: pointer;
   }
 
-  .mainlogo{
-    width:100%;
-    height:auto;
-  }
+ 
 
   .nav-links {
     display: none; /* gömd från början */
@@ -160,6 +159,20 @@ html{
     border: 2px solid #5c835d;
     background-color: #e5efe5;
 }
+
+
+#activityModal {
+  position: fixed;
+
+  border-radius: 10px;
+  max-width: 1000px;
+  background-color: #f9f9f9;
+
+
+  
+}
+
+
 
 @media (min-width: 768px) {
 

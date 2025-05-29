@@ -4,6 +4,7 @@ body {
   padding: 0 1rem;
   background-color: #CFBB99;
   margin-bottom: 8em;
+
 }
 
 html{
@@ -17,16 +18,23 @@ html{
   margin-bottom: 2rem;
 }
 
-.activity-modal {
-  margin: 1em;
 
-}
+
 
 #closeModal {
+ 
+  top: 10px;
+  right: 10px;
   background-color: #f6bcbc;
+  
+ 
+ 
   font-weight: bold;
-  font-size: large;
-  width: 7em;
+  cursor: pointer;
+}
+
+.result {
+  margin-bottom: 3em;
 }
 
 .elemchoice {
@@ -160,6 +168,10 @@ html{
   gap: 1rem;
   flex-wrap: wrap;
   margin-top: 1rem;
+}
+
+#submitBtn, #redoBtn, .campingbtn {
+  font-size: 17px;
 }
 
 .circle-img {

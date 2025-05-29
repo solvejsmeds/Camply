@@ -29,7 +29,7 @@ function init() {
   document.querySelector("#redoBtn").addEventListener("click", resetTest);
 
   document.querySelector("#closeModal").addEventListener("click", function () {
-    document.querySelector("#infoModal").close();
+    document.querySelector("#attractionmodal").close();
   });
 
   // Hamburger-meny
@@ -160,7 +160,7 @@ function findResult() {
     if (!id) return;
   
     const info = await fetchAttractionDetails(id);
-    const modal = document.querySelector("#infoModal");
+    const modal = document.querySelector("#attractionmodal");
     const titleEl = document.querySelector("#modalTitle");
     const contentEl = document.querySelector("#modalContent");
   
