@@ -24,11 +24,9 @@ input[type="checkbox"] {
 }
 
 .nav-links a.active {
-  background-color: #a6ac89; /* mörkare bakgrund för aktiv */
- 
-  border: 2px solid #4a5738; /* valfritt: markerande kant */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
+  background-color: #f5f3f0;
+  
+ }
 
 
 .campcontainer {
@@ -93,9 +91,10 @@ button.campingBtn {
 
 
 .campingpic {
-  width: 170px;
+  width: 150px;
+  height: 150px;
   max-width: 100%;
-  height: auto;
+ 
   object-fit: cover;
   border-radius: 6px;
 }
@@ -401,7 +400,7 @@ font-family: 'Quicksand', sans-serif;
     margin-top: 0;
     
   }
-
+/*
    @media (max-width: 350px) {
 
     .campingtext {
@@ -412,14 +411,48 @@ font-family: 'Quicksand', sans-serif;
 }
 
  .campingpic{
-      width:100px;
+      width:10px;
       height: auto;
       max-width: 300px;
     }
 
    }
+    */
+    @media (max-width: 395px) {
+      .campingrow {
+        flex-direction: column; /* Bilden hamnar under texten */
+        align-items: center;     /* Centrerar bilden */
+      }
+    
+      .campingpic {
+        width: 80%;
+        height: auto;
+        
+        margin-bottom: 0.5em;
+      }
+    
+      .campcontainer {
+        height: auto; /* Tillåt flexibel höjd */
+        padding: 1rem;
+      }
+    
+      .campingtext-container {
+        width: 100%;
+      }
+    
+   
+    
+   
+    }
 
   @media (min-width: 768px) {
+
+    .nav-links a.active {
+      background-color: #a6ac89; /* mörkare bakgrund för aktiv */
+     
+      border: 2px solid #4a5738; /* valfritt: markerande kant */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
     body {
       width: auto;
       max-width: 1200px;
@@ -595,5 +628,11 @@ button.campingtext:hover {
       width: 100%;
       justify-content: start;
       margin-left: 0;
+    }
+    .nav-links a.active {
+      background-color: #a6ac89; /* mörkare bakgrund för aktiv */
+     
+      border: 2px solid #4a5738; /* valfritt: markerande kant */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
   }

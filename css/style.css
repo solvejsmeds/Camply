@@ -14,7 +14,7 @@ body {
 
 #fj{
     background-color: #354024;
-    opacity: 0.9;
+    opacity: 90%;
     padding: 1px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     border-radius: 10px;
@@ -27,7 +27,7 @@ body {
 .flex-box{
     text-decoration: none;
     color: inherit;
-    opacity:90%;
+    opacity:95%;
     display: flex;
     align-items: center;
     background-color: #E5D7C4;
@@ -40,6 +40,7 @@ body {
     box-shadow: 0 5px 50px rgba(0, 0, 0.3);
     justify-content: center;
     flex-direction: center;
+    font-size: 1.1rem;
 }
 
 h1{
@@ -96,12 +97,12 @@ p {
         flex: 1 1 40%;
         max-width: 45%;
         padding: 2rem;
-        font-size: 1.1rem;
+        
     }
 
     p{
         font-family: 'Quicksand', sans-serif;
-        font-size: 1.2rem;
+        font-size: 1.4rem;
     }
 
     h1{

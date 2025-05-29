@@ -177,6 +177,22 @@ html{
     flex-wrap: wrap;
     margin-top: 1rem;
   }
+
+  .mainlogo{
+    width:100%;
+    height:auto;
+  }
+  #attractionmodal {
+    position: fixed;
+  
+    border-radius: 10px;
+    max-width: 1000px;
+    background-color: #f9f9f9;
+  }
+
+  #submitBtn, #redoBtn, .campingbtn {
+    font-size: 17px;
+  }
   
 .button-row{
   display:flex;

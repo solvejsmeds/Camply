@@ -33,7 +33,7 @@ body {
   color: black;
   text-align: center;
   text-decoration: none;
-  /* ingen underline på länken */
+
 
   width: fit-content;
   transition: background-color 0.2s;
@@ -46,8 +46,8 @@ body {
 }
 
 .maptext {
-  margin-top: 0;
-  margin-bottom: 0;
+  margin-top: 0em;
+  margin-bottom: 0em;
 }
 
 .btn {
@@ -201,7 +201,8 @@ button {
   border-radius: 15px;
   font-size: 1rem;
   padding: 0.3em;
-  
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+
 
 }
 
@@ -210,7 +211,7 @@ button.active {
   /* mörkare grön för "aktiv" */
   /* kontrast så text syns bättre */
   font-weight: bold;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+ 
   /* lite skugga */
 
 }
@@ -348,15 +349,31 @@ left: 0;
   width: 100%;
 }
 
-#closeModal {
-  background-color: #f6bcbc;
-  border-radius: 8px;
-}
+
 
 .filters-wrapper {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5em;
+}
+
+#infoModal {
+  position: relative;
+  
+  border-radius: 10px;
+  max-width: 1000px;
+  background-color: #f9f9f9;
+}
+#closeModal {
+  
+  top: 10px;
+  right: 10px;
+  background-color: #f6bcbc;
+  
+ 
+ 
+  font-weight: bold;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 890px) {
@@ -451,4 +468,6 @@ left: 0;
     display: flex;
     flex-wrap: wrap;
   }
+
+
 }
