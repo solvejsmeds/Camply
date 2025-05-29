@@ -8,8 +8,8 @@ function goToPage() {
     const filterElement = document.querySelector("#goToFilterPage");
 
     const quizElement = document.querySelector("#goToQuizPage");
-   
- 
+
+
 
     if (filterElement) {
         filterElement.addEventListener("click", function () {
@@ -23,6 +23,6 @@ function goToPage() {
         });
     }
 
-   
- 
+
+
 }

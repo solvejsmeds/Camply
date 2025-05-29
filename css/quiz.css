@@ -1,21 +1,21 @@
 body {
-    background-color: #CFBB99
+  background-color: #CFBB99
 }
 
-html{
-font-family: 'Quicksand', sans-serif;
-     
-  }
+html {
+  font-family: 'Quicksand', sans-serif;
+
+}
 
 .quizstad {
-    background-color: #E5D7C4;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    padding: 7px;
-     margin-bottom: 20px;
-    border-radius: 1em;
-    display:block;
-    text-decoration: none;
-    color: inherit;
+  background-color: #E5D7C4;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  padding: 7px;
+  margin-bottom: 20px;
+  border-radius: 1em;
+  display: block;
+  text-decoration: none;
+  color: inherit;
 }
 
 h4 {
@@ -24,106 +24,108 @@ h4 {
 
 
 .nav-links a.active {
- background-color: #f5f3f0;
+  background-color: #f5f3f0;
 
 }
 
 .header-content {
-    position: relative;
-    padding: 10px 20px;
-    height: 80px;
-  }
-  
-  .logo {
-    position: absolute;
-    left:50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2em;
-    font-weight: bold;
-    margin: 0 auto;
-  }
-  
-  .hamburger {
-    position: absolute;
-    right:20px;
-    top:50%;
-    transform: translateY(-50%);
-    font-size: 1.8em;
-    cursor: pointer;
-  }
+  position: relative;
+  padding: 10px 20px;
+  height: 80px;
+}
 
-  .mainlogo{
-    width:70px;
-    height:auto;
-    display: block;
-  }
+.logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0 auto;
+}
 
-  .nav-links {
-    display: none; 
-    flex-direction: column;
-    background-color: #e5d7c4;
-    position: absolute;
-    right: 20px; 
-    padding: 1rem;
-    border-radius: 6px;
-    z-index: 999;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    width: max-content;
-    list-style: none;
-  }
-  
-  .nav-links a {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: black;
-  }
-  
-  .nav-links.show {
-    display: flex; 
-    top: 60px; 
-  }
+.hamburger {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.8em;
+  cursor: pointer;
+}
+
+.mainlogo {
+  width: 70px;
+  height: auto;
+  display: block;
+}
+
+.nav-links {
+  display: none;
+  flex-direction: column;
+  background-color: #e5d7c4;
+  position: absolute;
+  right: 20px;
+  padding: 1rem;
+  border-radius: 6px;
+  z-index: 999;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: max-content;
+  list-style: none;
+}
+
+.nav-links a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.nav-links.show {
+  display: flex;
+  top: 60px;
+}
 
 
-  .camplylogo {
-    position: absolute;
-    left: 30px;
-    top:50% ;
-    
-    width:40px;
-    transform:translateY(-50%);
-  }
+.camplylogo {
+  position: absolute;
+  left: 30px;
+  top: 50%;
 
-  .filterbuttons {
-    display:flex;
-    gap:1rem;
-    flex-wrap: wrap;
-    margin-top: 1rem;
-  }
+  width: 40px;
+  transform: translateY(-50%);
+}
 
-  @media (min-width: 768px) {
+.filterbuttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
 
-  .mainlogo{
+@media (min-width: 768px) {
+
+  .mainlogo {
     width: 70px;
     height: auto;
   }
 
-     .quizstad{
-     transition: transform 0.3s ease, background-color 0.3s ease;
-   }
+  .quizstad {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
 
 
-   .quizstad:hover{
-     background-color: #e0dad1;
-     transform:scale(1.02);
-     cursor:pointer;
-   }
+  .quizstad:hover {
+    background-color: #e0dad1;
+    transform: scale(1.02);
+    cursor: pointer;
+  }
 
-   .nav-links a.active {
-    background-color: #a6ac89; /* mörkare bakgrund för aktiv */
-   
-    border: 2px solid #4a5738; /* valfritt: markerande kant */
+  .nav-links a.active {
+    background-color: #a6ac89;
+    /* mörkare bakgrund för aktiv */
+
+    border: 2px solid #4a5738;
+    /* valfritt: markerande kant */
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
   }
 

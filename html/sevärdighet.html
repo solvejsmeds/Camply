@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="sv">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/sevärdighet.css">
-     
-      <link rel = "stylesheet" href = "../css/specifikquizstad.css">
-      
-      <link href = "https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel = "stylesheet">
-      <script src = "../js/sevärdhet.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../css/sevärdighet.css">
+
+  <link rel="stylesheet" href="../css/specifikquizstad.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="../js/sevärdhet.js"></script>
 </head>
+
 <body>
-     <header class="header">
+  <header class="header">
     <div class="header-content">
       <div class="camplylogo">
         <a href="../index.html">
@@ -37,68 +39,69 @@
       </ul>
     </nav>
   </header>
-    <h2>Quiz - Vilken sevärdhet passar dig?</h2>
+  <h2>Quiz - Vilken sevärdhet passar dig?</h2>
 
-    <div class="vilkenstad">
-      <p>Vad tycker du mest om att lära dig om?</p>
-      <div class="choice-container">
-        <div class="elemchoice" data-question="category" data-value="history">
-          <p>Något historiskt</p>
-        </div>
-        <div class="elemchoice" data-question="category" data-value="art">
-          <p>Något konstnärligt</p>
-        </div>
-        <div class="elemchoice" data-question="category" data-value="nature">
-          <p>Något ute i naturen</p>
-        </div>
-     
+  <div class="vilkenstad">
+    <p>Vad tycker du mest om att lära dig om?</p>
+    <div class="choice-container">
+      <div class="elemchoice" data-question="category" data-value="history">
+        <p>Något historiskt</p>
+      </div>
+      <div class="elemchoice" data-question="category" data-value="art">
+        <p>Något konstnärligt</p>
+      </div>
+      <div class="elemchoice" data-question="category" data-value="nature">
+        <p>Något ute i naturen</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="vilkenstad">
+    <p>Vad är viktigast för dig när du besöker en sevärdhet?</p>
+    <div class="choice-container">
+      <div class="elemchoice" data-question="type" data-value="beauty">
+        <p>Att det är vackert</p>
+      </div>
+      <div class="elemchoice" data-question="type" data-value="unique">
+        <p>Att det är lite udda eller unikt</p>
+      </div>
+      <div class="elemchoice" data-question="type" data-value="educative">
+        <p>Att det är lärorikt</p>
       </div>
     </div>
-    
-    <div class="vilkenstad">
-      <p>Vad är viktigast för dig när du besöker en sevärdhet?</p>
-      <div class="choice-container">
-        <div class="elemchoice" data-question="type" data-value="beauty">
-          <p>Att det är vackert</p>
-        </div>
-        <div class="elemchoice" data-question="type" data-value="unique">
-          <p>Att det är lite udda eller unikt</p>
-        </div>
-        <div class="elemchoice" data-question="type" data-value="educative">
-          <p>Att det är lärorikt</p>
-        </div>
+  </div>
+
+  <div class="vilkenstad">
+    <p>Vem ska du besöka sevärdheten med?</p>
+    <div class="choice-container">
+      <div class="elemchoice" data-question="company" data-value="kids">
+        <p>Med barnen</p>
       </div>
-    </div>
-
-    <div class="vilkenstad">
-      <p>Vem ska du besöka sevärdheten med?</p>
-      <div class="choice-container">
-        <div class="elemchoice" data-question="company" data-value="kids">
-          <p>Med barnen</p>
-        </div>
-        <div class="elemchoice" data-question="company" data-value="grownups">
-          <p>Själv eller med vänner</p>
-        </div>
-      
+      <div class="elemchoice" data-question="company" data-value="grownups">
+        <p>Själv eller med vänner</p>
       </div>
+
     </div>
-    
-    <button id="submitBtn">Visa mitt resultat!</button>
-    <button id="redoBtn">Gör testet igen</button>
+  </div>
 
-    <div class="result">
-      <!-- Här ska resultatet från testet visas.-->
-    </div>
+  <button id="submitBtn">Visa mitt resultat!</button>
+  <button id="redoBtn">Gör testet igen</button>
+
+  <div class="result">
+    <!-- Här ska resultatet från testet visas.-->
+  </div>
 
 
 
-<div id="showBtnContainer"></div>
+  <div id="showBtnContainer"></div>
 
-<dialog id="attractionmodal">
-  <h3 id="modalTitle"></h3>
-  <div id="modalContent"></div>
-  <button id="closeModal">Stäng</button>
-</dialog>
+  <dialog id="attractionmodal">
+    <h3 id="modalTitle">modalTitle</h3>
+    <div id="modalContent"></div>
+    <button id="closeModal">Stäng</button>
+  </dialog>
 
 </body>
+
 </html>

@@ -41,11 +41,11 @@ function init() {
 
 
 
-  
 
-    document.querySelector("#closeModal").addEventListener("click", function () {
-      document.querySelector("#activityModal").close();
-    });
+
+  document.querySelector("#closeModal").addEventListener("click", function () {
+    document.querySelector("#activityModal").close();
+  });
 
 
 }
@@ -58,18 +58,18 @@ window.addEventListener("load", init);
 
 //kontrollerar att användaren svarat på alla frågor
 function checkIfAllAnswered() {
-    const allQuestions = document.querySelectorAll(".choice-container");
-    let allAnswered = true;
-  
-    for (let i = 0; i < allQuestions.length; i++) {
-      if (!allQuestions[i].querySelector(".selected")) {
-        allAnswered = false;
-        break;
-      }
+  const allQuestions = document.querySelectorAll(".choice-container");
+  let allAnswered = true;
+
+  for (let i = 0; i < allQuestions.length; i++) {
+    if (!allQuestions[i].querySelector(".selected")) {
+      allAnswered = false;
+      break;
     }
-  
-    submitBtn.disabled = !allAnswered;
   }
+
+  submitBtn.disabled = !allAnswered;
+}
 //slut checkIfAllAnswered
 //--------------------------------------------------------------------------------------
 
@@ -205,26 +205,26 @@ function findResult() {
 
           let html = "";
 
-          if(info.text){
+          if (info.text) {
             html += "<p>" + info.text + "</p>";
           }
           else {
             html += "<p>" + info.abstract + "</p>";
           }
-            
-        
-         
-            html += "<p><strong>Adress:</strong> " + info.address + "</p>";
-         
-         
-            html += "<p><strong>Stad:</strong> " + info.city + "</p>";
-          
-         
-            html += "<p><strong>Pris:</strong> " + info.price_range + " kr</p>";
-       
-      
-            html += "<p><a href='" + info.website + "' target='_blank'>Besök webbplats</a></p>";
-      
+
+
+
+          html += "<p><strong>Adress:</strong> " + info.address + "</p>";
+
+
+          html += "<p><strong>Stad:</strong> " + info.city + "</p>";
+
+
+          html += "<p><strong>Pris:</strong> " + info.price_range + " kr</p>";
+
+
+          html += "<p><a href='" + info.website + "' target='_blank'>Besök webbplats</a></p>";
+
 
           document.querySelector("#modalDescription").innerHTML = html;
         } else {
@@ -253,17 +253,17 @@ function findResult() {
 
 
 function resetTest() {
-    // Ta bort alla 'selected'-klasser
-    const choices = document.querySelectorAll(".elemchoice");
-    for (let i = 0; i < choices.length; i++) {
-      choices[i].classList.remove("selected");
-    }
-  
-    // Töm resultat
-    document.querySelector(".result").innerText = "";
-
-    document.querySelector("#showBtnContainer").innerHTML = "";
-  
-    // Inaktivera knappen igen
-    submitBtn.disabled = true;
+  // Ta bort alla 'selected'-klasser
+  const choices = document.querySelectorAll(".elemchoice");
+  for (let i = 0; i < choices.length; i++) {
+    choices[i].classList.remove("selected");
   }
+
+  // Töm resultat
+  document.querySelector(".result").innerText = "";
+
+  document.querySelector("#showBtnContainer").innerHTML = "";
+
+  // Inaktivera knappen igen
+  submitBtn.disabled = true;
+}

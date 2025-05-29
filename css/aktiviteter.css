@@ -1,163 +1,172 @@
 body {
-    background-color: #CFBB99;
-    margin-bottom: 8em;
+  background-color: #CFBB99;
+  margin-bottom: 8em;
 }
 
-html{
+html {
   font-family: 'Quicksand', sans-serif;
-       
-    }
 
-#firsttitle{
-    text-align: center;
 }
 
-.vilkenstad{
-    background-color: #E5D7C4;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 1em;
+#firsttitle {
+  text-align: center;
 }
-#submitBtn, #redoBtn, .campingbtn {
+
+.vilkenstad {
+  background-color: #E5D7C4;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 1em;
+}
+
+#submitBtn,
+#redoBtn,
+.campingbtn {
   font-size: 17px;
 }
 
-  #firsttitle{
-    text-align: center;
+#firsttitle {
+  text-align: center;
 }
 
-.filter-container{
-    display:flex;
-    gap:1rem;
-    align-items: center;
-    flex-wrap: wrap;
+.filter-container {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.filter-container label{
-    display:flex;
-    flex-direction: column;
+.filter-container label {
+  display: flex;
+  flex-direction: column;
 }
 
 .campcontainer {
-    background-color: #E5D7C4;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    padding: 7px;
-    margin-bottom: 20px;
+  background-color: #E5D7C4;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  padding: 7px;
+  margin-bottom: 20px;
 }
 
 .header-content {
-    position: relative;
-    padding: 10px 20px;
-    height: 80px;
-  }
-  
-  .logo {
-    position: absolute;
-    left:50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2em;
-    font-weight: bold;
-    margin: 0 auto;
-  }
-  
-  .hamburger {
-    position: absolute;
-    right:20px;
-    top:50%;
-    transform: translateY(-50%);
-    font-size: 1.8em;
-    cursor: pointer;
-  }
-
- 
-
-  .nav-links {
-    display: none; /* gömd från början */
-    flex-direction: column;
-    background-color: #e5d7c4;
-    position: absolute;
-    top: 60px; /* under headern – justera vid behov */
-    right: 20px; /* högra hörnet */
-    padding: 1rem;
-   
-    border-radius: 6px;
-    z-index: 999; /* säkerställer att den ligger över annat */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    width: max-content;
-    list-style: none;
-  }
-  
-  .nav-links a {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: black;
-  }
-  
-  .nav-links.show {
-    display: flex; 
-  }
-
-  .camplylogo {
-    position: absolute;
-    left: 20px;
-    top:52% ;
-    width: 100px;
-    width:40px;
-    transform:translateY(-50%);
-  }
-  
-  .circle-img {
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    width: 26px;
-    height: 16px;
-    padding: 6px;
-    border-radius: 50%;
-    transition: 0.4s;
-    background-color: #ffffff;
-  }
-
-  button {
-    margin-top: 1em;
-    margin-right: 0.7em;
-    margin-bottom: 1em;
-    background-color: #b9bda3;
-    border-color: #5c835d;
-    border-radius: 20px;
-    height: 4em;
-    width: 10em;
-    cursor: pointer;
-  }
-
-    .choice-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px; /* mellanrum mellan rutor */
+  position: relative;
+  padding: 10px 20px;
+  height: 80px;
 }
-  
+
+.logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0 auto;
+}
+
+.hamburger {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.8em;
+  cursor: pointer;
+}
+
+
+
+.nav-links {
+  display: none;
+  /* gömd från början */
+  flex-direction: column;
+  background-color: #e5d7c4;
+  position: absolute;
+  top: 60px;
+  /* under headern – justera vid behov */
+  right: 20px;
+  /* högra hörnet */
+  padding: 1rem;
+
+  border-radius: 6px;
+  z-index: 999;
+  /* säkerställer att den ligger över annat */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: max-content;
+  list-style: none;
+}
+
+.nav-links a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.nav-links.show {
+  display: flex;
+}
+
+.camplylogo {
+  position: absolute;
+  left: 20px;
+  top: 52%;
+  width: 100px;
+  width: 40px;
+  transform: translateY(-50%);
+}
+
+.circle-img {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 26px;
+  height: 16px;
+  padding: 6px;
+  border-radius: 50%;
+  transition: 0.4s;
+  background-color: #ffffff;
+}
+
+button {
+  margin-top: 1em;
+  margin-right: 0.7em;
+  margin-bottom: 1em;
+  background-color: #b9bda3;
+  border-color: #5c835d;
+  border-radius: 20px;
+  height: 4em;
+  width: 10em;
+  cursor: pointer;
+}
+
+.choice-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  /* mellanrum mellan rutor */
+}
+
 .elemchoice {
-    flex: 1 1 calc(50% - 10px); /* två per rad, minus gap */
-    background-color: #f0eae1;
-    padding: 1.5em;
-    box-sizing: border-box;
-    text-align: center;
-    border-radius: 0.5em;
-    cursor: pointer;
-    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  flex: 1 1 calc(50% - 10px);
+  /* två per rad, minus gap */
+  background-color: #f0eae1;
+  padding: 1.5em;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 0.5em;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
-  
+
 .elemchoice:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    background-color: #f2ede6;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background-color: #f2ede6;
 }
-  
+
 .elemchoice.selected {
-    border: 2px solid #5c835d;
-    background-color: #e5efe5;
+  border: 2px solid #5c835d;
+  background-color: #e5efe5;
 }
 
 
@@ -169,14 +178,14 @@ html{
   background-color: #f9f9f9;
 
 
-  
+
 }
 
 
 
 @media (min-width: 768px) {
 
-  .mainlogo{
+  .mainlogo {
     margin-left: 30px;
   }
 

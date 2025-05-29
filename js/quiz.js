@@ -21,7 +21,7 @@ function goToPage() {
         campingElement.addEventListener("click", function () {
             window.location.href = "vilkenpassardig.html";
         });
-    } 
+    }
 
     if (attractionElement) {
         attractionElement.addEventListener("click", function () {
@@ -42,9 +42,9 @@ function goToPage() {
     }
 
     document.querySelector("#hamburger").addEventListener("click", function () {
-    document.querySelector("#nav-links").classList.toggle("show");
-  });
+        document.querySelector("#nav-links").classList.toggle("show");
+    });
 
-  
- 
+
+
 }

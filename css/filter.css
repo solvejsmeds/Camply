@@ -2,20 +2,20 @@ body {
   background-color: #CFBB99
 }
 
-#firsttitle{
-    text-align: center;
+#firsttitle {
+  text-align: center;
 }
 
-.filter-container{
-    display:flex;
-    gap:1rem;
-    align-items: center;
-    flex-wrap: wrap;
+.filter-container {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.filter-container label{
-    display:flex;
-    flex-direction: column;
+.filter-container label {
+  display: flex;
+  flex-direction: column;
 }
 
 input[type="checkbox"] {
@@ -25,8 +25,8 @@ input[type="checkbox"] {
 
 .nav-links a.active {
   background-color: #f5f3f0;
-  
- }
+
+}
 
 
 .campcontainer {
@@ -51,13 +51,14 @@ input[type="checkbox"] {
 }
 
 .campingrow {
-  
+
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 20px;
-  align-items: stretch;/*fyll hela höjden*/
-  flex:1;
+  align-items: stretch;
+  /*fyll hela höjden*/
+  flex: 1;
 }
 
 .campingtext-container {
@@ -82,7 +83,7 @@ button.campingBtn {
   width: 8em;
   height: 3em;
   font-weight: 600;
- 
+
   border-color: #889063;
   margin-top: auto;
   margin-bottom: 0.5em;
@@ -94,312 +95,314 @@ button.campingBtn {
   width: 150px;
   height: 150px;
   max-width: 100%;
- 
+
   object-fit: cover;
   border-radius: 6px;
 }
 
 .header-content {
-    position: relative;
-    padding: 10px 20px;
-    height: 80px;
-  }
-  
-  .logo {
-    position: absolute;
-    left:50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2em;
-    font-weight: bold;
-    margin: 0 auto;
-  }
-  
-  .hamburger {
-    position: absolute;
-    right:20px;
-    top:50%;
-    transform: translateY(-50%);
-    font-size: 1.8em;
-    cursor: pointer;
-  }
+  position: relative;
+  padding: 10px 20px;
+  height: 80px;
+}
 
-  .mainlogo{
-    width:70px;
-    height:auto;
-    display: block;
-  }
+.logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0 auto;
+}
 
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    background-color: #e5d7c4;
-    position: absolute;
-    top: 60px; 
-    right: 1em; 
-    padding: 1rem;
-   
-    border-radius: 6px;
-    z-index: 999;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    width: max-content;
-    list-style: none;
-  }
-  
-  .nav-links a {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: black;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: bold;
-  }
-  
-  .nav-links.show {
-    display: flex; 
-  }
+.hamburger {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.8em;
+  cursor: pointer;
+}
+
+.mainlogo {
+  width: 70px;
+  height: auto;
+  display: block;
+}
+
+.nav-links {
+  display: none;
+  flex-direction: column;
+  background-color: #e5d7c4;
+  position: absolute;
+  top: 60px;
+  right: 1em;
+  padding: 1rem;
+
+  border-radius: 6px;
+  z-index: 999;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: max-content;
+  list-style: none;
+}
+
+.nav-links a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+}
+
+.nav-links.show {
+  display: flex;
+}
 
 
 .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 200px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 10px;
-    z-index: 100;
-  }
-  
-  .dropdown-content.show {
-    display: block;
-  }
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 200px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  z-index: 100;
+}
 
-  .camplylogo {
-    position: absolute;
-    left: 30px;
-    top:50%;
-    width:100px;
-    transform:translateY(-50%);
-   
-  }
+.dropdown-content.show {
+  display: block;
+}
 
-  .dropdown-content-city {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 200px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 10px;
-    z-index: 100;
-  }
-  
-  .dropdown-content-city.show {
-    display: block;
-  }
+.camplylogo {
+  position: absolute;
+  left: 30px;
+  top: 50%;
+  width: 100px;
+  transform: translateY(-50%);
 
- 
+}
 
-  .filterbuttons {
-    display:flex;
-    gap:1rem;
-    flex-wrap: wrap;
-    margin-top: 1rem;
-  }
-  
+.dropdown-content-city {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 200px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  z-index: 100;
+}
 
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 75px;
-    height: 37px;
+.dropdown-content-city.show {
+  display: block;
+}
 
-  }
-  
-  .switch input {
-    position: absolute;
-    opacity: 0;
-    z-index: 2;
-  }
-  .switch input:checked + .slider .circle-img {
-    transform: translateX(29px); 
-  }
 
-  .switch input:checked + .slider {
-    
-    background-color: #889063; 
-  }
 
-  body.user-is-tabbing .switch input:focus + .slider{
-    outline: 3px solid rgb(0, 191, 255);
-    border-radius: 34px;
-  }
+.filterbuttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
 
-  .switch input:focus{
-    outline:none;
-  }
-  
-  .slider {
-    background-color: #354024;
-    border-radius: 34px;
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 100%;
-    transition: 0.4s;
-    cursor: pointer;
-  }
-  
-  .circle-img {
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    width: 26px;
-    height: 16px;
-    padding: 6px;
-    border-radius: 50%;
-    transition: 0.4s;
-    background-color: #ffffff;
-  }
-  
-  .price-field {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-  }
 
-  .price-field input {
-    width: 8em; 
-  }
-  
-  .separator {
-    margin-top: 26px;
-    font-size: 1.2rem;
-  }
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 75px;
+  height: 37px;
 
-  #backToTopWrapper{
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 999;
-  }
+}
 
-  #upBtn{
-    opacity: 0%;
-    background-color: #889063;
-    color: #fff;
-    border: 3px solid #fff;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    font-size: 1.5rem;
-    font-weight: bold;
-    cursor:pointer;
-    transition: all 0.3s ease;
-    
-    margin-left: 17px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+.switch input {
+  position: absolute;
+  opacity: 0;
+  z-index: 2;
+}
 
-  }
+.switch input:checked+.slider .circle-img {
+  transform: translateX(29px);
+}
 
-  #upBtn.show{
-    opacity:1;
-    pointer-events: auto;
+.switch input:checked+.slider {
 
-   
-  }
+  background-color: #889063;
+}
 
-  #upBtn:hover{
-    background-color: #889063;
-    transform: scale(1.1);
+body.user-is-tabbing .switch input:focus+.slider {
+  outline: 3px solid rgb(0, 191, 255);
+  border-radius: 34px;
+}
 
-  }
+.switch input:focus {
+  outline: none;
+}
 
- 
+.slider {
+  background-color: #354024;
+  border-radius: 34px;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: 0.4s;
+  cursor: pointer;
+}
 
-  #resetFiltersBtn{
-background-color:#555;
-border-color: #919191;
-color:#f9f9f9;
-padding: 7px;
-margin-bottom: 1em;
-  }
+.circle-img {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 26px;
+  height: 16px;
+  padding: 6px;
+  border-radius: 50%;
+  transition: 0.4s;
+  background-color: #ffffff;
+}
 
- 
-  #resetFiltersBtn:disabled {
-    background-color: #ccc;
-    color: #666;
-    border-color: #aaa;
-    cursor: not-allowed;
-    opacity: 0.6;
-    pointer-events: none;
-  }
-  
-  body.user-is-tabbing #resetFiltersBtn:focus{
-    outline: 3px solid rgb(0, 191, 255);
-    border-radius: 34px;
-  }
+.price-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-   button {
-    background-color: #ccd0bb;
-    border-color: #889063;
-    border-radius: 15px;
-   font-size: 1rem;
-   padding: 0.3em;
-   cursor: pointer;
-   
-  }
+}
 
-  button:hover{
-    background-color: #ccd0bb;
-  }
+.price-field input {
+  width: 8em;
+}
 
-   p{
-     font-family: 'Quicksand', sans-serif;
-  
-  }
+.separator {
+  margin-top: 26px;
+  font-size: 1.2rem;
+}
 
-  #hittacampingsompassardig{
-font-family: 'Quicksand', sans-serif;
-     font-weight: bold;
-  }
+#backToTopWrapper {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+}
 
-  h3,
-  h1 {
-    font-family: 'Quicksand', sans-serif;
-  }
+#upBtn {
+  opacity: 0%;
+  background-color: #889063;
+  color: #fff;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
 
-  label{
-     font-family: 'Quicksand', sans-serif;
-  }
+  margin-left: 17px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 
-  #dropdownBtn{
-    font-family: 'Quicksand', sans-serif;
-     font-weight: bold;
-  }
+}
 
-   #dropdownBtnCity{
-     font-family: 'Quicksand', sans-serif;
-     font-weight: bold;
-   }
+#upBtn.show {
+  opacity: 1;
+  pointer-events: auto;
 
-   #resetFiltersBtn{
-     font-family: 'Quicksand', sans-serif;
-   }
 
-   .campcontainer:hover{
-    background-color: rgb(239, 227, 208);
-    transform:scale(1.02);
-    cursor:pointer;
-  }
+}
 
-  .slideinfo{
-    margin-top: 0;
-    
-  }
+#upBtn:hover {
+  background-color: #889063;
+  transform: scale(1.1);
+
+}
+
+
+
+#resetFiltersBtn {
+  background-color: #555;
+  border-color: #919191;
+  color: #f9f9f9;
+  padding: 7px;
+  margin-bottom: 1em;
+}
+
+
+#resetFiltersBtn:disabled {
+  background-color: #ccc;
+  color: #666;
+  border-color: #aaa;
+  cursor: not-allowed;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+body.user-is-tabbing #resetFiltersBtn:focus {
+  outline: 3px solid rgb(0, 191, 255);
+  border-radius: 34px;
+}
+
+button {
+  background-color: #ccd0bb;
+  border-color: #889063;
+  border-radius: 15px;
+  font-size: 1rem;
+  padding: 0.3em;
+  cursor: pointer;
+
+}
+
+button:hover {
+  background-color: #ccd0bb;
+}
+
+p {
+  font-family: 'Quicksand', sans-serif;
+
+}
+
+#hittacampingsompassardig {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+}
+
+h3,
+h1 {
+  font-family: 'Quicksand', sans-serif;
+}
+
+label {
+  font-family: 'Quicksand', sans-serif;
+}
+
+#dropdownBtn {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+}
+
+#dropdownBtnCity {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+}
+
+#resetFiltersBtn {
+  font-family: 'Quicksand', sans-serif;
+}
+
+.campcontainer:hover {
+  background-color: rgb(239, 227, 208);
+  transform: scale(1.02);
+  cursor: pointer;
+}
+
+.slideinfo {
+  margin-top: 0;
+
+}
+
 /*
    @media (max-width: 350px) {
 
@@ -418,56 +421,62 @@ font-family: 'Quicksand', sans-serif;
 
    }
     */
-    @media (max-width: 395px) {
-      .campingrow {
-        flex-direction: column; /* Bilden hamnar under texten */
-        align-items: center;     /* Centrerar bilden */
-      }
-    
-      .campingpic {
-        width: 80%;
-        height: auto;
-        
-        margin-bottom: 0.5em;
-      }
-    
-      .campcontainer {
-        height: auto; /* Tillåt flexibel höjd */
-        padding: 1rem;
-      }
-    
-      .campingtext-container {
-        width: 100%;
-      }
-    
-   
-    
-   
-    }
-
-  @media (min-width: 768px) {
-
-    .nav-links a.active {
-      background-color: #a6ac89; /* mörkare bakgrund för aktiv */
-     
-      border: 2px solid #4a5738; /* valfritt: markerande kant */
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-    body {
-      width: auto;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-     p{
-     font-family: 'Quicksand', sans-serif;
-  
+@media (max-width: 395px) {
+  .campingrow {
+    flex-direction: column;
+    /* Bilden hamnar under texten */
+    align-items: center;
+    /* Centrerar bilden */
   }
 
-  #hittacampingsompassardig{
-font-family: 'Quicksand', sans-serif;
-     font-weight: bold;
+  .campingpic {
+    width: 80%;
+    height: auto;
+
+    margin-bottom: 0.5em;
+  }
+
+  .campcontainer {
+    height: auto;
+    /* Tillåt flexibel höjd */
+    padding: 1rem;
+  }
+
+  .campingtext-container {
+    width: 100%;
+  }
+
+
+
+
+}
+
+@media (min-width: 768px) {
+
+  .nav-links a.active {
+    background-color: #a6ac89;
+    /* mörkare bakgrund för aktiv */
+
+    border: 2px solid #4a5738;
+    /* valfritt: markerande kant */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  body {
+    width: auto;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  p {
+    font-family: 'Quicksand', sans-serif;
+
+  }
+
+  #hittacampingsompassardig {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
   }
 
   h3,
@@ -475,164 +484,168 @@ font-family: 'Quicksand', sans-serif;
     font-family: 'Quicksand', sans-serif;
   }
 
-  label{
-     font-family: 'Quicksand', sans-serif;
-  }
-
-  #nav-links.nav-links.show{
-     font-family: 'Quicksand', sans-serif;
-  }
-
-  #dropdownBtn{
+  label {
     font-family: 'Quicksand', sans-serif;
-     font-weight: bold;
   }
 
-   #dropdownBtnCity{
-     font-family: 'Quicksand', sans-serif;
-     font-weight: bold;
-   }
+  #nav-links.nav-links.show {
+    font-family: 'Quicksand', sans-serif;
+  }
 
-   #resetFiltersBtn{
-     font-family: 'Quicksand', sans-serif;
-   }
+  #dropdownBtn {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+  }
 
+  #dropdownBtnCity {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+  }
 
-    .header-content {
-      height: 100px;
-      padding: 20px 40px;
-    }
-
-    .mainlogo{
-      width: 70px;
-      height: auto;
-    }
-
-    .hamburger {
-      display: none;
-    }
-
-    .nav-links {
-      display: flex !important;
-      position:static;
-      flex-direction: row;
-      background-color: transparent;
-      box-shadow: none;
-      padding: 0;
-      gap: 7px;
-      border-radius: 4px;
-    }
-
-    .nav-links a{
-      padding: 0.5rem 1rem;
-       background-color: #889063;
-      transition: background-color 0.2 ease;
-      font-family: 'Quicksand', sans-serif;
-     font-weight: bold;
-    }
-
-    .nav-links a:hover{
-      background-color:#9b9e8b;
-    }
+  #resetFiltersBtn {
+    font-family: 'Quicksand', sans-serif;
+  }
 
 
-    .camplylogo{
-      width: 60px;
-    }
+  .header-content {
+    height: 100px;
+    padding: 20px 40px;
+  }
 
-    .filter-container{
-      flex-wrap: nowrap;
-    }
+  .mainlogo {
+    width: 70px;
+    height: auto;
+  }
 
-    #campingsContainer {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      gap: 2rem;
-      padding: 2rem 0 2rem 0;
-      width: 100%;
-      justify-content: start;
-      margin-left: 0;
-    }
+  .hamburger {
+    display: none;
+  }
 
-    .campingtext {
-  margin: 0;
-  line-height: 1.3;
-  cursor: pointer;
-  font-size: 16px;
-}
+  .nav-links {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+    gap: 7px;
+    border-radius: 4px;
+  }
 
-    .campcontainer{
-      width: 100%;
-      margin: 0;
-      transition: transform 0.3s ease, background-color 0.3s ease;
-    }
+  .nav-links a {
+    padding: 0.5rem 1rem;
+    background-color: #889063;
+    transition: background-color 0.2s ease;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+  }
 
-  
+  .nav-links a:hover {
+    background-color: #9b9e8b;
+  }
 
-    button.campingtext {
-  border-radius: 20px;
-  width: 8em;
-  height: 3em;
-  font-weight: 600;
-  margin-top: 0.1em;
-  border-color: #889063;
+
+  .camplylogo {
+    width: 60px;
+  }
+
+  .filter-container {
+    flex-wrap: nowrap;
+  }
+
+  #campingsContainer {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2rem;
+    padding: 2rem 0 2rem 0;
+    width: 100%;
+    justify-content: start;
+    margin-left: 0;
+  }
+
+  .campingtext {
+    margin: 0;
+    line-height: 1.3;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .campcontainer {
+    width: 100%;
+    margin: 0;
     transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-button.campingtext:hover {
-   transform:scale(1.02);
-      cursor:pointer;
-      color:#000;
-      background-color: #c2c8a5;
-}
-
-
-    .campingpic{
-      width:200px;
-      height: auto;
-      max-width: 300px;
-    }
-
-    .campinginfo h2{
-      margin: 0;
-      font-size: 1.5rem;
-      text-align:center;
-      display:flex;
-    }
-
-    .campinginfo a {
-      color:#643d26;
-      font-weight: bold;
-      text-decoration: underline;
-    }
-
-    .campinginfo p{
-      text-align: center;
-    }
-
-    .switchDiv{
-      display:flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-
   }
 
-  @media (min-width:1000px) {
-    #campingsContainer {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr); /* 2 kolumner */
-      gap: 2rem;
-      padding: 2rem 0;
-      width: 100%;
-      justify-content: start;
-      margin-left: 0;
-    }
-    .nav-links a.active {
-      background-color: #a6ac89; /* mörkare bakgrund för aktiv */
-     
-      border: 2px solid #4a5738; /* valfritt: markerande kant */
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
+
+
+  button.campingtext {
+    border-radius: 20px;
+    width: 8em;
+    height: 3em;
+    font-weight: 600;
+    margin-top: 0.1em;
+    border-color: #889063;
+    transition: transform 0.3s ease, background-color 0.3s ease;
   }
+
+  button.campingtext:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+    color: #000;
+    background-color: #c2c8a5;
+  }
+
+
+  .campingpic {
+    width: 200px;
+    height: auto;
+    max-width: 300px;
+  }
+
+  .campinginfo h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    text-align: center;
+    display: flex;
+  }
+
+  .campinginfo a {
+    color: #643d26;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  .campinginfo p {
+    text-align: center;
+  }
+
+  .switchDiv {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+
+}
+
+@media (min-width:1000px) {
+  #campingsContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 kolumner */
+    gap: 2rem;
+    padding: 2rem 0;
+    width: 100%;
+    justify-content: start;
+    margin-left: 0;
+  }
+
+  .nav-links a.active {
+    background-color: #a6ac89;
+    /* mörkare bakgrund för aktiv */
+
+    border: 2px solid #4a5738;
+    /* valfritt: markerande kant */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+}
