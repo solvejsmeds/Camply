@@ -60,7 +60,7 @@ async function showSpecificCamping() {
 
   const specificCampingDiv = document.querySelector(".specificCampingDiv"); // Elementet där campinginformationen ska visas
 
- // const reviewsDiv = document.querySelector(".reviewsDiv"); //element för recensioner och betyg
+  // const reviewsDiv = document.querySelector(".reviewsDiv"); //element för recensioner och betyg
 
   const urlParams = new URLSearchParams(window.location.search); // Hämtar parameter fårn urlen
 
@@ -77,7 +77,7 @@ async function showSpecificCamping() {
     // Skapa och visa campinginformation på sidan
     specificCampingDiv.innerHTML =
       "<h3 class='campingtext'>" + camping.name + "</h3>" +
-      "<p class='campingtext'> Campingen ligger i " + camping.city + "-" + camping.address +".</p>" +
+      "<p class='campingtext'> Campingen ligger i " + camping.city + "-" + camping.address + ".</p>" +
       "<p class='campingtext'> Priset ligger runt " + camping.price_range + " kr.</p>" +
       "<p class='campingtext'>" + camping.text + "</p>" +
       "<p> Betyget för " + camping.name + " är " + parseFloat(camping.rating).toFixed(1) + " av 5</p>" +
@@ -108,7 +108,7 @@ async function showSpecificCamping() {
         for (let i = 0; i < restaurantMarkers.length; i++) {
           myMap.removeLayer(restaurantMarkers[i]);
         }
-       
+
         restaurantMarkers = []; // Töm arrayen med markörer
         restaurantBtn.classList.remove("active"); //tar bort css klassen
         showRestaurants = false; //flagga uppdateras
@@ -161,7 +161,7 @@ async function showSpecificCamping() {
     golfBtn.addEventListener("click", function () {
       if (showGolf) {
         for (let i = 0; i < golfMarkers.length; i++) {
-          myMap.removeLayer(golfMarkers[i]); 
+          myMap.removeLayer(golfMarkers[i]);
         }
         golfMarkers = [];
         golfBtn.classList.remove("active");
@@ -252,7 +252,7 @@ function initMap(lat, lng, name) { //lat lng och cmapingens namn
   //OpenStreetMap tiles
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "&copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
-  }).addTo(myMap); 
+  }).addTo(myMap);
 
   // Campingikon
   const campingIcon = L.icon({
@@ -260,7 +260,7 @@ function initMap(lat, lng, name) { //lat lng och cmapingens namn
     iconSize: [40, 40], //markör stolek
     iconAnchor: [20, 40], //markör plats
     popupAnchor: [0, -40] //popuprutans plats (i förhållande till ikonen)
-  }); 
+  });
 
   // Lägg till campingmarkör med ikonem
   let marker = L.marker([lat, lng], { icon: campingIcon }).bindPopup(name); //visas cmapingens namn
@@ -353,11 +353,11 @@ async function fetchRestaurants(lat, lng) {
       rest.distance_in_km.toFixed(1) + " km från campingen<br>" +
       "<button id='" + btnId + "'>Läs mer</button>"; //visas namn och avstånd i ppopuprutan
 
-      //lägger itll markörer på kartan
+    //lägger itll markörer på kartan
     let marker = L.marker([parseFloat(rest.lat), parseFloat(rest.lng)], {
       title: rest.name,
       icon: restaurantIcon
-    }).bindPopup(popupContent); 
+    }).bindPopup(popupContent);
     marker.addTo(myMap);
     restaurantMarkers.push(marker);  //soarar marköerer i resturantMArkers
 
@@ -518,11 +518,11 @@ async function fetchWeather(lat, lng, city) { //stadens namn används för att l
     const dates = data.daily.time;
     const tempsMax = data.daily.temperature_2m_max;
     const tempsMin = data.daily.temperature_2m_min;
-let html = "<div class='weatherDiv'>"; //gär ska innehållet liga
-const weatherCodes = data.daily.weathercode;
-//hämtar daturm, max temp, min temp coch väderkoder
+    let html = "<div class='weatherDiv'>"; //gär ska innehållet liga
+    const weatherCodes = data.daily.weathercode;
+    //hämtar daturm, max temp, min temp coch väderkoder
 
-//loopar igenom dagarna 
+    //loopar igenom dagarna 
     for (let i = 0; i < dates.length; i++) {
       const date = new Date(dates[i]);
       const day = date.toLocaleDateString("sv-SE", { day: 'numeric', month: 'numeric' });
@@ -595,13 +595,13 @@ async function fetchNatureReserve(lat, lng) {
     console.log(response)
     return await response.json();
 
-   
+
   } //hämtar från smapi och returnerar som json
 
   // Rensa gamla markörer
   for (let marker of natureMarkers) {
     myMap.removeLayer(marker);
-  } 
+  }
   natureMarkers = [];
 
   // Försök med växande radier
@@ -780,7 +780,7 @@ async function fetchJSONNatureReserves(regionKey) {
     }
 
   } catch (error) {
-    console.error("Kunde inte hämta lokala naturreservat från JSON:", error); 
+    console.error("Kunde inte hämta lokala naturreservat från JSON:", error);
   }
 
   hideLoader();
@@ -902,36 +902,36 @@ async function fetchAttraction(lat, lng) {
   for (let i = 0; i < data.payload.length; i++) {
     let attraction = data.payload[i];
     let btnId = "readMoreAttraction_" + i; //läsmerknapp
-/*
-    // Välj ikon baserat på beskrivningen
-    let iconUrl = "../img/användbinocuallrs4.svg"; // standardikon för "sevärdhet"
+    /*
+        // Välj ikon baserat på beskrivningen
+        let iconUrl = "../img/användbinocuallrs4.svg"; // standardikon för "sevärdhet"
+        const desc = attraction.description.toLowerCase();
+    
+        if (desc.includes("museum")) {
+          iconUrl = "../img/museumkarta.svg";
+        } else if (desc.includes("slott")) {
+          iconUrl = "../img/slottkarta.svg";
+        } //bestämmer vilken ikon som aska anvädas baserat på kategorien
+    */
+    let iconUrl = "../img/användbinocuallrs4.svg"; // standardikon för sevärdhet
     const desc = attraction.description.toLowerCase();
 
     if (desc.includes("museum")) {
       iconUrl = "../img/museumkarta.svg";
     } else if (desc.includes("slott")) {
       iconUrl = "../img/slottkarta.svg";
-    } //bestämmer vilken ikon som aska anvädas baserat på kategorien
-*/
-let iconUrl = "../img/användbinocuallrs4.svg"; // standardikon för sevärdhet
-const desc = attraction.description.toLowerCase();
-
-if (desc.includes("museum")) {
-  iconUrl = "../img/museumkarta.svg";
-} else if (desc.includes("slott")) {
-  iconUrl = "../img/slottkarta.svg";
-} 
-else if (desc.includes("kyrka")){
-  iconUrl = "../img/churchmap.svg"
-}
-else if (
-  desc.includes("atelje") ||
-  desc.includes("ateljé") || // med accent
-  desc.includes("konsthall") ||
-  desc.includes("konstgalleri")
-) {
-  iconUrl = "../img/artmap.svg";
-}
+    }
+    else if (desc.includes("kyrka")) {
+      iconUrl = "../img/churchmap.svg"
+    }
+    else if (
+      desc.includes("atelje") ||
+      desc.includes("ateljé") || // med accent
+      desc.includes("konsthall") ||
+      desc.includes("konstgalleri")
+    ) {
+      iconUrl = "../img/artmap.svg";
+    }
 
     let customIcon = L.icon({
       iconUrl: iconUrl,
@@ -944,11 +944,11 @@ else if (
       attraction.distance_in_km.toFixed(1) + " km från campingen<br>" +
       "<button id='" + btnId + "'>Läs mer</button>"; //popup info
 
-      //skapra markörer och popupen
+    //skapra markörer och popupen
     let marker = L.marker([parseFloat(attraction.lat), parseFloat(attraction.lng)], {
       title: attraction.name,
       icon: customIcon
-    }).bindPopup(popupContent); 
+    }).bindPopup(popupContent);
 
     //ägger oiin på kartan och i arraien 
     marker.addTo(myMap);

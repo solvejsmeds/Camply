@@ -72,8 +72,8 @@ function findResult() {
   let result = "";
   let description = "";
 
- 
-//HISTORIA
+
+  //HISTORIA
   if (category === "history" && type === "beauty" && company === "kids") {
     result = "Kalmar Slott";
     id = 452; //
@@ -122,7 +122,7 @@ function findResult() {
   //NATUR
   else if (category === "nature" && type === "beauty" && company === "kids") {
     result = "Bullerbyn";
-    id = 712 
+    id = 712
   } else if (category === "nature" && type === "beauty" && company === "grownups") {
     result = "Långe Jan";
     id = 678;
@@ -147,7 +147,7 @@ function findResult() {
   // ------------------ SLUT KOMBINATIONSRESULTAT ------------------
 
   document.querySelector(".result").innerHTML =
-    "<strong><h3>Du borde besöka " + result +"!</h3></strong><p class='resulttext'>"+description+"</p>";
+    "<strong><h3>Du borde besöka " + result + "!</h3></strong><p class='resulttext'>" + description + "</p>";
 
   const showBtnContainer = document.querySelector("#showBtnContainer");
   showBtnContainer.innerHTML = "";
@@ -158,30 +158,30 @@ function findResult() {
 
   btn.addEventListener("click", async function () {
     if (!id) return;
-  
+
     const info = await fetchAttractionDetails(id);
     const modal = document.querySelector("#attractionmodal");
     const titleEl = document.querySelector("#modalTitle");
     const contentEl = document.querySelector("#modalContent");
-  
-    
-      titleEl.textContent = result;
-  
-      let html = "";
-  
-      
-        html += "<p><strong>Stad: </strong>"+info.city+"</p>";
-        html += "<p><strong>Pris: </strong>"+info.price_range+"</p>";
-   
-        html += "<p>"+info.text+"</p>";
-    
- 
-        html += "<p><a href="+info.website+" target='_blank'>Besök webbplats</a></p>";
-     
-  
-      contentEl.innerHTML = html;
-  
-  
+
+
+    titleEl.textContent = result;
+
+    let html = "";
+
+
+    html += "<p><strong>Stad: </strong>" + info.city + "</p>";
+    html += "<p><strong>Pris: </strong>" + info.price_range + "</p>";
+
+    html += "<p>" + info.text + "</p>";
+
+
+    html += "<p><a href=" + info.website + " target='_blank'>Besök webbplats</a></p>";
+
+
+    contentEl.innerHTML = html;
+
+
     modal.showModal();
   });
 
@@ -208,7 +208,7 @@ async function fetchAttractionDetails(id) {
   try {
     const searchUrl = "https://smapi.lnu.se/api/?api_key=" + APIkey +
       "&controller=establishment&method=getall&ids=" + id;
-    
+
     const response = await fetch(searchUrl);
     const data = await response.json();
 
@@ -227,4 +227,3 @@ async function fetchAttractionDetails(id) {
 
 
 
-  
