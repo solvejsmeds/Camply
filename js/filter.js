@@ -251,9 +251,9 @@ function displayCampings(campings) {
 
     textDiv.innerHTML +=
 
-      "<p class='campingtext'>" + camping.city + "</p>" +
+      "<p class='campingtext'>" + camping.city + " - " +camping.address+ "</p>" + 
       "<p class='campingtext'>" + camping.price_range + " kr</p>" +
-      "<p class='campingtext'>" + camping.abstract + "</p>";
+      "<p class='campingtext'>" + camping.abstract + "</p>"  ;
 
 
     // Skapa knapp
