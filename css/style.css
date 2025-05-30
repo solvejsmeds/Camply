@@ -1,38 +1,37 @@
-
 body {
     background-color: #CFBB99;
 }
-.wrapbild{
+
+.wrapbild {
     width: 100%;
     margin: 0 auto;
     min-height: 100vh;
-   background-image: url("../img/DSC_7623.jpg");
-   background-size: cover;
-   background-position: center;
-   border-radius: 20px;
+    background-image: url("../img/DSC_7623.jpg");
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
 }
 
-#fj{
+#fj {
     background-color: #354024;
     opacity: 90%;
     padding: 1px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     max-width: 90%;
     margin: 20px auto;
-    color:rgb(228, 228, 228)
-
+    color: rgb(228, 228, 228)
 }
 
-.flex-box{
+.flex-box {
     text-decoration: none;
     color: inherit;
-    opacity:95%;
+    opacity: 95%;
     display: flex;
     align-items: center;
     background-color: #E5D7C4;
-    padding:2rem;
-    margin-bottom:2rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
     border-radius: 3em;
     margin: 2rem auto;
     max-width: 600px;
@@ -43,17 +42,18 @@ body {
     font-size: 1.1rem;
 }
 
-h1{
+h1 {
     font-family: 'Quicksand', sans-serif;
     font-weight: bold;
 }
+
 p {
     text-align: center;
     font-family: 'Quicksand', sans-serif;
     font-weight: bold;
 }
 
-#firsttitle{
+#firsttitle {
     text-align: center;
 }
 
@@ -66,25 +66,25 @@ p {
         border-radius: 20px;
         background-size: cover;
         background-position: center;
-        background-image: url("../img/bakgrund2.jpg"); /* Större bild för tablet/desktop */
+        background-image: url("../img/bakgrund2.jpg");
     }
 
-    #fj{
+    #fj {
         max-width: 800px;
         font-size: 1.2rem;
     }
 
-    .flex-box{
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    .flex-box {
+        transition: transform 0.3s ease, background-color 0.3s ease;
     }
 
-    .flex-box:hover{
-    background-color: #e0dad1;
-      transform:scale(1.02);
-      cursor:pointer;
-}
+    .flex-box:hover {
+        background-color: #e0dad1;
+        transform: scale(1.02);
+        cursor: pointer;
+    }
 
-    .flex-container{
+    .flex-container {
         display: flex;
         justify-content: center;
         gap: 2rem;
@@ -97,19 +97,16 @@ p {
         flex: 1 1 40%;
         max-width: 45%;
         padding: 2rem;
-        
+
     }
 
-    p{
+    p {
         font-family: 'Quicksand', sans-serif;
         font-size: 1.4rem;
     }
 
-    h1{
+    h1 {
         font-family: 'Quicksand', sans-serif;
         font-size: 2.5rem;
     }
 }
-
-
-

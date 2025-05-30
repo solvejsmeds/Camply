@@ -7,10 +7,11 @@ body {
 
 }
 
-html{
+html {
   font-family: 'Quicksand', sans-serif;
-    
-    }
+
+}
+
 .choice-container {
   display: flex;
   flex-direction: row;
@@ -22,13 +23,13 @@ html{
 
 
 #closeModal {
- 
+
   top: 10px;
   right: 10px;
   background-color: #f6bcbc;
-  
- 
- 
+
+
+
   font-weight: bold;
   cursor: pointer;
 }
@@ -132,7 +133,7 @@ html{
   text-decoration: none;
   color: black;
   font-family: 'Quicksand', sans-serif;
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .nav-links.show {
@@ -170,7 +171,9 @@ html{
   margin-top: 1rem;
 }
 
-#submitBtn, #redoBtn, .campingbtn {
+#submitBtn,
+#redoBtn,
+.campingbtn {
   font-size: 17px;
 }
 
@@ -329,9 +332,10 @@ html{
 
 
 }
+
 @media (min-width: 768px) {
 
-  .mainlogo{
+  .mainlogo {
     margin-left: 30px;
   }
 

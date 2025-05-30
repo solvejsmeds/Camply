@@ -15,10 +15,11 @@ body {
   z-index: 1;
   position: relative;
 }
+
 #mapcontainer {
   width: 100%;
   max-width: 1000px;
-  position: relative; 
+  position: relative;
 }
 
 .weatherbox {
@@ -51,7 +52,7 @@ body {
 }
 
 .btn {
- 
+
   cursor: pointer;
 }
 
@@ -104,27 +105,22 @@ body {
 }
 
 
-.mainlogo{
-  width:70px;
-  height:auto;
+.mainlogo {
+  width: 70px;
+  height: auto;
   display: block;
 }
 
 .nav-links {
   display: none;
-  /* gömd från början */
   flex-direction: column;
   background-color: #e5d7c4;
   position: absolute;
   top: 60px;
-  
   right: 20px;
-  /* högra hörnet */
   padding: 1rem;
-
   border-radius: 6px;
   z-index: 999;
-  /* säkerställer att den ligger över annat */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   width: max-content;
   list-style: none;
@@ -142,22 +138,6 @@ body {
   display: flex;
 }
 
-/*
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 200px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 10px;
-  z-index: 100;
-}
-
-.dropdown-content.show {
-  display: block;
-}
-*/
 .camplylogo {
   position: absolute;
   left: 20px;
@@ -166,35 +146,7 @@ body {
   width: 40px;
   transform: translateY(-50%);
 }
-/*
-.dropdown-content-city {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 200px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 10px;
-  z-index: 100;
-}
 
-.dropdown-content-city.show {
-  display: block;
-}
-
-*/
-/*behövs denna? Vad är den till för enst*/
-
-/*
-.filterbuttons {
-  display: flex;
-  gap: 1rem;
-
-  flex-wrap: wrap;
-  margin-top: 1rem;
-
-}
-*/
 button {
   background-color: #ccd0bb;
   border-color: #889063;
@@ -203,16 +155,11 @@ button {
   padding: 0.3em;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 
-
 }
 
 button.active {
   background-color: #bac0a3;
-  /* mörkare grön för "aktiv" */
-  /* kontrast så text syns bättre */
   font-weight: bold;
- 
-  /* lite skugga */
 
 }
 
@@ -236,71 +183,6 @@ select {
   font-family: 'Quicksand', sans-serif;
 }
 
-/*
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 75px;
-  height: 37px;
-
-}
-
-.switch input {
-  display: none;
-}
-
-.switch input:checked+.slider .circle-img {
-  transform: translateX(29px);
-}
-
-.switch input:checked+.slider {
-
-  background-color: #889063;
-}
-
-.slider {
-  background-color: #354024;
-  border-radius: 34px;
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
-  transition: 0.4s;
-}
-*/
-
-/*denna också*/
-/*
-.circle-img {
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  width: 26px;
-  height: 16px;
-  padding: 6px;
-  border-radius: 50%;
-  transition: 0.4s;
-  background-color: #ffffff;
-}
-*/
-
-/*
-.price-field {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-}
-
-.price-field input {
-  width: 8em;
-}
-
-.separator {
-  margin-top: 26px;
-  font-size: 1.2rem;
-}
-*/
 #loadingicon {
 
   left: 0px;
@@ -313,8 +195,8 @@ select {
   z-index: 2;
   position: absolute;
   visibility: hidden;
-top: 0;
-left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   display: flex;
@@ -326,9 +208,8 @@ left: 0;
 
 #map {
   z-index: 1;
-  /*filter: blur(2px);*/
   margin-top: 1em;
-    overflow-y: auto;
+  overflow-y: auto;
 }
 
 
@@ -359,31 +240,32 @@ left: 0;
 
 #infoModal {
   position: relative;
-  
+
   border-radius: 10px;
   max-width: 1000px;
   background-color: #f9f9f9;
 }
+
 #closeModal {
-  
+
   top: 10px;
   right: 10px;
   background-color: #f6bcbc;
-  
- 
- 
+
+
+
   font-weight: bold;
   cursor: pointer;
 }
 
 @media screen and (min-width: 890px) {
 
-    body {
-      width: auto;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
+  body {
+    width: auto;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
 
   header-content {
     position: relative;
@@ -430,7 +312,6 @@ left: 0;
     background-color: #9b9e8b;
   }
 
-  /* Ny del: gör info-wrapper till flex */
   .info-wrapper {
     display: flex;
     gap: 1rem;
@@ -441,11 +322,9 @@ left: 0;
   /* Vänsterkolumnen */
   .specificCampingDiv {
     flex: 1 1 35%;
-    /* tar ca 35% av bredden */
     background-color: #E5D7C4;
     padding: 1em;
     margin-top: 0;
-    /* ta bort extra topp-marginal om du vill */
     margin-bottom: 0;
     overflow-y: auto;
   }
@@ -453,7 +332,6 @@ left: 0;
   /* Högerkolumnen */
   .right-column {
     flex: 2 1 60%;
-    /* tar resterande ca 60% */
     display: flex;
     flex-direction: column;
     gap: 1rem;
