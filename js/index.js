@@ -1,5 +1,7 @@
+//startsida, navigering till wuiz och filtersida
+
 function init() {
-    console.log("hej");
+    
     goToPage();
 }
 window.addEventListener("load", init);

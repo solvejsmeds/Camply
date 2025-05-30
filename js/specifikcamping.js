@@ -56,7 +56,7 @@ window.addEventListener("load", init);
 // Funktion för att visa specifik camping
 async function showSpecificCamping() {
 
-  console.log("visa cmpingen")
+  
 
   const specificCampingDiv = document.querySelector(".specificCampingDiv"); // Elementet där campinginformationen ska visas
 
@@ -89,7 +89,7 @@ async function showSpecificCamping() {
 
 
 
-    console.log("campinglat: ", camping.lat, ", cmapinglng: ", camping.lng);
+   
 
     lat = camping.lat; //latitud
     lng = camping.lng; //longitud
@@ -195,46 +195,24 @@ async function showSpecificCamping() {
       } //lägg itll markörer om de inte redan visas
     });
 
-    /*
-        document.querySelector("#natureReserveBtn").addEventListener("click", function () {
-          if (camping.province === "Öland") {
-            fetchJSONNatureReserves("oland");
-          }
-          else if (camping.county === "Jönköpings län") {
-            fetchJSONNatureReserves("jonkoping")
-          }
-          else {
-            fetchNatureReserve(camping.lat, camping.lng);
-          }
-        }); //anropar funktion för att hämta resturanger när resturang knappen klickas på
-    
-        document.querySelector("#golfBtn").addEventListener("click", function () {
-          fetchGolf(camping.lat, camping.lng);
-        }); //anropar funktion för att hämta resturanger när resturang knappen klickas på
-    
-    
-        document.querySelector("#attractionBtn").addEventListener("click", function () {
-          fetchAttraction(camping.lat, camping.lng);
-        }); //anropar funktion för att hämta resturanger när resturang knappen klickas på
-    
-        */
+   
 
 
 
-    console.log(camping.county)
+
 
 
 
     fetchWeather(camping.lat, camping.lng, camping.city); //anropar funktion för att visa väderprognosen, skickar med lat och lng
 
 
-    /*
+    
         fetchReviews(camping.id, camping.name); // Anropa funktionen och skicka in campingens id
-        */
+      
 
 
   }
-  console.log("visas cmapingen nu?")
+  
   //hideLoader();
 
 }
@@ -303,13 +281,13 @@ function initMap(lat, lng, name) { //lat lng och cmapingens namn
 //funktion för att hämta resturanger i närheter
 async function fetchRestaurants(lat, lng) {
   displayLoader(); //laddningsikon visas
-  console.log("Restaurangfunktion startar...");
+  
 
   async function requestRestaurantData(radius) {
     const url = "https://smapi.lnu.se/api/?debug=true&api_key=" + APIkey +
       "&controller=establishment&method=getfromlatlng&lat=" + lat + "&lng=" + lng + "&radius=" + radius + "&descriptions=restaurang";
     const response = await fetch(url);
-    console.log(response);
+    
     return await response.json(); //gör om till json
   } //hämtar smapi och söker resturanger inom raidus
 
@@ -410,7 +388,7 @@ function hideLoader() {
 
 //funktion för att hämta golfbanor i staden som campingen ligger i 
 async function fetchGolf(lat, lng) {
-  console.log("Golf!! :)");
+  
   displayLoader();
 
   // Hjälpfunktion för att göra själva anropet
@@ -438,18 +416,8 @@ async function fetchGolf(lat, lng) {
     hideLoader();
     return;
   }
-  /*
-    let filtered = filterByProvinceOrCity(data.payload);
-  
-    // Visa filtrerade om det finns, annars visa allt
-    if (filtered.length > 0) {
-      data.payload = filtered;
-    } else {
-      console.warn("Inga resultat efter filter – visar allt som hämtats istället.");
-    }
-  */
+ 
 
-  console.log("golf", data);
 
   const golfIcon = L.icon({
     iconUrl: "../img/golfmap.svg",
@@ -579,7 +547,7 @@ function getWeatherIcon(code) {
 
 
 async function fetchNatureReserve(lat, lng) {
-  console.log("Hämtar naturreservat via SMAPI...");
+  
   displayLoader();
 
   // inre hjälpfunktion för att göra själva API-anropet
@@ -592,7 +560,7 @@ async function fetchNatureReserve(lat, lng) {
     const response = await fetch(url);
 
 
-    console.log(response)
+    
     return await response.json();
 
 
@@ -611,17 +579,7 @@ async function fetchNatureReserve(lat, lng) {
     hideLoader();
     return; //om inget hittas
   }
-  /*
-    // Filtrera på landskap/stad
-    let filtered = filterByProvinceOrCity(data.payload);
-  
-  // Visa filtrerade om det finns, annars visa allt
-  if (filtered.length > 0) {
-    data.payload = filtered;
-  } else {
-    console.warn("Inga resultat efter filter – visar allt som hämtats istället.");
-  }
-  */
+
   const natureIcon = L.icon({
     iconUrl: "../img/naturemap.svg",
     iconSize: [40, 40],
@@ -676,7 +634,7 @@ async function fetchNatureReserve(lat, lng) {
 
 //hämtar naturreservaten i json filen, refion key är öland eller jönkloubg
 async function fetchJSONNatureReserves(regionKey) {
-  console.log("Visar naturreservat för:", regionKey);
+
 
   try {
     const response = await fetch("../json/naturereserve.json"); //hämtar
@@ -706,7 +664,7 @@ async function fetchJSONNatureReserves(regionKey) {
       }
 
       if (nearbyReserves.length > 0) {
-        console.log("Hittade reservat inom " + radius + " km");
+       
         break; // Avbryt loopen om vi har resultat
       }
     }
@@ -718,17 +676,7 @@ async function fetchJSONNatureReserves(regionKey) {
     }
 
 
-    /*
-        const filteredReserves = filterByProvinceOrCity(nearbyReserves);
     
-        // Om filter ger tomt resultat, visa ändå originalen
-        if (filteredReserves.length === 0) {
-          console.warn("Inga reservat efter filter – visar alla som hittats inom radien istället.");
-        } else {
-          nearbyReserves = filteredReserves;
-        }
-        console.log("Reservat som ska visas på kartan:", nearbyReserves);
-        */
 
 
     // Rensa gamla markörer
@@ -807,30 +755,7 @@ function toRad(deg) {
   return deg * Math.PI / 180;
 }
 
-/*
-//funktion för att bara visa saker på öland och i kalmar om man är där, annars visas bara småland grejer, eftersom det blir dumt om man är i typ mönsterås så orkar man ju inte åka ner hela vägen till bron o så upp igen ju
-function filterByProvinceOrCity(dataArray) {
-  let allowedProvinces = [];
 
-  if (camping.province === "Öland" || camping.city === "Kalmar") {
-    allowedProvinces = ["Öland", "Kalmar"];
-  } else {
-    allowedProvinces = ["Småland"];
-  }
-
-  let filtered = [];
-
-  for (let i = 0; i < dataArray.length; i++) {
-    let item = dataArray[i];
-    if (allowedProvinces.indexOf(item.province) !== -1 || allowedProvinces.indexOf(item.city) !== -1) {
-      filtered.push(item);
-    }
-  }
-
-  return filtered;
-}
-//slut filterByProvinceOrCity
-*/
 
 // testa flera radier tills data hittas så att det alltid finns nått
 async function tryFetchWithExpandingRadius(fetchFunction) {
@@ -841,10 +766,10 @@ async function tryFetchWithExpandingRadius(fetchFunction) {
   for (let i = 0; i < radies.length; i++) {
     const radie = radies[i];
     const resultat = await fetchFunction(radie); //skickr med radien, anropar fetchFunktion, alltså den funktion som hämtar kartgrejen
-    console.log("Testar radie....", radie, resultat);
+    
 
     if (resultat.payload.length > 0) {
-      console.log("Hittade resultat med radie:", radie);
+     
       return resultat;  //avbryt när något hittas
     }
   }
@@ -861,7 +786,7 @@ async function tryFetchWithExpandingRadius(fetchFunction) {
 
 //funktion för att hämta sevärdheter i närheten av campingen 
 async function fetchAttraction(lat, lng) {
-  console.log("Hämtar sevärdheter...");
+  
   displayLoader();
 
   //inre hjälpfunktion för api anropet
@@ -887,32 +812,13 @@ async function fetchAttraction(lat, lng) {
     hideLoader();
     return;
   }
-  /*
-   let filtered = filterByProvinceOrCity(data.payload);
-  
-  // Visa filtrerade om det finns, annars visa allt
-  if (filtered.length > 0) {
-    data.payload = filtered;
-  } else {
-    console.warn("Inga resultat efter filter – visar allt som hämtats istället.");
-  }
-  */
+ 
 
   //loopar igenom alla sevärdheter som hämtats
   for (let i = 0; i < data.payload.length; i++) {
     let attraction = data.payload[i];
     let btnId = "readMoreAttraction_" + i; //läsmerknapp
-    /*
-        // Välj ikon baserat på beskrivningen
-        let iconUrl = "../img/användbinocuallrs4.svg"; // standardikon för "sevärdhet"
-        const desc = attraction.description.toLowerCase();
-    
-        if (desc.includes("museum")) {
-          iconUrl = "../img/museumkarta.svg";
-        } else if (desc.includes("slott")) {
-          iconUrl = "../img/slottkarta.svg";
-        } //bestämmer vilken ikon som aska anvädas baserat på kategorien
-    */
+   
     let iconUrl = "../img/användbinocuallrs4.svg"; // standardikon för sevärdhet
     const desc = attraction.description.toLowerCase();
 
@@ -995,13 +901,7 @@ function openInfoModal(data) {
   if (data.rating) {
     infoText += " Betyg: " + parseFloat(data.rating).toFixed(1) + " av 5. <br>"; //lägger in betyget om de finns
   }
-  /*
-  if (data.dinnerprice) {
-    infoText += "Priset för middag ligger runt " + data.dinnerprice + " kr. <br>"
-  }
-  if (data.lunchprice) {
-    infoText += "Priset för lunch ligger runt " + data.lunchprice + " kr. <br>"
-  }*/
+
   if (data.price) {
     infoText += "Priset ligger runt " + data.price + " kr. <br>" //lägger in pris om de finns
   }
@@ -1030,12 +930,12 @@ function openInfoModal(data) {
 
 
 
-/*
+
 
 
 //funktion för att visa cmapingens recensioner
 async function fetchReviews(campingId, name) {
-  console.log("Hämtar recensioner för campingId:", campingId);
+ 
 
   let reviewsDiv = document.querySelector(".reviewsDiv"); //hämtar elemenet där recensionerna ska visas
 
@@ -1047,7 +947,7 @@ async function fetchReviews(campingId, name) {
 
   const reviewsData = await response.json(); // Konvertera till JSON objekt
 
-  console.log("Recensioner:", reviewsData.payload);
+  
 
   if (reviewsData.payload.length > 0) { //kollar om det finns recensioner
     // Visa alla recensioner
@@ -1057,7 +957,7 @@ async function fetchReviews(campingId, name) {
       const review = reviewsData.payload[i];
 
 
-      console.log("recension", reviewsData.payload[i])
+      
 
       reviewsDiv.innerHTML += "<div class='review'>" +
 
@@ -1069,4 +969,4 @@ async function fetchReviews(campingId, name) {
   } else {
     reviewsDiv.innerHTML += "<p>Det finns inga recensioner för " + name + " </p>";
   }
-} */
+} 

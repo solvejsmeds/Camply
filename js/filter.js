@@ -270,7 +270,7 @@ function displayCampings(campings) {
 
     textDiv.innerHTML +=
 
-      "<p class='campingtext'>" + camping.city + " - " +camping.address+ "</p>" + 
+      "<p class='campingtext'>" + camping.city + "</p>" + "<p class='campingtext'>" + camping.address + "</p>" + 
       "<p class='campingtext'>" + camping.price_range + " kr</p>" +
       "<p class='campingtext'>" + camping.abstract + "</p>"  ;
 
@@ -448,7 +448,7 @@ function filterCampings() {
   const laundryChecked = document.querySelector("#laundrySlider").checked;
 
   if (laundryChecked) {
-    console.log("tvättmaskin valt")
+   
     filtered = filtered.filter(function (camping) {
       const text = camping.text ? camping.text.toLowerCase() : "";
       return text.includes("tvätt");
