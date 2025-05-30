@@ -52,7 +52,7 @@ input[type="checkbox"] {
   flex-wrap: wrap;
   gap: 10px;
   width: 90%;
-  height: fit-content;
+
   border-radius: 10px;
   cursor: pointer;
 }
@@ -377,11 +377,7 @@ button:hover {
     align-items: center;
   }
 
-  .campingpic {
-    width: 80%;
-    height: auto;
-    margin-bottom: 0.5em;
-  }
+
 
   .campcontainer {
     height: auto;
@@ -394,7 +390,7 @@ button:hover {
 
 }
 
-@media (min-width: 768px) {
+@media (min-width: 700px) {
 
   .nav-links a.active {
     background-color: #a6ac89;
@@ -500,8 +496,8 @@ button:hover {
 
   .campingpic {
     width: 200px;
-    height: auto;
-    max-width: 300px;
+    height: 200px;
+    
   }
 
   .campinginfo h2 {
