@@ -3,6 +3,10 @@ body {
   margin-bottom: 3em;
 }
 
+html {
+  font-family: 'Quicksand', sans-serif;
+}
+
 .weatherDiv {
   display: flex;
   gap: 10px;
@@ -26,16 +30,11 @@ body {
   display: inline-block;
   padding: 10px;
   margin: 2px;
-
   margin-bottom: 1em;
-
   background-color: #e5d7c4;
-
   color: black;
   text-align: center;
   text-decoration: none;
-
-
   width: fit-content;
   transition: background-color 0.2s;
   font-size: smaller;
@@ -118,11 +117,9 @@ body {
   background-color: #e5d7c4;
   position: absolute;
   top: 60px;
-
   right: 20px;
   /* högra hörnet */
   padding: 1rem;
-
   border-radius: 6px;
   z-index: 999;
   /* säkerställer att den ligger över annat */
@@ -159,8 +156,6 @@ button {
   font-size: 1rem;
   padding: 0.3em;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-
-
 }
 
 button.active {
@@ -168,29 +163,6 @@ button.active {
   /* mörkare grön för "aktiv" */
   /* kontrast så text syns bättre */
   font-weight: bold;
-
-  /* lite skugga */
-
-}
-
-h1,
-h3 {
-  font-family: 'Quicksand', sans-serif;
-  font-weight: bold;
-}
-
-p {
-  font-family: 'Quicksand', sans-serif;
-}
-
-a,
-a.weatherbox {
-  font-family: 'Quicksand', sans-serif;
-}
-
-button,
-select {
-  font-family: 'Quicksand', sans-serif;
 }
 
 #loadingicon {
@@ -218,7 +190,6 @@ select {
 
 #map {
   z-index: 1;
-  /*filter: blur(2px);*/
   margin-top: 1em;
   overflow-y: auto;
 }
@@ -262,9 +233,6 @@ select {
   top: 10px;
   right: 10px;
   background-color: #f6bcbc;
-
-
-
   font-weight: bold;
   cursor: pointer;
 }

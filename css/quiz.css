@@ -123,7 +123,6 @@ h4 {
   .nav-links a.active {
     background-color: #a6ac89;
     /* mörkare bakgrund för aktiv */
-
     border: 2px solid #4a5738;
     /* valfritt: markerande kant */
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);

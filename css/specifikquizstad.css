@@ -19,17 +19,11 @@ html {
   margin-bottom: 2rem;
 }
 
-
-
-
 #closeModal {
 
   top: 10px;
   right: 10px;
   background-color: #f6bcbc;
-
-
-
   font-weight: bold;
   cursor: pointer;
 }
