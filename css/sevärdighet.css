@@ -8,9 +8,6 @@ html {
 
 }
 
-
-
-
 .vilkenstad {
   background-color: #E5D7C4;
   padding: 10px;
@@ -24,7 +21,6 @@ html {
   flex-wrap: wrap;
   gap: 10px;
   /* mellanrum mellan rutor */
-
 }
 
 .elemchoice {
