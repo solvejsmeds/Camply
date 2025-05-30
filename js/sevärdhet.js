@@ -106,13 +106,13 @@ function findResult() {
     id = 525;//
   } else if (category === "art" && type === "unique" && company === "kids") {
     result = "Skallagrim Gert Schuld trädgårdsgalleri";
-    id = 733; // !!!!!!!!!!!!!!!!!!!!!!!!!
+    id = 733; 
   } else if (category === "art" && type === "unique" && company === "grownups") {
     result = "Tändsticksmuseet";
     id = 457 //
   } else if (category === "art" && type === "educative" && company === "kids") {
     result = "Virserums konsthall";
-    id = 708 //!!!!!!!!!!!!!!!!!!!!!!!
+    id = 708 
   } else if (category === "art" && type === "educative" && company === "grownups") {
     result = "Vandalorum";
     id = 451 //

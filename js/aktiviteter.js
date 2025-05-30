@@ -8,7 +8,7 @@ let description = "";
 const APIkey = "R7PGDNjZ"; // API-nyckel till SMAPI
 
 function init() {
-  console.log("init funktion")
+ 
   submitBtn = document.querySelector("#submitBtn");
   submitBtn.disabled = true;
 
@@ -17,7 +17,7 @@ function init() {
   for (let i = 0; i < choices.length; i++) {
     choices[i].addEventListener("click", function () {
 
-      console.log("val klcikat")
+      
 
       const question = this.getAttribute("data-question");
 
@@ -38,7 +38,7 @@ function init() {
 
   submitBtn.addEventListener("click", findResult);
   document.querySelector("#redoBtn").addEventListener("click", resetTest);
-
+//gör om test
 
 
 
@@ -46,7 +46,7 @@ function init() {
   document.querySelector("#closeModal").addEventListener("click", function () {
     document.querySelector("#activityModal").close();
   });
-
+ //stänk modalen
 
 }
 
@@ -59,12 +59,12 @@ window.addEventListener("load", init);
 //kontrollerar att användaren svarat på alla frågor
 function checkIfAllAnswered() {
   const allQuestions = document.querySelectorAll(".choice-container");
-  let allAnswered = true;
+  let allAnswered = true; //flagga för att hålla koll o´på om alla svar är ifyllda
 
   for (let i = 0; i < allQuestions.length; i++) {
     if (!allQuestions[i].querySelector(".selected")) {
       allAnswered = false;
-      break;
+      break; //om alla inte är svarade avbryt
     }
   }
 
@@ -79,6 +79,7 @@ function findResult() {
   const place = document.querySelector('.elemchoice.selected[data-question="place"]')?.dataset.value;
   const company = document.querySelector('.elemchoice.selected[data-question="company"]')?.dataset.value;
   const category = document.querySelector('.elemchoice.selected[data-question="category"]')?.dataset.value;
+  //hämtar värdena
 
   if (!place || !company || !category) {
     document.querySelector(".result").innerText = "Du måste svara på alla frågor!";
