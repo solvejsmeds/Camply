@@ -4,7 +4,7 @@ let submitBtn; //knapp för att visa resulatt
 
 
 function init() {
-  console.log("init funktion")
+
   submitBtn = document.querySelector("#submitBtn");
   submitBtn.disabled = true;
 
@@ -13,7 +13,7 @@ function init() {
   for (let i = 0; i < choices.length; i++) {
     choices[i].addEventListener("click", function () {
 
-      console.log("val klcikat")
+    
 
       const question = this.getAttribute("data-question");
 
@@ -138,7 +138,7 @@ function findResult() {
   btn.textContent = "Visa campingar i " + result;
   btn.classList.add("campingbtn");
 
-  console.log("resultat:", result)
+
   btn.addEventListener("click", function () {
     window.location.href = "../html/filter.html?city=" + encodeURIComponent(result);
   }); ///????????????SKICKAR MED STADEN TILL FILTER:HMTL

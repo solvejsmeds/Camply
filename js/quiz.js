@@ -1,5 +1,9 @@
+
+//kod för att navigera itll olika test fårn quizzsidan
+
+
 function init() {
-    console.log("hej");
+   
     goToPage();
 }
 window.addEventListener("load", init);
