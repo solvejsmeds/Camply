@@ -377,7 +377,10 @@ button:hover {
     align-items: center;
   }
 
-
+.campingpic {
+  width: 250px;
+  height: 250px;
+}
 
   .campcontainer {
     height: auto;
@@ -545,3 +548,4 @@ button:hover {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   }
 }
+
