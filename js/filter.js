@@ -215,8 +215,27 @@ async function showCampings() {
 }
 //Slut showCampings
 //-----------------------------------------------------------------------------------
+ //funmkton för att visa stjärnor för ratings
+function generateStarHTML(rating) {
+  const stars = [];
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating - fullStars >= 0.25 && rating - fullStars < 0.75;
+  const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
+  for (let i = 0; i < fullStars; i++) {
+    stars.push("<img src='../img/stjärnahel.svg' alt='fylld stjärna' class='star'>");
+  }
 
+  if (hasHalfStar) {
+    stars.push("<img src='../img/stjärnahalv.svg' alt='halv stjärna' class='star'>");
+  }
+
+  for (let i = 0; i < emptyStars; i++) {
+    stars.push("<img src='../img/tomstjärna.svg' alt='tom stjärna' class='star'>");
+  }
+
+  return stars.join("");
+}
 
 //visar cmapingarna på sidan. 
 function displayCampings(campings) {
@@ -255,6 +274,11 @@ function displayCampings(campings) {
       "<p class='campingtext'>" + camping.price_range + " kr</p>" +
       "<p class='campingtext'>" + camping.abstract + "</p>"  ;
 
+      // Betyg (med stjärnor)
+const rating = parseFloat(camping.rating);
+if (!isNaN(rating)) {
+  textDiv.innerHTML += "<div class='rating-stars'>" + generateStarHTML(rating) + "</div>";
+}
 
     // Skapa knapp
     let button = document.createElement("button");
