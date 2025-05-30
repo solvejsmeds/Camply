@@ -223,15 +223,15 @@ function generateStarHTML(rating) {
   const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
   for (let i = 0; i < fullStars; i++) {
-    stars.push("<img src='../img/stjärnahel.svg' alt='fylld stjärna' class='star'>");
+    stars.push("<img src='../img/star.svg' alt='fylld stjärna' class='star'>");
   }
 
   if (hasHalfStar) {
-    stars.push("<img src='../img/stjärnahalv.svg' alt='halv stjärna' class='star'>");
+    stars.push("<img src='../img/halfstar.svg' alt='halv stjärna' class='star'>");
   }
 
   for (let i = 0; i < emptyStars; i++) {
-    stars.push("<img src='../img/tomstjärna.svg' alt='tom stjärna' class='star'>");
+    stars.push("<img src='../img/emptystar.svg' alt='tom stjärna' class='star'>");
   }
 
   return stars.join("");
