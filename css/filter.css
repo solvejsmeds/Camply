@@ -31,6 +31,16 @@ input[type="checkbox"] {
 
 }
 
+.star {
+  width: 20px;
+  height: 20px;
+  margin-right: 2px;
+  vertical-align: middle;
+}
+.rating-stars {
+  margin-bottom: 0.5rem;
+}
+
 
 .campcontainer {
   background-color: #E5D7C4;
